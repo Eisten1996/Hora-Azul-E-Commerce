@@ -18,10 +18,11 @@ import java.util.UUID;
 /**
  * Imagen asociada a una tarjeta pop-up 3D.
  *
- * <p>Stub mínimo para permitir la compilación de la entidad {@link Tarjeta}.
- * La implementación completa se realiza en la tarea 2.3.</p>
+ * <p>Una tarjeta puede tener múltiples imágenes de distintos tipos (portada,
+ * desplegada, sobre). El campo {@code sortOrder} determina el orden de
+ * visualización dentro de cada tarjeta.</p>
  *
- * <p>Validates: Requirements 6.1, 6.5</p>
+ * <p>Validates: Requirements 3.2</p>
  */
 @Entity
 @Table(name = "card_image")
@@ -31,14 +32,17 @@ public class CardImage extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    public ImageType imageType;
-
-    @Column(name = "image_url", nullable = false, length = 500)
-    public String imageUrl;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tarjeta_id", nullable = false)
     public Tarjeta tarjeta;
+
+    @Column(nullable = false, length = 500)
+    public String url;
+
+    @Column(name = "sort_order", nullable = false)
+    public Integer sortOrder = 0;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "image_type", nullable = false)
+    public ImageType imageType;
 }

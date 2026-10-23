@@ -53,7 +53,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Crear los tipos ENUM en PostgreSQL con migraciones SQL (o Flyway)
     - _Requirements: 6.1, 2.1_
 
-  - [ ] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
+  - [-] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
     - Implementar la entidad con todos los campos del DDL de diseño (`id`, `catalogNumber`, `name`, `category`, `price`, `dimensions`, `description3d`, `envelopeIncluded`, `active`, `createdAt`, `updatedAt`)
     - Anotar con `@Entity`, `@Table(name = "tarjeta")`, `@Id @GeneratedValue(strategy = UUID)`
     - Mapear la relación `@OneToMany` con `CardImage`
