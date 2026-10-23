@@ -84,7 +84,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Crear `OrdenRepository.findByOrderCode(String orderCode)`
     - _Requirements: 6.4, 7.2, 7.3_
 
-  - [ ] 2.7 Crear script de datos semilla para las 33 tarjetas del catálogo
+  - [x] 2.7 Crear script de datos semilla para las 33 tarjetas del catálogo
     - Crear `src/main/resources/import.sql` (ejecutado automáticamente por Hibernate en perfil dev) con los 33 registros de tarjetas y sus imágenes representativas
     - Incluir al menos una imagen de tipo `COVER` por tarjeta
     - Cubrir todas las 6 categorías con una distribución representativa de precios
