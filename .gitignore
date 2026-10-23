@@ -1,7 +1,7 @@
 ﻿# Angular
-/node_modules/
-/dist/
-/.angular/
+node_modules/
+dist/
+.angular/
 *.env
 
 # Java / Maven / Quarkus
