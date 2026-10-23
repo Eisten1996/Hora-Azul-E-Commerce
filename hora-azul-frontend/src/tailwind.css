@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Hora Azul custom theme configuration for Tailwind CSS v4 */
+@theme {
+  /* ── Primary: azul crepuscular / navy ─────────────────────────────────── */
+  --color-primary-50:  #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #1e3a8a;  /* base: azul profundo */
+  --color-primary-600: #1e3374;
+  --color-primary-700: #172b61;
+  --color-primary-800: #112250;
+  --color-primary-900: #0b1a3f;
+  --color-primary-950: #060f27;
+
+  /* ── Secondary: dorado / crema cálido ────────────────────────────────── */
+  --color-secondary-50:  #fefdf7;
+  --color-secondary-100: #fdf8e1;
+  --color-secondary-200: #fbefc3;
+  --color-secondary-300: #f7e09a;
+  --color-secondary-400: #f2cc6a;
+  --color-secondary-500: #d4a017;  /* base: dorado artesanal */
+  --color-secondary-600: #b8890f;
+  --color-secondary-700: #9a710c;
+  --color-secondary-800: #7c5a09;
+  --color-secondary-900: #5e4406;
+
+  /* ── Neutral: grises para texto y fondos ─────────────────────────────── */
+  --color-neutral-50:  #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+
+  /* ── Semánticos ───────────────────────────────────────────────────────── */
+  --color-success-50:  #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  --color-error-50:  #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  --color-warning-50:  #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+
+  /* ── Tipografía ───────────────────────────────────────────────────────── */
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Radios de borde ──────────────────────────────────────────────────── */
+  --radius-card: 0.75rem;
+  --radius-btn: 0.5rem;
+}
