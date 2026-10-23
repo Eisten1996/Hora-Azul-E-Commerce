@@ -1,24 +1,2 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Importar fuente Inter de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Variables globales de Hora Azul */
-:root {
-  --hora-azul-primary: #3a41f7;
-  --hora-azul-accent: #0ea5e9;
-  --hora-azul-surface: #f8fafc;
-}
-
-/* Reset mínimo */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  background-color: var(--hora-azul-surface);
-  color: #0f172a;
-}
+/* Global styles */
+@import 'tailwind.css';

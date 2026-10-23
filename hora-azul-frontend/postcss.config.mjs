@@ -1,7 +1,7 @@
-// postcss.config.mjs — Tailwind CSS v4 + Angular
-// Usa @tailwindcss/postcss en lugar del plugin legacy
-export default {
+const config = {
   plugins: {
     '@tailwindcss/postcss': {},
   },
 };
+
+export default config;
