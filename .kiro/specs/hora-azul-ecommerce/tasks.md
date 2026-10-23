@@ -6,32 +6,32 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
 
 ## Tasks
 
-- [ ] 1. Inicialización y configuración de proyectos
-  - [ ] 1.1 Crear proyecto Angular 18+ con componentes standalone
+- [x] 1. Inicialización y configuración de proyectos
+  - [x] 1.1 Crear proyecto Angular 18+ con componentes standalone
     - Ejecutar `ng new hora-azul-frontend --standalone --routing --style=scss`
     - Instalar y configurar Tailwind CSS con `ng add @angular-tailwind/schematics` o instalación manual
     - Configurar `tailwind.config.js` con la paleta de colores de Hora Azul
     - Verificar que la aplicación levanta con `ng serve`
     - _Requirements: 9.1_
 
-  - [ ] 1.2 Instalar dependencias del frontend
+  - [x] 1.2 Instalar dependencias del frontend
     - Instalar `@angular/forms` para Reactive Forms (incluido en Angular core)
     - Instalar Jest con `jest-preset-angular` como reemplazo de Karma para testing
     - Instalar `fast-check` para property-based testing
     - Configurar `jest.config.js` y `setup-jest.ts`
     - _Requirements: 5.3, 7.1_
 
-  - [ ] 1.3 Crear proyecto Quarkus 3.x con las extensiones necesarias
+  - [x] 1.3 Crear proyecto Quarkus 3.x con las extensiones necesarias
     - Generar proyecto en `code.quarkus.io` con extensiones: `quarkus-resteasy-reactive-jackson`, `quarkus-hibernate-orm-panache`, `quarkus-jdbc-postgresql`, `quarkus-smallrye-health`, `quarkus-smallrye-openapi`, `quarkus-security`, `quarkus-hibernate-validator`
     - Verificar que el proyecto compila con `mvn compile`
     - _Requirements: 8.1_
 
-  - [ ] 1.4 Configurar base de datos PostgreSQL en Neon
+  - [x] 1.4 Configurar base de datos PostgreSQL en Neon
     - Crear proyecto en Neon (`console.neon.tech`) y obtener el connection string
     - Anotar las credenciales para los perfiles `dev` y `prod`
     - _Requirements: 7.1_
 
-  - [ ] 1.5 Configurar `application.properties` de Quarkus con perfiles dev/prod
+  - [x] 1.5 Configurar `application.properties` de Quarkus con perfiles dev/prod
     - Configurar datasource JDBC apuntando a Neon para el perfil `%prod`
     - Configurar datasource H2 (o Testcontainers) para el perfil `%dev`/`%test`
     - Establecer `quarkus.hibernate-orm.database.generation=update` en prod
@@ -39,14 +39,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Configurar pool de conexiones: `min-size=2`, `max-size=5`, `acquisition-timeout=10s`
     - _Requirements: 8.2_
 
-  - [ ] 1.6 Configurar CORS en Quarkus
+  - [x] 1.6 Configurar CORS en Quarkus
     - Habilitar `quarkus.http.cors=true`
     - Establecer `quarkus.http.cors.origins=https://hora-azul.pages.dev` para prod
     - Permitir todos los orígenes en perfil dev para facilitar el desarrollo local
     - _Requirements: 1.2_
 
 - [ ] 2. Backend — Capa de datos y entidades
-  - [ ] 2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`
+  - [x] 2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`
     - Definir `CardCategory`: `CUMPLEANOS, FLORES, AMOR, SIN_MENSAJE, MEJORES_DESEOS, AGRADECIMIENTO`
     - Definir `ImageType`: `COVER, OPEN, ENVELOPE`
     - Definir `OrderStatus`: `PENDING_PAYMENT`

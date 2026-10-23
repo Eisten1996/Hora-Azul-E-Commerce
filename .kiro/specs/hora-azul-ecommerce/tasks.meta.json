@@ -1,0 +1,510 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Crear proyecto Angular 18+ con componentes standalone": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723988733
+      },
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723998887
+      },
+      {
+        "executionId": "f8c02676-5303-42e4-87a4-beb13c48a03e",
+        "chatSessionId": "sess_03fb77f7-adc1-45d0-8bc8-561cd92367ba",
+        "timestamp": 1792756060712
+      },
+      {
+        "executionId": "5ba90e19-e98b-45d4-9d32-34e9cb44d95b",
+        "chatSessionId": "sess_562003a2-95c7-4a56-888e-094d57bc144d",
+        "timestamp": 1792756987781
+      },
+      {
+        "executionId": "5ba90e19-e98b-45d4-9d32-34e9cb44d95b",
+        "chatSessionId": "sess_562003a2-95c7-4a56-888e-094d57bc144d",
+        "timestamp": 1792757249207
+      }
+    ],
+    "1.2 Instalar dependencias del frontend": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723988983
+      },
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792724001134
+      },
+      {
+        "executionId": "8dab95a1-db24-4b0b-8d63-da6f5e5c79ea",
+        "chatSessionId": "sess_887fceed-801a-4f23-b979-4cb3f831907b",
+        "timestamp": 1792757353362
+      },
+      {
+        "executionId": "8dab95a1-db24-4b0b-8d63-da6f5e5c79ea",
+        "chatSessionId": "sess_887fceed-801a-4f23-b979-4cb3f831907b",
+        "timestamp": 1792758156440
+      }
+    ],
+    "1.3 Crear proyecto Quarkus 3.x con las extensiones necesarias": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989098
+      },
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792724003773
+      },
+      {
+        "executionId": "d817f974-d650-4eed-850a-ea7d723022a3",
+        "chatSessionId": "sess_a628c667-a5e8-4707-b893-dd304b69d759",
+        "timestamp": 1792758210524
+      },
+      {
+        "executionId": "d817f974-d650-4eed-850a-ea7d723022a3",
+        "chatSessionId": "sess_a628c667-a5e8-4707-b893-dd304b69d759",
+        "timestamp": 1792758716054
+      }
+    ],
+    "1.4 Configurar base de datos PostgreSQL en Neon": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989211
+      },
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792724006349
+      }
+    ],
+    "1.5 Configurar `application.properties` de Quarkus con perfiles dev/prod": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989299
+      },
+      {
+        "executionId": "4827630b-5f19-40d9-8d7e-29e034036079",
+        "chatSessionId": "sess_74dca935-2151-4927-b5d0-fa3ff229b20b",
+        "timestamp": 1792759033440
+      },
+      {
+        "executionId": "4827630b-5f19-40d9-8d7e-29e034036079",
+        "chatSessionId": "sess_74dca935-2151-4927-b5d0-fa3ff229b20b",
+        "timestamp": 1792759095682
+      }
+    ],
+    "1.6 Configurar CORS en Quarkus": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989379
+      },
+      {
+        "executionId": "49e73c84-0cdf-4f2f-b2a7-7eaff9dcff3b",
+        "chatSessionId": "sess_c48b5791-a882-4d63-a051-ca5d5e6eca33",
+        "timestamp": 1792759418932
+      },
+      {
+        "executionId": "49e73c84-0cdf-4f2f-b2a7-7eaff9dcff3b",
+        "chatSessionId": "sess_c48b5791-a882-4d63-a051-ca5d5e6eca33",
+        "timestamp": 1792759466620
+      }
+    ],
+    "2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989475
+      },
+      {
+        "executionId": "30ef9bd0-be04-4071-ae15-67e045613970",
+        "chatSessionId": "sess_86a1c1c0-e6f0-428e-b39b-74fb6af60e02",
+        "timestamp": 1792759585537
+      },
+      {
+        "executionId": "30ef9bd0-be04-4071-ae15-67e045613970",
+        "chatSessionId": "sess_86a1c1c0-e6f0-428e-b39b-74fb6af60e02",
+        "timestamp": 1792759716791
+      }
+    ],
+    "2.2 Crear entidad Hibernate Panache: `Tarjeta`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989576
+      }
+    ],
+    "2.3 Crear entidad Hibernate Panache: `CardImage`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989645
+      }
+    ],
+    "2.4 Crear entidad Hibernate Panache: `Orden`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989717
+      }
+    ],
+    "2.5 Crear entidad Hibernate Panache: `OrdenItem`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989781
+      }
+    ],
+    "2.6 Crear repositorios Panache con métodos de consulta personalizados": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989859
+      }
+    ],
+    "2.7 Crear script de datos semilla para las 33 tarjetas del catálogo": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989926
+      }
+    ],
+    "3.1 Implementar `TarjetaService` con lógica de negocio": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723989995
+      }
+    ],
+    "3.2 Implementar `TarjetaResource` — endpoints públicos": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990067
+      }
+    ],
+    "3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990151
+      }
+    ],
+    "3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990229
+      }
+    ],
+    "3.5 Implementar `OrderService` — creación de orden y cálculo de totales": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990318
+      }
+    ],
+    "3.6 Implementar `OrderResource` — endpoints REST de órdenes": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990394
+      }
+    ],
+    "3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990462
+      }
+    ],
+    "3.8 Configurar SmallRye Health": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990535
+      }
+    ],
+    "4. Checkpoint backend — Verificar que todos los tests del backend pasan": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990612
+      }
+    ],
+    "5.1 Tests unitarios: `TarjetaService`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990684
+      }
+    ],
+    "5.4 Tests unitarios: `OrderService` y `OrderCodeGenerator`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990764
+      }
+    ],
+    "5.6 Tests de integración: `TarjetaResource` con `@QuarkusTest` + Testcontainers": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990834
+      }
+    ],
+    "5.7 Tests de integración: `OrderResource` con `@QuarkusTest`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990898
+      }
+    ],
+    "6.1 Definir interfaces TypeScript y modelos del dominio": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723990972
+      }
+    ],
+    "6.2 Configurar rutas Angular con lazy loading": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991046
+      }
+    ],
+    "6.3 Implementar `CardService` con caché en memoria de 5 minutos": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991115
+      }
+    ],
+    "6.4 Implementar `CartService` con `signal()`, `computed()` y persistencia `localStorage`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991182
+      }
+    ],
+    "6.8 Implementar `OrderService` frontend": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991248
+      }
+    ],
+    "6.9 Implementar `WhatsAppService`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991323
+      }
+    ],
+    "6.10 Configurar `environments/` de Angular": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991396
+      }
+    ],
+    "6.11 Implementar interceptor HTTP para manejo de errores globales": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991503
+      }
+    ],
+    "7.1 Implementar `AppComponent` con shell y `NavbarComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991649
+      }
+    ],
+    "7.2 Implementar `CardItemComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991740
+      }
+    ],
+    "7.3 Implementar `CardGridComponent` con skeleton loading": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991821
+      }
+    ],
+    "7.4 Implementar `FilterPanelComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991898
+      }
+    ],
+    "7.5 Implementar `CatalogPageComponent` — orquestación de catálogo": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723991967
+      }
+    ],
+    "8.1 Implementar `ImageGalleryComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992051
+      }
+    ],
+    "8.2 Implementar `ProductDetailPageComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992144
+      }
+    ],
+    "8.3 Implementar `CartItemComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992224
+      }
+    ],
+    "8.4 Implementar `CartDrawerComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992295
+      }
+    ],
+    "9.1 Implementar `CheckoutPageComponent` con Reactive Forms": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992366
+      }
+    ],
+    "9.2 Implementar `OrderSuccessComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992447
+      }
+    ],
+    "9.3 Implementar componente/vista de error 404 para tarjeta no encontrada": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992516
+      }
+    ],
+    "10. Checkpoint frontend — Verificar que todos los tests del frontend pasan": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992595
+      }
+    ],
+    "11.1 Tests unitarios: `CartService`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992666
+      }
+    ],
+    "11.2 Tests unitarios: `WhatsAppService`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992741
+      }
+    ],
+    "11.3 Tests unitarios: `CheckoutPageComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992812
+      }
+    ],
+    "11.4 Tests de componente: `FilterPanelComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992881
+      }
+    ],
+    "11.5 Tests de componente: `CardGridComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723992947
+      }
+    ],
+    "12.1 Conectar frontend con backend y verificar comunicación": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993017
+      }
+    ],
+    "12.2 Implementar keep-alive silencioso en `AppComponent`": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993082
+      }
+    ],
+    "12.3 Configurar despliegue en Render o Koyeb": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993159
+      }
+    ],
+    "12.4 Configurar Cloudflare Pages": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993228
+      }
+    ],
+    "12.5 Verificar conexión Neon PostgreSQL en producción y ejecutar migraciones": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993297
+      }
+    ],
+    "12.6 Verificar puntuación Lighthouse ≥ 80 en Performance (móvil)": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993373
+      }
+    ],
+    "13. Checkpoint final — Prueba de humo end-to-end": [
+      {
+        "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
+        "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
+        "timestamp": 1792723993444
+      }
+    ],
+    "1. Inicialización y configuración de proyectos": [
+      {
+        "executionId": "49e73c84-0cdf-4f2f-b2a7-7eaff9dcff3b",
+        "chatSessionId": "sess_c48b5791-a882-4d63-a051-ca5d5e6eca33",
+        "timestamp": 1792759466807
+      }
+    ]
+  }
+}
