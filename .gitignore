@@ -1,0 +1,21 @@
+﻿# Angular
+/node_modules/
+/dist/
+/.angular/
+*.env
+
+# Java / Maven / Quarkus
+target/
+*.class
+*.jar
+*.war
+.quarkus/
+*.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kiro (specs sí se incluyen, configs sensibles no)
+.kiro/settings/
