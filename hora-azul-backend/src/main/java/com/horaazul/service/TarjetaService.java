@@ -152,7 +152,25 @@ public class TarjetaService {
                 safe.maxPrice(),
                 safe.page(),
                 safe.size()
-        ).list();
+        );
+    }
+
+    /**
+     * Cuenta el total de tarjetas activas que coinciden con los filtros dados,
+     * sin aplicar paginación. Útil para calcular {@code totalElements} y
+     * {@code totalPages} en la respuesta paginada.
+     *
+     * @param filters filtros de categoría y precio (paginación ignorada)
+     * @return número total de tarjetas activas que cumplen los criterios
+     */
+    @Transactional
+    public long countAll(CardFilters filters) {
+        CardFilters safe = filters != null ? filters : CardFilters.empty();
+        return tarjetaRepository.countActive(
+                safe.category(),
+                safe.minPrice(),
+                safe.maxPrice()
+        );
     }
 
     /**
