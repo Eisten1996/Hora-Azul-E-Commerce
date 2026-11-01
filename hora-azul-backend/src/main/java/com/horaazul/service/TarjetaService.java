@@ -152,7 +152,7 @@ public class TarjetaService {
                 safe.maxPrice(),
                 safe.page(),
                 safe.size()
-        );
+        ).list();
     }
 
     /**

@@ -50,4 +50,33 @@ public record OrderResponse(
                 orden.createdAt
         );
     }
+
+    /**
+     * Construye un {@code OrderResponse} completo directamente desde la entidad {@link Orden},
+     * mapeando cada ítem a {@link OrderItemDTO} y calculando el {@code totalAmount}.
+     *
+     * <p>Requiere que la colección {@code items} de la orden esté disponible (dentro de una
+     * transacción activa o con fetch previo).</p>
+     *
+     * @param orden entidad con su colección de ítems accesible
+     * @return DTO de respuesta completo con todos los ítems y el total calculado
+     */
+    public static OrderResponse fromEntity(Orden orden) {
+        List<OrderItemDTO> itemDTOs = orden.items.stream()
+                .map(OrderItemDTO::from)
+                .toList();
+
+        BigDecimal totalAmount = itemDTOs.stream()
+                .map(OrderItemDTO::subtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return new OrderResponse(
+                orden.orderCode,
+                orden.status,
+                orden.customerName,
+                totalAmount,
+                itemDTOs,
+                orden.createdAt
+        );
+    }
 }
