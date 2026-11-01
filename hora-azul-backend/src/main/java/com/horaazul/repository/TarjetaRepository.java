@@ -5,11 +5,13 @@ import com.horaazul.model.Tarjeta;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import io.quarkus.panache.common.Page;
-import io.quarkus.panache.common.Parameters;
+import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -36,9 +38,9 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
      * @param maxPrice precio máximo inclusivo, o {@code null} para ignorar
      * @param page     número de página 0-indexed (default 0)
      * @param size     tamaño de página (default 100, máx 100)
-     * @return lista paginada de tarjetas activas que cumplen los criterios
+     * @return {@link PanacheQuery} paginado de tarjetas activas que cumplen los criterios
      */
-    public List<Tarjeta> findActive(
+    public PanacheQuery<Tarjeta> findActive(
             CardCategory category,
             BigDecimal minPrice,
             BigDecimal maxPrice,
@@ -50,26 +52,24 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
         int safeSize = Math.min(Math.max(1, size), 100);
 
         // Construir JPQL dinámico con filtros opcionales
-        StringBuilder jpql = new StringBuilder("active = true");
-        Parameters params = Parameters.with("dummy", true); // trick: params no permite vacío
+        StringBuilder query = new StringBuilder("active = true");
+        Map<String, Object> params = new HashMap<>();
 
         if (category != null) {
-            jpql.append(" AND category = :category");
-            params.and("category", category);
+            query.append(" and category = :category");
+            params.put("category", category);
         }
         if (minPrice != null) {
-            jpql.append(" AND price >= :minPrice");
-            params.and("minPrice", minPrice);
+            query.append(" and price >= :minPrice");
+            params.put("minPrice", minPrice);
         }
         if (maxPrice != null) {
-            jpql.append(" AND price <= :maxPrice");
-            params.and("maxPrice", maxPrice);
+            query.append(" and price <= :maxPrice");
+            params.put("maxPrice", maxPrice);
         }
 
-        jpql.append(" ORDER BY catalogNumber ASC");
-
-        PanacheQuery<Tarjeta> query = find(jpql.toString(), params);
-        return query.page(Page.of(safePage, safeSize)).list();
+        return find(query.toString(), Sort.by("catalogNumber"), params)
+                .page(Page.of(safePage, safeSize));
     }
 
     /**
@@ -86,22 +86,22 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
             BigDecimal minPrice,
             BigDecimal maxPrice) {
 
-        StringBuilder jpql = new StringBuilder("active = true");
-        Parameters params = Parameters.with("dummy", true);
+        StringBuilder query = new StringBuilder("active = true");
+        Map<String, Object> params = new HashMap<>();
 
         if (category != null) {
-            jpql.append(" AND category = :category");
-            params.and("category", category);
+            query.append(" and category = :category");
+            params.put("category", category);
         }
         if (minPrice != null) {
-            jpql.append(" AND price >= :minPrice");
-            params.and("minPrice", minPrice);
+            query.append(" and price >= :minPrice");
+            params.put("minPrice", minPrice);
         }
         if (maxPrice != null) {
-            jpql.append(" AND price <= :maxPrice");
-            params.and("maxPrice", maxPrice);
+            query.append(" and price <= :maxPrice");
+            params.put("maxPrice", maxPrice);
         }
 
-        return count(jpql.toString(), params);
+        return count(query.toString(), params);
     }
 }

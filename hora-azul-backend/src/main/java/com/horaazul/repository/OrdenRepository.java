@@ -2,6 +2,7 @@ package com.horaazul.repository;
 
 import com.horaazul.model.Orden;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class OrdenRepository implements PanacheRepositoryBase<Orden, UUID> {
      * @return lista completa de órdenes ordenadas de más nueva a más antigua
      */
     public List<Orden> findAllOrderedByCreatedAtDesc() {
-        return find("ORDER BY createdAt DESC").list();
+        return findAll(Sort.by("createdAt", Sort.Direction.Descending)).list();
     }
 
     /**
