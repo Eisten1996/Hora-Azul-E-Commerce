@@ -45,7 +45,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Permitir todos los orígenes en perfil dev para facilitar el desarrollo local
     - _Requirements: 1.2_
 
-- [ ] 2. Backend — Capa de datos y entidades
+- [x] 2. Backend — Capa de datos y entidades
   - [x] 2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`
     - Definir `CardCategory`: `CUMPLEANOS, FLORES, AMOR, SIN_MENSAJE, MEJORES_DESEOS, AGRADECIMIENTO`
     - Definir `ImageType`: `COVER, OPEN, ENVELOPE`
@@ -53,31 +53,31 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Crear los tipos ENUM en PostgreSQL con migraciones SQL (o Flyway)
     - _Requirements: 6.1, 2.1_
 
-  - [-] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
+  - [x] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
     - Implementar la entidad con todos los campos del DDL de diseño (`id`, `catalogNumber`, `name`, `category`, `price`, `dimensions`, `description3d`, `envelopeIncluded`, `active`, `createdAt`, `updatedAt`)
     - Anotar con `@Entity`, `@Table(name = "tarjeta")`, `@Id @GeneratedValue(strategy = UUID)`
     - Mapear la relación `@OneToMany` con `CardImage`
     - Añadir restricciones `@Check` para `catalog_number BETWEEN 1 AND 33`
     - _Requirements: 6.1, 6.5_
 
-  - [ ] 2.3 Crear entidad Hibernate Panache: `CardImage`
+  - [x] 2.3 Crear entidad Hibernate Panache: `CardImage`
     - Implementar con campos: `id`, `tarjeta`, `url`, `sortOrder`, `imageType`
     - Anotar la FK `@ManyToOne` hacia `Tarjeta`
     - _Requirements: 3.2_
 
-  - [ ] 2.4 Crear entidad Hibernate Panache: `Orden`
+  - [x] 2.4 Crear entidad Hibernate Panache: `Orden`
     - Implementar con campos: `id`, `orderCode`, `status`, `customerName`, `customerPhone`, `deliveryAddress`, `estimatedDeliveryDate`, `createdAt`
     - Anotar `orderCode` con `@Column(unique = true)`
     - Mapear la relación `@OneToMany` con `OrdenItem`
     - _Requirements: 5.7, 7.1_
 
-  - [ ] 2.5 Crear entidad Hibernate Panache: `OrdenItem`
+  - [x] 2.5 Crear entidad Hibernate Panache: `OrdenItem`
     - Implementar con campos: `id`, `orden`, `tarjeta`, `catalogNumber`, `cardName`, `unitPrice`, `quantity`
     - Anotar FK `@ManyToOne` hacia `Orden` y `@ManyToOne` (nullable) hacia `Tarjeta`
     - Añadir restricción `@Check` para `quantity BETWEEN 1 AND 99`
     - _Requirements: 7.1_
 
-  - [ ] 2.6 Crear repositorios Panache con métodos de consulta personalizados
+  - [x] 2.6 Crear repositorios Panache con métodos de consulta personalizados
     - Crear `TarjetaRepository` con método `findActive(category, minPrice, maxPrice, page, size)`
     - Implementar la consulta con JPQL dinámico o `PanacheQuery` con filtros opcionales
     - Crear `OrdenRepository` con método `findAllOrderedByCreatedAtDesc()`
@@ -90,8 +90,8 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Cubrir todas las 6 categorías con una distribución representativa de precios
     - _Requirements: 1.3, 6.1_
 
-- [ ] 3. Backend — Servicios y endpoints REST
-  - [ ] 3.1 Implementar `TarjetaService` con lógica de negocio
+- [~] 3. Backend — Servicios y endpoints REST
+  - [x] 3.1 Implementar `TarjetaService` con lógica de negocio
     - Método `create(TarjetaCreateRequest)`: validar que `price` ∈ `{15, 17, 20, 30}` → lanzar `InvalidPriceException` si no; verificar unicidad de `catalogNumber` → lanzar `CatalogNumberConflictException` si existe
     - Método `update(UUID id, TarjetaUpdateRequest)`: mismas validaciones de precio; `catalogNumber` es inmutable
     - Método `deactivate(UUID id)`: marcar `active = false`
@@ -99,20 +99,20 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Método `findById(UUID id)`: devolver detalle completo incluyendo imágenes
     - _Requirements: 6.1, 6.2, 6.3, 6.6, 6.7, 6.8, 6.9_
 
-  - [ ] 3.2 Implementar `TarjetaResource` — endpoints públicos
+  - [x] 3.2 Implementar `TarjetaResource` — endpoints públicos
     - `GET /api/cards`: mapear query params (`category`, `minPrice`, `maxPrice`, `page`, `size`) al filtro, invocar `TarjetaService.findAll()`, retornar `CardListResponse` paginado
     - `GET /api/cards/{id}`: invocar `TarjetaService.findById()`, retornar `CardDetailResponse`
     - Definir los DTOs `CardSummaryDTO`, `CardDetailDTO`, `CardListResponse` como Java records
     - _Requirements: 1.2, 1.3, 3.2, 6.4, 6.5_
 
-  - [ ] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
+  - [-] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
     - `POST /api/cards`: `@RolesAllowed("admin")`, invocar `TarjetaService.create()`, retornar 201
     - `PUT /api/cards/{id}`: `@RolesAllowed("admin")`, invocar `TarjetaService.update()`, retornar 200
     - `PATCH /api/cards/{id}/deactivate`: `@RolesAllowed("admin")`, invocar `TarjetaService.deactivate()`, retornar 200
     - Configurar `quarkus.security.users.embedded` con usuario `admin` en `application.properties` para el MVP
     - _Requirements: 6.1, 6.2, 6.3, 6.10_
 
-  - [ ] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
+  - [-] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
     - Consultar `MAX(order_code)` filtrando por prefijo `ORD-{YYYY}-` dentro de una transacción `SERIALIZABLE`
     - Incrementar el contador y formatear: `String.format("ORD-%d-%04d", year, nextSeq)`
     - Manejar el caso de primer orden del año (no existe ningún registro previo → secuencia = 1)

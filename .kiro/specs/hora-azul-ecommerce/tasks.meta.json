@@ -140,6 +140,21 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989576
+      },
+      {
+        "executionId": "0ca79258-2c37-4dab-815b-4b036b97352d",
+        "chatSessionId": "sess_98602ab0-eb86-47fc-bcca-8c11999c1013",
+        "timestamp": 1792772068242
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509742640
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509883465
       }
     ],
     "2.3 Crear entidad Hibernate Panache: `CardImage`": [
@@ -147,6 +162,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989645
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509745300
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509885847
       }
     ],
     "2.4 Crear entidad Hibernate Panache: `Orden`": [
@@ -154,6 +179,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989717
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509747577
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509887992
       }
     ],
     "2.5 Crear entidad Hibernate Panache: `OrdenItem`": [
@@ -161,6 +196,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989781
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509749847
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509890233
       }
     ],
     "2.6 Crear repositorios Panache con métodos de consulta personalizados": [
@@ -168,6 +213,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989859
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509752550
+      },
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509892808
       }
     ],
     "2.7 Crear script de datos semilla para las 33 tarjetas del catálogo": [
@@ -182,6 +237,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723989995
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793510517271
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793510670885
       }
     ],
     "3.2 Implementar `TarjetaResource` — endpoints públicos": [
@@ -189,6 +254,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723990067
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793510673446
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793511083818
       }
     ],
     "3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica": [
@@ -196,6 +271,11 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723990151
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793511086174
       }
     ],
     "3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`": [
@@ -203,6 +283,11 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723990229
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793511088736
       }
     ],
     "3.5 Implementar `OrderService` — creación de orden y cálculo de totales": [
@@ -504,6 +589,13 @@
         "executionId": "49e73c84-0cdf-4f2f-b2a7-7eaff9dcff3b",
         "chatSessionId": "sess_c48b5791-a882-4d63-a051-ca5d5e6eca33",
         "timestamp": 1792759466807
+      }
+    ],
+    "2. Backend — Capa de datos y entidades": [
+      {
+        "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
+        "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
+        "timestamp": 1793509892903
       }
     ]
   }
