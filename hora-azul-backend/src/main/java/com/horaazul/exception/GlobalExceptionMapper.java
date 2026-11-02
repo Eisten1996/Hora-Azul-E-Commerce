@@ -3,6 +3,7 @@ package com.horaazul.exception;
 import com.horaazul.dto.ErrorResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
@@ -64,6 +65,23 @@ public class GlobalExceptionMapper {
     @ServerExceptionMapper
     public Response handleCatalogNumberConflict(CatalogNumberConflictException ex) {
         return buildResponse(409, "CATALOG_NUMBER_CONFLICT", ex.getMessage());
+    }
+
+    // ------------------------------------------------------------------ //
+    //  400 – Petición incorrecta (ej. carrito vacío)                      //
+    // ------------------------------------------------------------------ //
+
+    /**
+     * Mapea {@link BadRequestException} → 400.
+     *
+     * <p>Validates: Requirements 5.6</p>
+     */
+    @ServerExceptionMapper
+    public Response handleBadRequest(BadRequestException ex) {
+        String message = (ex.getMessage() != null && !ex.getMessage().isBlank())
+                ? ex.getMessage()
+                : "La petición no es válida.";
+        return buildResponse(400, "BAD_REQUEST", message);
     }
 
     // ------------------------------------------------------------------ //

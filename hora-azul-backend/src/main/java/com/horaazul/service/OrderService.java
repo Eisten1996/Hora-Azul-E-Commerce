@@ -13,6 +13,7 @@ import com.horaazul.repository.TarjetaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 
 import java.math.BigDecimal;
@@ -63,10 +64,15 @@ public class OrderService {
      *
      * @param request datos del cliente y lista de ítems del carrito
      * @return {@link OrderResponse} con el código generado, totales y detalle de ítems
-     * @throws NotFoundException si algún UUID de tarjeta no existe en el sistema
+     * @throws BadRequestException si el carrito no tiene ítems
+     * @throws NotFoundException   si algún UUID de tarjeta no existe en el sistema
      */
     @Transactional
     public OrderResponse create(OrderRequest request) {
+
+        if (request.items() == null || request.items().isEmpty()) {
+            throw new BadRequestException("El carrito no puede estar vacío.");
+        }
 
         // 1. Resolver cada ítem del carrito a su entidad Tarjeta
         //    y capturar el snapshot de datos en ese momento
