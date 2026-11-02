@@ -6,32 +6,32 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
 
 ## Tasks
 
-- [ ] 1. Inicialización y configuración de proyectos
-  - [ ] 1.1 Crear proyecto Angular 18+ con componentes standalone
+- [x] 1. Inicialización y configuración de proyectos
+  - [x] 1.1 Crear proyecto Angular 18+ con componentes standalone
     - Ejecutar `ng new hora-azul-frontend --standalone --routing --style=scss`
     - Instalar y configurar Tailwind CSS con `ng add @angular-tailwind/schematics` o instalación manual
     - Configurar `tailwind.config.js` con la paleta de colores de Hora Azul
     - Verificar que la aplicación levanta con `ng serve`
     - _Requirements: 9.1_
 
-  - [ ] 1.2 Instalar dependencias del frontend
+  - [x] 1.2 Instalar dependencias del frontend
     - Instalar `@angular/forms` para Reactive Forms (incluido en Angular core)
     - Instalar Jest con `jest-preset-angular` como reemplazo de Karma para testing
     - Instalar `fast-check` para property-based testing
     - Configurar `jest.config.js` y `setup-jest.ts`
     - _Requirements: 5.3, 7.1_
 
-  - [ ] 1.3 Crear proyecto Quarkus 3.x con las extensiones necesarias
+  - [x] 1.3 Crear proyecto Quarkus 3.x con las extensiones necesarias
     - Generar proyecto en `code.quarkus.io` con extensiones: `quarkus-resteasy-reactive-jackson`, `quarkus-hibernate-orm-panache`, `quarkus-jdbc-postgresql`, `quarkus-smallrye-health`, `quarkus-smallrye-openapi`, `quarkus-security`, `quarkus-hibernate-validator`
     - Verificar que el proyecto compila con `mvn compile`
     - _Requirements: 8.1_
 
-  - [ ] 1.4 Configurar base de datos PostgreSQL en Neon
+  - [x] 1.4 Configurar base de datos PostgreSQL en Neon
     - Crear proyecto en Neon (`console.neon.tech`) y obtener el connection string
     - Anotar las credenciales para los perfiles `dev` y `prod`
     - _Requirements: 7.1_
 
-  - [ ] 1.5 Configurar `application.properties` de Quarkus con perfiles dev/prod
+  - [x] 1.5 Configurar `application.properties` de Quarkus con perfiles dev/prod
     - Configurar datasource JDBC apuntando a Neon para el perfil `%prod`
     - Configurar datasource H2 (o Testcontainers) para el perfil `%dev`/`%test`
     - Establecer `quarkus.hibernate-orm.database.generation=update` en prod
@@ -39,59 +39,59 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Configurar pool de conexiones: `min-size=2`, `max-size=5`, `acquisition-timeout=10s`
     - _Requirements: 8.2_
 
-  - [ ] 1.6 Configurar CORS en Quarkus
+  - [x] 1.6 Configurar CORS en Quarkus
     - Habilitar `quarkus.http.cors=true`
     - Establecer `quarkus.http.cors.origins=https://hora-azul.pages.dev` para prod
     - Permitir todos los orígenes en perfil dev para facilitar el desarrollo local
     - _Requirements: 1.2_
 
-- [ ] 2. Backend — Capa de datos y entidades
-  - [ ] 2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`
+- [x] 2. Backend — Capa de datos y entidades
+  - [x] 2.1 Crear enums Java: `CardCategory`, `ImageType`, `OrderStatus`
     - Definir `CardCategory`: `CUMPLEANOS, FLORES, AMOR, SIN_MENSAJE, MEJORES_DESEOS, AGRADECIMIENTO`
     - Definir `ImageType`: `COVER, OPEN, ENVELOPE`
     - Definir `OrderStatus`: `PENDING_PAYMENT`
     - Crear los tipos ENUM en PostgreSQL con migraciones SQL (o Flyway)
     - _Requirements: 6.1, 2.1_
 
-  - [ ] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
+  - [x] 2.2 Crear entidad Hibernate Panache: `Tarjeta`
     - Implementar la entidad con todos los campos del DDL de diseño (`id`, `catalogNumber`, `name`, `category`, `price`, `dimensions`, `description3d`, `envelopeIncluded`, `active`, `createdAt`, `updatedAt`)
     - Anotar con `@Entity`, `@Table(name = "tarjeta")`, `@Id @GeneratedValue(strategy = UUID)`
     - Mapear la relación `@OneToMany` con `CardImage`
     - Añadir restricciones `@Check` para `catalog_number BETWEEN 1 AND 33`
     - _Requirements: 6.1, 6.5_
 
-  - [ ] 2.3 Crear entidad Hibernate Panache: `CardImage`
+  - [x] 2.3 Crear entidad Hibernate Panache: `CardImage`
     - Implementar con campos: `id`, `tarjeta`, `url`, `sortOrder`, `imageType`
     - Anotar la FK `@ManyToOne` hacia `Tarjeta`
     - _Requirements: 3.2_
 
-  - [ ] 2.4 Crear entidad Hibernate Panache: `Orden`
+  - [x] 2.4 Crear entidad Hibernate Panache: `Orden`
     - Implementar con campos: `id`, `orderCode`, `status`, `customerName`, `customerPhone`, `deliveryAddress`, `estimatedDeliveryDate`, `createdAt`
     - Anotar `orderCode` con `@Column(unique = true)`
     - Mapear la relación `@OneToMany` con `OrdenItem`
     - _Requirements: 5.7, 7.1_
 
-  - [ ] 2.5 Crear entidad Hibernate Panache: `OrdenItem`
+  - [x] 2.5 Crear entidad Hibernate Panache: `OrdenItem`
     - Implementar con campos: `id`, `orden`, `tarjeta`, `catalogNumber`, `cardName`, `unitPrice`, `quantity`
     - Anotar FK `@ManyToOne` hacia `Orden` y `@ManyToOne` (nullable) hacia `Tarjeta`
     - Añadir restricción `@Check` para `quantity BETWEEN 1 AND 99`
     - _Requirements: 7.1_
 
-  - [ ] 2.6 Crear repositorios Panache con métodos de consulta personalizados
+  - [x] 2.6 Crear repositorios Panache con métodos de consulta personalizados
     - Crear `TarjetaRepository` con método `findActive(category, minPrice, maxPrice, page, size)`
     - Implementar la consulta con JPQL dinámico o `PanacheQuery` con filtros opcionales
     - Crear `OrdenRepository` con método `findAllOrderedByCreatedAtDesc()`
     - Crear `OrdenRepository.findByOrderCode(String orderCode)`
     - _Requirements: 6.4, 7.2, 7.3_
 
-  - [ ] 2.7 Crear script de datos semilla para las 33 tarjetas del catálogo
+  - [x] 2.7 Crear script de datos semilla para las 33 tarjetas del catálogo
     - Crear `src/main/resources/import.sql` (ejecutado automáticamente por Hibernate en perfil dev) con los 33 registros de tarjetas y sus imágenes representativas
     - Incluir al menos una imagen de tipo `COVER` por tarjeta
     - Cubrir todas las 6 categorías con una distribución representativa de precios
     - _Requirements: 1.3, 6.1_
 
-- [ ] 3. Backend — Servicios y endpoints REST
-  - [ ] 3.1 Implementar `TarjetaService` con lógica de negocio
+- [x] 3. Backend — Servicios y endpoints REST
+  - [x] 3.1 Implementar `TarjetaService` con lógica de negocio
     - Método `create(TarjetaCreateRequest)`: validar que `price` ∈ `{15, 17, 20, 30}` → lanzar `InvalidPriceException` si no; verificar unicidad de `catalogNumber` → lanzar `CatalogNumberConflictException` si existe
     - Método `update(UUID id, TarjetaUpdateRequest)`: mismas validaciones de precio; `catalogNumber` es inmutable
     - Método `deactivate(UUID id)`: marcar `active = false`
@@ -99,26 +99,26 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Método `findById(UUID id)`: devolver detalle completo incluyendo imágenes
     - _Requirements: 6.1, 6.2, 6.3, 6.6, 6.7, 6.8, 6.9_
 
-  - [ ] 3.2 Implementar `TarjetaResource` — endpoints públicos
+  - [x] 3.2 Implementar `TarjetaResource` — endpoints públicos
     - `GET /api/cards`: mapear query params (`category`, `minPrice`, `maxPrice`, `page`, `size`) al filtro, invocar `TarjetaService.findAll()`, retornar `CardListResponse` paginado
     - `GET /api/cards/{id}`: invocar `TarjetaService.findById()`, retornar `CardDetailResponse`
     - Definir los DTOs `CardSummaryDTO`, `CardDetailDTO`, `CardListResponse` como Java records
     - _Requirements: 1.2, 1.3, 3.2, 6.4, 6.5_
 
-  - [ ] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
+  - [x] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
     - `POST /api/cards`: `@RolesAllowed("admin")`, invocar `TarjetaService.create()`, retornar 201
     - `PUT /api/cards/{id}`: `@RolesAllowed("admin")`, invocar `TarjetaService.update()`, retornar 200
     - `PATCH /api/cards/{id}/deactivate`: `@RolesAllowed("admin")`, invocar `TarjetaService.deactivate()`, retornar 200
     - Configurar `quarkus.security.users.embedded` con usuario `admin` en `application.properties` para el MVP
     - _Requirements: 6.1, 6.2, 6.3, 6.10_
 
-  - [ ] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
+  - [x] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
     - Consultar `MAX(order_code)` filtrando por prefijo `ORD-{YYYY}-` dentro de una transacción `SERIALIZABLE`
     - Incrementar el contador y formatear: `String.format("ORD-%d-%04d", year, nextSeq)`
     - Manejar el caso de primer orden del año (no existe ningún registro previo → secuencia = 1)
     - _Requirements: 5.7_
 
-  - [ ] 3.5 Implementar `OrderService` — creación de orden y cálculo de totales
+  - [x] 3.5 Implementar `OrderService` — creación de orden y cálculo de totales
     - Método `create(OrderRequest)`: resolver cada ítem a su `Tarjeta` por UUID, capturar `catalogNumber`, `name` y `price` en el momento de la orden
     - Calcular `unitPrice × quantity` para cada ítem y el total general
     - Invocar `OrderCodeGenerator` dentro de la misma transacción para obtener el código único
@@ -126,14 +126,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Retornar `OrderResponse` con el código generado
     - _Requirements: 5.6, 5.7, 7.1_
 
-  - [ ] 3.6 Implementar `OrderResource` — endpoints REST de órdenes
+  - [x] 3.6 Implementar `OrderResource` — endpoints REST de órdenes
     - `POST /api/orders`: público, validar body con `@Valid`, invocar `OrderService.create()`, retornar 201
     - `GET /api/orders`: `@RolesAllowed("admin")`, retornar lista de resúmenes ordenada por `createdAt DESC`
     - `GET /api/orders/{orderCode}`: `@RolesAllowed("admin")`, retornar detalle completo o 404
     - Definir DTOs `OrderRequest`, `OrderResponse`, `OrderSummaryDTO`, `OrderItemDTO` como records
     - _Requirements: 5.6, 5.9, 7.1, 7.2, 7.3, 7.4_
 
-  - [ ] 3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas
+  - [x] 3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas
     - Mapear `ConstraintViolationException` → 422 con lista de errores de campo
     - Mapear `InvalidPriceException` → 422 con mensaje de precios válidos
     - Mapear `CatalogNumberConflictException` → 409
@@ -142,12 +142,12 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Formato de respuesta: `{ "status", "error", "message", "timestamp" }`
     - _Requirements: 6.6, 6.7, 6.8, 6.9, 6.10_
 
-  - [ ] 3.8 Configurar SmallRye Health
+  - [x] 3.8 Configurar SmallRye Health
     - Verificar que la extensión `quarkus-smallrye-health` está activa y el endpoint `GET /q/health` responde con el estado de la conexión a la base de datos
     - Deshabilitar la UI de health (`quarkus.smallrye-health.ui.enable=false`) en producción
     - _Requirements: 8.1_
 
-- [ ] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
+- [x] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
   - Ejecutar `mvn test` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
 - [ ] 5. Backend — Tests

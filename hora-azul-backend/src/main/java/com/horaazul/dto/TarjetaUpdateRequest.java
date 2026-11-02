@@ -1,0 +1,51 @@
+package com.horaazul.dto;
+
+import com.horaazul.model.CardCategory;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+/**
+ * DTO para la actualización de una tarjeta existente.
+ *
+ * <p>El {@code catalogNumber} es inmutable y no se incluye en este DTO.
+ * Todos los demás campos son actualizables.</p>
+ *
+ * <p>Validates: Requirements 6.2, 6.3</p>
+ *
+ * @param name          nombre de la tarjeta
+ * @param category      categoría temática
+ * @param price         precio (debe ser 15, 17, 20 o 30)
+ * @param dimensions    dimensiones opcionales
+ * @param description3d descripción del efecto 3D (opcional)
+ * @param envelopeIncluded si incluye sobre
+ * @param images        lista de imágenes (reemplaza las existentes si no es nula)
+ */
+public record TarjetaUpdateRequest(
+
+        @NotBlank(message = "El nombre es obligatorio")
+        @Size(max = 150, message = "El nombre no puede superar 150 caracteres")
+        String name,
+
+        @NotNull(message = "La categoría es obligatoria")
+        CardCategory category,
+
+        @NotNull(message = "El precio es obligatorio")
+        BigDecimal price,
+
+        @Size(max = 50, message = "Las dimensiones no pueden superar 50 caracteres")
+        String dimensions,
+
+        @Size(max = 300, message = "La descripción 3D no puede superar 300 caracteres")
+        String description3d,
+
+        @NotNull(message = "El campo envelopeIncluded es obligatorio")
+        Boolean envelopeIncluded,
+
+        @Valid
+        List<ImageRequest> images
+) {}
