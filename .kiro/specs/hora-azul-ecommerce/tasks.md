@@ -150,7 +150,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
 - [x] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
   - Ejecutar `mvn test` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
-- [ ] 5. Backend — Tests
+- [x] 5. Backend — Tests
   - [x] 5.1 Tests unitarios: `TarjetaService`
     - Test: crear tarjeta con precio válido → éxito
     - Test: crear tarjeta con precio inválido (p. ej. 25.00) → `InvalidPriceException`
@@ -170,14 +170,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Generar pares de requests con el mismo `catalogNumber` y verificar que el segundo lanza `CatalogNumberConflictException`
     - `// Feature: hora-azul-ecommerce, Propiedad 7: Unicidad de número de catálogo`
 
-  - [ ] 5.4 Tests unitarios: `OrderService` y `OrderCodeGenerator`
+  - [x] 5.4 Tests unitarios: `OrderService` y `OrderCodeGenerator`
     - Test: generar primer código del año → `ORD-2025-0001`
     - Test: generar código cuando ya existen N órdenes del año → `ORD-2025-000(N+1)`
     - Test: cálculo de totales — múltiples ítems con cantidades y precios distintos
     - Test: orden con ítems cuya tarjeta ya no existe → manejo de error adecuado
     - _Requirements: 5.7_
 
-  - [ ]* 5.5 Tests de propiedad con jqwik: P2 — Unicidad de código de orden por año
+  - [x]* 5.5 Tests de propiedad con jqwik: P2 — Unicidad de código de orden por año
     - **Propiedad 2: Para cualquier par de órdenes creadas en el mismo año, sus códigos ORD-YYYY-XXXX deben ser distintos**
     - **Valida: Requirements 5.7**
     - Simular N creaciones de orden concurrentes con año mock y verificar ausencia de duplicados
@@ -193,7 +193,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: `POST /api/cards` con `catalogNumber` duplicado → 409
     - _Requirements: 6.1, 6.4, 6.5, 6.6, 6.7, 6.10_
 
-  - [ ] 5.7 Tests de integración: `OrderResource` con `@QuarkusTest`
+  - [x] 5.7 Tests de integración: `OrderResource` con `@QuarkusTest`
     - Test: `POST /api/orders` con datos válidos → 201 con `orderCode` y totales correctos
     - Test: `POST /api/orders` con carrito vacío (`items: []`) → 400
     - Test: `POST /api/orders` con teléfono de formato incorrecto → 422
