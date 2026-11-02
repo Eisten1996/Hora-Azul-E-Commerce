@@ -19,3 +19,6 @@ Thumbs.db
 
 # Kiro (specs sí se incluyen, configs sensibles no)
 .kiro/settings/
+
+# Editor (config local)
+/.vscode/

@@ -302,6 +302,11 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723990394
+      },
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793513981513
       }
     ],
     "3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas": [
@@ -323,6 +328,16 @@
         "executionId": "0ac10206-e081-43b0-8586-8dc31cf77536",
         "chatSessionId": "sess_437007e2-5d66-4849-b240-f9acde97c9c0",
         "timestamp": 1792723990612
+      },
+      {
+        "executionId": "93e12f9f-f607-4db6-a4a2-064c868e5f31",
+        "chatSessionId": "sess_d3034dc7-7601-412c-8051-218556d6caf1",
+        "timestamp": 1793622507341
+      },
+      {
+        "executionId": "93e12f9f-f607-4db6-a4a2-064c868e5f31",
+        "chatSessionId": "sess_d3034dc7-7601-412c-8051-218556d6caf1",
+        "timestamp": 1793622619316
       }
     ],
     "5.1 Tests unitarios: `TarjetaService`": [
@@ -596,6 +611,13 @@
         "executionId": "13d2b625-e7cc-4e7e-8e50-521361b05337",
         "chatSessionId": "sess_a65b19fe-e04a-4060-a0d2-777314cf787c",
         "timestamp": 1793509892903
+      }
+    ],
+    "3. Backend — Servicios y endpoints REST": [
+      {
+        "executionId": "9a17d675-26cf-424a-ab93-4804c0e90760",
+        "chatSessionId": "sess_74aa3e1a-e8be-413d-8014-8a1602f8c794",
+        "timestamp": 1793513984094
       }
     ]
   }

@@ -90,7 +90,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Cubrir todas las 6 categorías con una distribución representativa de precios
     - _Requirements: 1.3, 6.1_
 
-- [~] 3. Backend — Servicios y endpoints REST
+- [x] 3. Backend — Servicios y endpoints REST
   - [x] 3.1 Implementar `TarjetaService` con lógica de negocio
     - Método `create(TarjetaCreateRequest)`: validar que `price` ∈ `{15, 17, 20, 30}` → lanzar `InvalidPriceException` si no; verificar unicidad de `catalogNumber` → lanzar `CatalogNumberConflictException` si existe
     - Método `update(UUID id, TarjetaUpdateRequest)`: mismas validaciones de precio; `catalogNumber` es inmutable
@@ -105,20 +105,20 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Definir los DTOs `CardSummaryDTO`, `CardDetailDTO`, `CardListResponse` como Java records
     - _Requirements: 1.2, 1.3, 3.2, 6.4, 6.5_
 
-  - [-] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
+  - [x] 3.3 Implementar `TarjetaResource` — endpoints de administración con auth básica
     - `POST /api/cards`: `@RolesAllowed("admin")`, invocar `TarjetaService.create()`, retornar 201
     - `PUT /api/cards/{id}`: `@RolesAllowed("admin")`, invocar `TarjetaService.update()`, retornar 200
     - `PATCH /api/cards/{id}/deactivate`: `@RolesAllowed("admin")`, invocar `TarjetaService.deactivate()`, retornar 200
     - Configurar `quarkus.security.users.embedded` con usuario `admin` en `application.properties` para el MVP
     - _Requirements: 6.1, 6.2, 6.3, 6.10_
 
-  - [-] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
+  - [x] 3.4 Implementar `OrderCodeGenerator` — generación de código `ORD-YYYY-XXXX`
     - Consultar `MAX(order_code)` filtrando por prefijo `ORD-{YYYY}-` dentro de una transacción `SERIALIZABLE`
     - Incrementar el contador y formatear: `String.format("ORD-%d-%04d", year, nextSeq)`
     - Manejar el caso de primer orden del año (no existe ningún registro previo → secuencia = 1)
     - _Requirements: 5.7_
 
-  - [ ] 3.5 Implementar `OrderService` — creación de orden y cálculo de totales
+  - [x] 3.5 Implementar `OrderService` — creación de orden y cálculo de totales
     - Método `create(OrderRequest)`: resolver cada ítem a su `Tarjeta` por UUID, capturar `catalogNumber`, `name` y `price` en el momento de la orden
     - Calcular `unitPrice × quantity` para cada ítem y el total general
     - Invocar `OrderCodeGenerator` dentro de la misma transacción para obtener el código único
@@ -126,14 +126,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Retornar `OrderResponse` con el código generado
     - _Requirements: 5.6, 5.7, 7.1_
 
-  - [ ] 3.6 Implementar `OrderResource` — endpoints REST de órdenes
+  - [x] 3.6 Implementar `OrderResource` — endpoints REST de órdenes
     - `POST /api/orders`: público, validar body con `@Valid`, invocar `OrderService.create()`, retornar 201
     - `GET /api/orders`: `@RolesAllowed("admin")`, retornar lista de resúmenes ordenada por `createdAt DESC`
     - `GET /api/orders/{orderCode}`: `@RolesAllowed("admin")`, retornar detalle completo o 404
     - Definir DTOs `OrderRequest`, `OrderResponse`, `OrderSummaryDTO`, `OrderItemDTO` como records
     - _Requirements: 5.6, 5.9, 7.1, 7.2, 7.3, 7.4_
 
-  - [ ] 3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas
+  - [x] 3.7 Implementar `GlobalExceptionMapper` para respuestas de error JSON homogéneas
     - Mapear `ConstraintViolationException` → 422 con lista de errores de campo
     - Mapear `InvalidPriceException` → 422 con mensaje de precios válidos
     - Mapear `CatalogNumberConflictException` → 409
@@ -142,12 +142,12 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Formato de respuesta: `{ "status", "error", "message", "timestamp" }`
     - _Requirements: 6.6, 6.7, 6.8, 6.9, 6.10_
 
-  - [ ] 3.8 Configurar SmallRye Health
+  - [x] 3.8 Configurar SmallRye Health
     - Verificar que la extensión `quarkus-smallrye-health` está activa y el endpoint `GET /q/health` responde con el estado de la conexión a la base de datos
     - Deshabilitar la UI de health (`quarkus.smallrye-health.ui.enable=false`) en producción
     - _Requirements: 8.1_
 
-- [ ] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
+- [x] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
   - Ejecutar `mvn test` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
 - [ ] 5. Backend — Tests
