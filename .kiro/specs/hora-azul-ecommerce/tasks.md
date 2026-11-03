@@ -201,20 +201,20 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - _Requirements: 5.6, 5.7, 5.9, 7.4_
 
 - [ ] 6. Frontend — Modelos, servicios y configuración
-  - [ ] 6.1 Definir interfaces TypeScript y modelos del dominio
+  - [x] 6.1 Definir interfaces TypeScript y modelos del dominio
     - Crear `card.models.ts`: `CardSummary`, `CardDetail`, `CardImage`, `CardListResponse`, `CardFilters`, `CardCategory`
     - Crear `cart.models.ts`: `CartItem`
     - Crear `order.models.ts`: `OrderRequest`, `OrderRequestItem`, `OrderResponse`, `OrderItem`
     - Exportar todo desde un barrel `models/index.ts`
     - _Requirements: 1.3, 3.2, 4.2, 5.6_
 
-  - [ ] 6.2 Configurar rutas Angular con lazy loading
+  - [x] 6.2 Configurar rutas Angular con lazy loading
     - Crear `app.routes.ts` con las 4 rutas definidas en el diseño: `/`, `/tarjeta/:id`, `/checkout`, `/pedido/:orderCode`
     - Usar `loadComponent` en todas las rutas para lazy loading
     - Añadir ruta wildcard `**` que redirige a `/`
     - _Requirements: 3.1, 3.7_
 
-  - [ ] 6.3 Implementar `CardService` con caché en memoria de 5 minutos
+  - [x] 6.3 Implementar `CardService` con caché en memoria de 5 minutos
     - Inyectar `HttpClient` y configurar la URL base desde `environment.apiUrl`
     - Implementar `signal<{ data: CardSummary[]; cachedAt: number } | null>()` para caché
     - Método `getCards(filters?: CardFilters): Observable<CardSummary[]>` — devuelve caché si `now - cachedAt < 5min`, sino llama `GET /api/cards`
@@ -263,13 +263,13 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Número de WhatsApp configurable desde `environment.whatsappNumber`
     - _Requirements: 5.8_
 
-  - [ ] 6.10 Configurar `environments/` de Angular
+  - [x] 6.10 Configurar `environments/` de Angular
     - `environment.ts` (dev): `apiUrl = 'http://localhost:8080'`, `whatsappNumber = '51XXXXXXXXX'`
     - `environment.prod.ts` (prod): `apiUrl = 'https://api.hora-azul.onrender.com'`, número de producción
     - Registrar el reemplazo de archivos en `angular.json`
     - _Requirements: 1.2_
 
-  - [ ] 6.11 Implementar interceptor HTTP para manejo de errores globales
+  - [x] 6.11 Implementar interceptor HTTP para manejo de errores globales
     - Interceptar errores de red (`status === 0`) y de servidor (5xx)
     - Loguear el error en consola para debugging
     - Relanzar el error para que cada servicio/componente pueda manejarlo localmente
