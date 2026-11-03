@@ -370,11 +370,11 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Enlace para volver al catálogo
     - _Requirements: 3.7_
 
-- [ ] 10. Checkpoint frontend — Verificar que todos los tests del frontend pasan
+- [x] 10. Checkpoint frontend — Verificar que todos los tests del frontend pasan
   - Ejecutar `npx jest --runInBand` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
-- [ ] 11. Frontend — Tests unitarios y de componentes
-  - [ ] 11.1 Tests unitarios: `CartService`
+- [x] 11. Frontend — Tests unitarios y de componentes
+  - [x] 11.1 Tests unitarios: `CartService`
     - Test: `addItem` — agrega ítem nuevo con cantidad 1
     - Test: `addItem` — incrementa cantidad de ítem existente
     - Test: `addItem` — rechaza cuando `quantity === 99`
@@ -385,7 +385,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: manejo de `localStorage` no disponible (simular excepción en `setItem`)
     - _Requirements: 4.1, 4.5, 4.7, 4.8_
 
-  - [ ] 11.2 Tests unitarios: `WhatsAppService`
+  - [x] 11.2 Tests unitarios: `WhatsAppService`
     - Test: el URL generado comienza con `https://wa.me/`
     - Test: el mensaje codificado incluye el `orderCode`
     - Test: el mensaje incluye el monto total con formato `S/. XX.00`
@@ -399,27 +399,27 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: formulario válido → invoca `OrderService.createOrder()` con los datos correctos
     - _Requirements: 5.3, 5.4, 5.5_
 
-  - [ ] 11.4 Tests de componente: `FilterPanelComponent`
+  - [x] 11.4 Tests de componente: `FilterPanelComponent`
     - Test: seleccionar una categoría emite `filtersChange` con `category` correcto
     - Test: seleccionar un rango de precio emite `filtersChange` con `maxPrice` correcto
     - Test: ingresar texto emite `filtersChange` con `search` correcto
     - Test: "Limpiar filtros" emite `filtersChange` con todos los valores reseteados
     - _Requirements: 2.1, 2.2, 2.4, 2.6_
 
-  - [ ] 11.5 Tests de componente: `CardGridComponent`
+  - [x] 11.5 Tests de componente: `CardGridComponent`
     - Test: con `loading = true` muestra skeleton cards en lugar de tarjetas
     - Test: con `loading = false` y array de cards renderiza el mismo número de `CardItemComponent`
     - Test: con array vacío y `loading = false` no renderiza ítems
     - _Requirements: 1.1, 1.5_
 
 - [ ] 12. Integración y despliegue
-  - [ ] 12.1 Conectar frontend con backend y verificar comunicación
+  - [x] 12.1 Conectar frontend con backend y verificar comunicación
     - Confirmar que `environment.apiUrl` apunta al backend local en dev y al desplegado en prod
     - Verificar que `HttpClient` resuelve peticiones correctamente con el interceptor de errores activo
     - Probar manualmente los flujos: cargar catálogo, ver detalle, agregar al carrito
     - _Requirements: 1.2_
 
-  - [ ] 12.2 Implementar keep-alive silencioso en `AppComponent`
+  - [x] 12.2 Implementar keep-alive silencioso en `AppComponent`
     - Llamar `GET /q/health` en `ngOnInit` de forma asíncrona sin bloquear la carga
     - Ignorar cualquier error de la llamada keep-alive (no mostrar al usuario)
     - _Requirements: 8.2_

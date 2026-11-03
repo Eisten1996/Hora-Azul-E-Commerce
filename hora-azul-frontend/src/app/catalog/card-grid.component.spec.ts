@@ -19,6 +19,13 @@ describe('CardGridComponent y CardItemComponent', () => {
     expect(element.querySelectorAll('app-card-item').length).toBe(0);
   });
 
+  it('con la lista vacía y sin carga no renderiza ítems ni skeletons', () => {
+    const element: HTMLElement = render({ cards: [], loading: false }).nativeElement;
+
+    expect(element.querySelectorAll('app-card-item').length).toBe(0);
+    expect(element.querySelectorAll('[data-testid="card-skeleton"]').length).toBe(0);
+  });
+
   it('renderiza una tarjeta por cada elemento con nombre, categoría y precio', () => {
     const element: HTMLElement = render({ cards: SAMPLE_CARDS }).nativeElement;
 
