@@ -21,10 +21,19 @@ export class WhatsAppService {
       `Punto de entrega: ${deliveryAddress}`,
     ].join('\n');
 
-    return `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`;
+    return this.toUrl(message);
+  }
+
+  /** Enlace mínimo con solo el código, para cuando ya no se tiene el detalle de la orden. */
+  buildFollowUpUrl(orderCode: string): string {
+    return this.toUrl(`¡Hola, Hora Azul! Quiero coordinar el pago de mi pedido ${orderCode}.`);
   }
 
   openWhatsApp(url: string): void {
     window.open(url, '_blank', 'noopener');
+  }
+
+  private toUrl(message: string): string {
+    return `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`;
   }
 }
