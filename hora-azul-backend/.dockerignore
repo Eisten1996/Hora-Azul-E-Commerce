@@ -1,5 +1,5 @@
+# Solo se necesitan pom.xml y src/ para compilar dentro de la imagen
 *
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+!pom.xml
+!src/
+src/test/
