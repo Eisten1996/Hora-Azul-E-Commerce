@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signa
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from '../core/card.service';
+import type { DetailNavigationState } from '../detail/product-detail-page.component';
 import { CardSummary } from '../models';
 import { CardGridComponent } from './card-grid.component';
 import {
@@ -171,6 +172,7 @@ export default class CatalogPageComponent {
   }
 
   protected openDetail(card: CardSummary): void {
-    this.router.navigate(['/tarjeta', card.id]);
+    const state: DetailNavigationState = { catalogQueryParams: filtersToParams(this.filters()) };
+    this.router.navigate(['/tarjeta', card.id], { state });
   }
 }

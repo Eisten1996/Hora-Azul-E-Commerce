@@ -318,14 +318,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - `// Feature: hora-azul-ecommerce, Propiedad 5: Corrección del filtrado del catálogo`
 
 - [ ] 8. Frontend — Componentes UI (detalle y carrito)
-  - [ ] 8.1 Implementar `ImageGalleryComponent`
+  - [x] 8.1 Implementar `ImageGalleryComponent`
     - Input: `images: CardImage[]`
     - Mostrar imagen activa como principal (≥ 80% del ancho del contenedor)
     - Mostrar miniaturas clicables que cambian la imagen activa
     - Inicializar con la imagen de tipo `COVER` como activa por defecto
     - _Requirements: 3.2, 3.3, 3.4_
 
-  - [ ] 8.2 Implementar `ProductDetailPageComponent`
+  - [x] 8.2 Implementar `ProductDetailPageComponent`
     - Leer el parámetro `id` de la ruta y llamar `CardService.getCardById(id)`
     - Mostrar todos los campos requeridos: galería, nombre, `catalogNumber`, categoría, precio, dimensiones, `description3d`, indicador de sobre incluido
     - Botón "Agregar al carrito" habilitado si `active = true`; deshabilitado con mensaje de no disponible si `active = false`
