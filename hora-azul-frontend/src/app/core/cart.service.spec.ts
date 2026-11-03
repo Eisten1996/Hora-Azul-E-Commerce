@@ -59,6 +59,19 @@ describe('CartService', () => {
     expect(cart.isEmpty()).toBe(true);
   });
 
+  it('changeQuantity suma o resta sobre la cantidad actual y elimina al llegar a 0', () => {
+    cart.addItem(GLOBOS);
+    cart.changeQuantity(GLOBOS.id, 1);
+    cart.changeQuantity(GLOBOS.id, 1);
+    expect(cart.items()[0].quantity).toBe(3);
+
+    cart.changeQuantity(GLOBOS.id, -3);
+    expect(cart.isEmpty()).toBe(true);
+
+    cart.changeQuantity('inexistente', 1);
+    expect(cart.isEmpty()).toBe(true);
+  });
+
   it('persiste en localStorage y otra instancia recupera el carrito', () => {
     cart.addItem(GLOBOS);
     cart.addItem(TORTA);

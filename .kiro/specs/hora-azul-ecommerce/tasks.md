@@ -317,7 +317,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Extraer la función de filtro pura de `CatalogPageComponent` y testearla con `fc.array(fc.record(...))` y filtros arbitrarios
     - `// Feature: hora-azul-ecommerce, Propiedad 5: Corrección del filtrado del catálogo`
 
-- [ ] 8. Frontend — Componentes UI (detalle y carrito)
+- [x] 8. Frontend — Componentes UI (detalle y carrito)
   - [x] 8.1 Implementar `ImageGalleryComponent`
     - Input: `images: CardImage[]`
     - Mostrar imagen activa como principal (≥ 80% del ancho del contenedor)
@@ -333,7 +333,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Manejar 404: navegar a página de error con mensaje y enlace al catálogo
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9_
 
-  - [ ] 8.3 Implementar `CartItemComponent`
+  - [x] 8.3 Implementar `CartItemComponent`
     - Inputs: `item: CartItem`
     - Mostrar nombre, precio unitario, subtotal (`unitPrice × quantity`) con formato `S/. XX.00`
     - Botón de incremento (+): deshabilitar si `quantity >= 99`
@@ -341,7 +341,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Botón eliminar: invocar `CartService.removeItem()`
     - _Requirements: 4.4, 4.5, 4.11, 9.5_
 
-  - [ ] 8.4 Implementar `CartDrawerComponent`
+  - [x] 8.4 Implementar `CartDrawerComponent`
     - Panel lateral deslizable: abre/cierra sin navegar (controlado por señal en `AppComponent`)
     - Listar `CartService.items()` con `CartItemComponent` por cada ítem
     - Mostrar subtotales y total con `CartService.totalAmount()` formateado como `S/. XX.00`

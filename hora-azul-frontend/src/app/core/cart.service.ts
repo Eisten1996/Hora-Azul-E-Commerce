@@ -96,6 +96,17 @@ export class CartService {
     this.persist();
   }
 
+  /**
+   * Suma {@code delta} a la cantidad actual del ítem (negativo para restar). Parte del estado
+   * del servicio y no del que muestra la vista, para que clics rápidos no se pierdan.
+   */
+  changeQuantity(tarjetaId: string, delta: number): void {
+    const item = this._items().find((i) => i.tarjetaId === tarjetaId);
+    if (item) {
+      this.updateQuantity(tarjetaId, item.quantity + delta);
+    }
+  }
+
   clearCart(): void {
     this._items.set([]);
     this.persist();
