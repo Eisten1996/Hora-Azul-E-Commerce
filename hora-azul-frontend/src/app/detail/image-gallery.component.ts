@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
+import { thumbnailUrl } from '../core/card-photos';
 import { CardImage, ImageType } from '../models';
 
 const IMAGE_TYPE_LABELS: Record<ImageType, string> = {
@@ -43,7 +44,7 @@ const IMAGE_TYPE_LABELS: Record<ImageType, string> = {
                 [attr.aria-label]="'Ver ' + typeLabel(image)"
                 (click)="active.set(image)"
               >
-                <img [src]="image.url" alt="" width="96" height="72" loading="lazy" class="h-full w-full object-cover" />
+                <img [src]="thumbnail(image.url)" alt="" width="96" height="72" loading="lazy" class="h-full w-full object-cover" />
               </button>
             </li>
           }
@@ -65,6 +66,8 @@ export class ImageGalleryComponent {
     const images = this.sortedImages();
     return images.find((image) => image.imageType === 'COVER') ?? images[0];
   });
+
+  protected readonly thumbnail = thumbnailUrl;
 
   protected typeLabel(image: CardImage): string {
     return IMAGE_TYPE_LABELS[image.imageType];
