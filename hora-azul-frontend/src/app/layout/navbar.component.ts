@@ -10,21 +10,25 @@ import { CartService } from '../core/cart.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6">
         <a
           routerLink="/"
-          class="flex items-center gap-2 rounded-md text-hora-azul-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hora-azul-600"
+          class="flex items-center gap-3 rounded-md text-hora-azul-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hora-azul-600"
+          aria-label="Hora Azul, ir al catálogo"
         >
-          <svg class="h-8 w-8" viewBox="0 0 32 32" aria-hidden="true">
-            <circle cx="16" cy="16" r="15" class="fill-hora-azul-700" />
-            <path d="M20 8a9 9 0 1 0 4 15A10 10 0 0 1 20 8Z" class="fill-hora-accent" />
-          </svg>
-          <span class="text-xl font-semibold tracking-tight">Hora Azul</span>
+          <img
+            src="brand/hora-azul-logo-112.webp"
+            alt=""
+            width="123"
+            height="112"
+            class="h-12 w-auto rounded-md"
+          />
+          <span class="font-display text-xl uppercase tracking-[0.2em] sm:text-2xl">Hora Azul</span>
         </a>
 
         <button
           type="button"
-          class="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-hora-azul-800 hover:bg-hora-azul-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hora-azul-600"
+          class="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-hora-azul-900 hover:bg-hora-azul-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hora-azul-600"
           [attr.aria-label]="cartLabel()"
           [attr.aria-expanded]="drawer.open()"
           aria-controls="cart-drawer"
@@ -35,7 +39,7 @@ import { CartService } from '../core/cart.service';
           </svg>
           @if (cart.totalItems() > 0) {
             <span
-              class="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-hora-accent px-1 text-xs font-bold text-hora-azul-950"
+              class="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-hora-azul-500 px-1 text-xs font-bold text-hora-azul-900"
               data-testid="cart-badge"
               aria-hidden="true"
             >

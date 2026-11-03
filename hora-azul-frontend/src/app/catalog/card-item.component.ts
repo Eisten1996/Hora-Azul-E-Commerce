@@ -26,15 +26,22 @@ import { CARD_CATEGORY_LABELS, CardSummary } from '../models';
             class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
           />
         } @else {
-          <div class="flex h-full items-center justify-center text-sm text-hora-azul-700" role="img" [attr.aria-label]="altText()">
+          <div class="flex h-full items-center justify-center text-sm text-hora-azul-800" role="img" [attr.aria-label]="altText()">
             Sin imagen
           </div>
         }
       </div>
-      <div class="flex flex-1 flex-col gap-1 p-3 sm:p-4">
-        <p class="text-xs font-medium uppercase tracking-wide text-hora-azul-700">{{ categoryLabel() }}</p>
-        <h3 class="line-clamp-2 text-sm font-semibold text-slate-900 sm:text-base">{{ card().name }}</h3>
-        <p class="mt-auto pt-2 text-base font-bold text-slate-900">{{ card().price | soles }}</p>
+      <!-- Franja de precio en cian, como en el catálogo (texto marino para cumplir contraste AA) -->
+      <p class="bg-hora-azul-500 px-3 py-1.5 text-center text-sm font-bold text-hora-azul-900 sm:text-base">
+        {{ card().price | soles }}
+      </p>
+      <div class="flex flex-1 flex-col items-start gap-2 p-3 sm:p-4">
+        <h3 class="line-clamp-2 text-sm font-bold uppercase leading-snug text-hora-azul-900 sm:text-[0.95rem]">
+          {{ card().name }}
+        </h3>
+        <p class="mt-auto rounded-full bg-hora-azul-100 px-2.5 py-0.5 text-xs font-medium text-hora-azul-900">
+          {{ categoryLabel() }}
+        </p>
       </div>
     </button>
   `,

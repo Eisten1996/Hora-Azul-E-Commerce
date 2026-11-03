@@ -25,11 +25,32 @@ type LoadStatus = 'loading' | 'error' | 'ready';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section aria-labelledby="catalog-title">
-      <div class="mb-6 lg:mb-8">
-        <h1 id="catalog-title" class="text-2xl font-bold tracking-tight text-hora-azul-950 sm:text-3xl">
-          Tarjetas pop-up 3D
-        </h1>
-        <p class="mt-1 text-slate-600">Diseños artesanales con corte láser para cada ocasión.</p>
+      <div class="relative mb-8 overflow-hidden rounded-2xl bg-white px-6 py-8 shadow-sm ring-1 ring-slate-200 sm:px-10 lg:mb-10">
+        <!-- Franjas diagonales de la portada del catálogo -->
+        <div class="pointer-events-none absolute -right-14 -top-6 hidden w-56 rotate-[35deg] sm:block" aria-hidden="true">
+          <div class="h-4 bg-hora-azul-900"></div>
+          <div class="h-4 bg-hora-azul-700"></div>
+          <div class="h-4 bg-hora-azul-500"></div>
+          <div class="h-4 bg-hora-azul-100"></div>
+        </div>
+        <div class="relative flex items-center gap-8">
+          <div class="flex-1">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-hora-azul-700">Catálogo 2026</p>
+            <h1 id="catalog-title" class="mt-2 font-display text-3xl uppercase leading-tight text-hora-azul-900 sm:text-4xl">
+              Tarjetas de felicitaciones 3D
+            </h1>
+            <p class="mt-3 max-w-xl font-light text-slate-700">
+              Diseños pop-up artesanales con corte láser para cumpleaños, amor, flores y cada ocasión especial.
+            </p>
+          </div>
+          <img
+            src="brand/hora-azul-logo.webp"
+            alt="Logo de Hora Azul: calle con faroles bajo un cielo al atardecer"
+            width="421"
+            height="383"
+            class="mr-14 mt-6 hidden w-44 shrink-0 md:block lg:mr-20 lg:w-52"
+          />
+        </div>
       </div>
 
       <div class="lg:grid lg:grid-cols-[15rem_1fr] lg:gap-10">

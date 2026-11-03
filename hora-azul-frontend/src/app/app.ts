@@ -5,11 +5,12 @@ import { environment } from '../environments/environment';
 import { CartDrawerComponent } from './cart/cart-drawer.component';
 import { CartService } from './core/cart.service';
 import { SILENT_HTTP_ERRORS } from './core/http-error.interceptor';
+import { FooterComponent } from './layout/footer.component';
 import { NavbarComponent } from './layout/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, CartDrawerComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, CartDrawerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
 })
