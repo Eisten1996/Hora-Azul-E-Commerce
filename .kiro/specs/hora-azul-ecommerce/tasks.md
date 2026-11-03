@@ -348,8 +348,8 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Botón "Confirmar pedido": navegar a `/checkout` si el carrito no está vacío; mostrar mensaje de alerta si está vacío
     - _Requirements: 4.2, 4.3, 4.6, 5.1, 5.2, 9.5_
 
-- [ ] 9. Frontend — Checkout y éxito
-  - [ ] 9.1 Implementar `CheckoutPageComponent` con Reactive Forms
+- [x] 9. Frontend — Checkout y éxito
+  - [x] 9.1 Implementar `CheckoutPageComponent` con Reactive Forms
     - Crear `FormGroup` con campos: `customerName` (requerido, máx 100), `customerPhone` (requerido, exactamente 9 dígitos numéricos con regex `/^\d{9}$/`), `deliveryAddress` (requerido, máx 200), `estimatedDeliveryDate` (requerido, validator custom: fecha ≥ hoy)
     - Mostrar mensajes de validación inline por campo al tocar o intentar enviar
     - Mostrar mensaje específico de teléfono: "Ingresa un número de teléfono peruano válido de 9 dígitos."
@@ -358,14 +358,14 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - En error: mostrar mensaje descriptivo y preservar los datos del formulario
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.8, 5.9, 5.10_
 
-  - [ ] 9.2 Implementar `OrderSuccessComponent`
+  - [x] 9.2 Implementar `OrderSuccessComponent`
     - Leer el parámetro `orderCode` de la ruta
     - Mostrar el código de orden `ORD-YYYY-XXXX` de forma prominente
     - Mostrar instrucciones claras sobre el proceso de coordinación de pago por WhatsApp
     - Botón de regreso al catálogo
     - _Requirements: 5.7_
 
-  - [ ] 9.3 Implementar componente/vista de error 404 para tarjeta no encontrada
+  - [x] 9.3 Implementar componente/vista de error 404 para tarjeta no encontrada
     - Mostrar mensaje indicando que la tarjeta no fue encontrada
     - Enlace para volver al catálogo
     - _Requirements: 3.7_
@@ -392,7 +392,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: el mensaje incluye el punto de entrega
     - _Requirements: 5.8_
 
-  - [ ] 11.3 Tests unitarios: `CheckoutPageComponent`
+  - [x] 11.3 Tests unitarios: `CheckoutPageComponent`
     - Test: formulario inválido con teléfono de 8 dígitos → muestra mensaje de validación
     - Test: formulario inválido con fecha pasada → muestra error de validación
     - Test: formulario inválido con campo vacío → no invoca `OrderService`
