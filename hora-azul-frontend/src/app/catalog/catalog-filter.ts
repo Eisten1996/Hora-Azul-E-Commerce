@@ -31,7 +31,8 @@ export function normalizeText(text: string): string {
 
 /**
  * Devuelve las tarjetas que cumplen todos los filtros activos (intersección):
- * alguna de las categorías elegidas, el rango de precio y el texto en el nombre o la descripción.
+ * alguna de las categorías elegidas (basta con que la tarjeta tenga una de ellas),
+ * el rango de precio y el texto en el nombre o la descripción.
  */
 export function filterCards(cards: CardSummary[], filters: CatalogFilters): CardSummary[] {
   const search = normalizeText(filters.search.trim());
@@ -39,7 +40,8 @@ export function filterCards(cards: CardSummary[], filters: CatalogFilters): Card
 
   return cards.filter(
     (card) =>
-      (filters.categories.length === 0 || filters.categories.includes(card.category)) &&
+      (filters.categories.length === 0 ||
+        card.categories.some((category) => filters.categories.includes(category))) &&
       (!range || range.matches(card.price)) &&
       (!search ||
         normalizeText(card.name).includes(search) ||

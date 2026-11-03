@@ -8,7 +8,7 @@ import { CardService } from '../core/card.service';
 import { CartDrawerService } from '../core/cart-drawer.service';
 import { CartService } from '../core/cart.service';
 import { SolesPipe } from '../core/money';
-import { CARD_CATEGORY_LABELS, CardDetail } from '../models';
+import { CardDetail, categoryLabels } from '../models';
 import { ImageGalleryComponent } from './image-gallery.component';
 
 type LoadStatus = 'loading' | 'ready' | 'not-found' | 'error';
@@ -155,7 +155,7 @@ export default class ProductDetailPageComponent {
   protected readonly cartMessageIsError = signal(false);
   protected readonly categoryLabel = computed(() => {
     const card = this.card();
-    return card ? CARD_CATEGORY_LABELS[card.category] : '';
+    return card ? categoryLabels(card.categories) : '';
   });
 
   constructor() {

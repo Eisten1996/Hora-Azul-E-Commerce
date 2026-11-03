@@ -17,6 +17,11 @@ export const CARD_CATEGORY_LABELS: Record<CardCategory, string> = {
   AGRADECIMIENTO: 'Agradecimiento',
 };
 
+/** Nombres de las categorías separados por comas, p. ej. "Flores, Amor". */
+export function categoryLabels(categories: CardCategory[]): string {
+  return categories.map((category) => CARD_CATEGORY_LABELS[category]).join(', ');
+}
+
 export type ImageType = 'COVER' | 'OPEN' | 'ENVELOPE';
 
 export interface CardImage {
@@ -30,7 +35,8 @@ export interface CardSummary {
   id: string;
   catalogNumber: number;
   name: string;
-  category: CardCategory;
+  /** Una tarjeta puede estar en varias categorías (en el orden del enum). */
+  categories: CardCategory[];
   price: number;
   dimensions: string | null;
   description3d: string | null;

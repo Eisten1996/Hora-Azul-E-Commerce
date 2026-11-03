@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } fro
 import { CardImage, ImageType } from '../models';
 
 const IMAGE_TYPE_LABELS: Record<ImageType, string> = {
-  COVER: 'portada',
-  OPEN: 'tarjeta desplegada',
-  ENVELOPE: 'sobre',
+  COVER: 'vista principal',
+  OPEN: 'tarjeta abierta',
+  ENVELOPE: 'tarjeta cerrada',
 };
 
 /** Galería de la ficha: imagen activa a todo el ancho y miniaturas para cambiarla. */
@@ -60,7 +60,7 @@ export class ImageGalleryComponent {
     [...this.images()].sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
-  /** Imagen activa: la portada al cargar (o la primera si no hay portada). */
+  /** Imagen activa: la vista principal (COVER) al cargar, o la primera si no hay. */
   protected readonly active = linkedSignal<CardImage | undefined>(() => {
     const images = this.sortedImages();
     return images.find((image) => image.imageType === 'COVER') ?? images[0];
