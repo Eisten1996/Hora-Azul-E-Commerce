@@ -276,18 +276,18 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - _Requirements: 1.4, 5.9_
 
 - [ ] 7. Frontend — Componentes UI (shell y catálogo)
-  - [ ] 7.1 Implementar `AppComponent` con shell y `NavbarComponent`
+  - [x] 7.1 Implementar `AppComponent` con shell y `NavbarComponent`
     - `AppComponent`: inicializar `CartService.loadFromStorage()`, emitir keep-alive `GET /q/health` en `ngOnInit` de forma silenciosa (ignorar errores), incluir `<router-outlet>` y `<app-cart-drawer>`
     - `NavbarComponent`: logo de Hora Azul, badge con `cartService.totalItems()` como signal (ocultar si es 0), botón para abrir/cerrar `CartDrawer`
     - _Requirements: 4.6, 4.10, 8.2_
 
-  - [ ] 7.2 Implementar `CardItemComponent`
+  - [x] 7.2 Implementar `CardItemComponent`
     - Inputs: `card: CardSummary` (signal input)
     - Mostrar: imagen de portada con `alt` descriptivo, nombre, categoría, precio con formato `S/. XX.00`
     - Emitir evento `(cardClick)` al hacer clic para que el contenedor navegue al detalle
     - _Requirements: 1.3, 9.3, 9.5_
 
-  - [ ] 7.3 Implementar `CardGridComponent` con skeleton loading
+  - [x] 7.3 Implementar `CardGridComponent` con skeleton loading
     - Input: `cards: CardSummary[]`, `loading: boolean`
     - Grid responsivo: 2 columnas en `< 768px`, 4 columnas en `≥ 1024px` con clases Tailwind
     - Mostrar skeleton cards (con `@if (loading)`) mientras se cargan los datos

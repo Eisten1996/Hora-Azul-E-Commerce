@@ -1,7 +1,7 @@
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, HttpContext, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { httpErrorInterceptor } from './http-error.interceptor';
+import { SILENT_HTTP_ERRORS, httpErrorInterceptor } from './http-error.interceptor';
 
 describe('httpErrorInterceptor', () => {
   let client: HttpClient;
@@ -45,6 +45,17 @@ describe('httpErrorInterceptor', () => {
   it('registra y relanza los errores 5xx', () => {
     expect(requestWithError(503)).toBe(503);
     expect(consoleError).toHaveBeenCalledTimes(1);
+  });
+
+  it('no registra los errores de peticiones marcadas como silenciosas', () => {
+    let failed = false;
+    client
+      .get('/api/test', { context: new HttpContext().set(SILENT_HTTP_ERRORS, true) })
+      .subscribe({ error: () => (failed = true) });
+    http.expectOne('/api/test').error(new ProgressEvent('error'));
+
+    expect(failed).toBe(true);
+    expect(consoleError).not.toHaveBeenCalled();
   });
 
   it('relanza los errores 4xx sin registrarlos', () => {

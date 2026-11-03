@@ -14,6 +14,7 @@ const card: CardSummary = {
   category: 'CUMPLEANOS',
   price: 15,
   dimensions: '15 x 20 cm',
+  description3d: 'Tres globos de colores emergen al abrir la tarjeta.',
   envelopeIncluded: true,
   coverImageUrl: 'https://placehold.co/600x400',
 };

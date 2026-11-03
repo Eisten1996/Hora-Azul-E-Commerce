@@ -1,24 +1,41 @@
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { App } from './app';
 import { provideRouter } from '@angular/router';
+import { environment } from '../environments/environment';
+import { App } from './app';
+import { SILENT_HTTP_ERRORS } from './core/http-error.interceptor';
 
 describe('App', () => {
+  let http: HttpTestingController;
+
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
+    http = TestBed.inject(HttpTestingController);
   });
 
-  it('should create the app', () => {
+  afterEach(() => http.verify());
+
+  it('renderiza el navbar y el contenido principal', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    fixture.detectChanges();
+    http.expectOne(`${environment.apiUrl}/q/health`).flush({ status: 'UP' });
+
+    const element: HTMLElement = fixture.nativeElement;
+    expect(element.querySelector('app-navbar')).not.toBeNull();
+    expect(element.querySelector('main#contenido router-outlet')).not.toBeNull();
   });
 
-  it(`should have the 'hora-azul-frontend' title`, () => {
+  it('envía el keep-alive a /q/health de forma silenciosa e ignora sus errores', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app['title']()).toEqual('hora-azul-frontend');
+    fixture.detectChanges();
+
+    const req = http.expectOne(`${environment.apiUrl}/q/health`);
+    expect(req.request.context.get(SILENT_HTTP_ERRORS)).toBe(true);
+    expect(() => req.error(new ProgressEvent('error'))).not.toThrow();
   });
 });

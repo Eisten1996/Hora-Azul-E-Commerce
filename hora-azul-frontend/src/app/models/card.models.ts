@@ -33,13 +33,13 @@ export interface CardSummary {
   category: CardCategory;
   price: number;
   dimensions: string | null;
+  description3d: string | null;
   envelopeIncluded: boolean;
   coverImageUrl: string | null;
 }
 
 /** Detalle completo de una tarjeta (`GET /api/cards/{id}`). */
 export interface CardDetail extends CardSummary {
-  description3d: string | null;
   active: boolean;
   images: CardImage[];
   createdAt: string;

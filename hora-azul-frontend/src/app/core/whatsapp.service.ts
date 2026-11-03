@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { OrderResponse } from '../models';
-
-/** Formatea un importe en soles con dos decimales: {@code 120.5 → "S/. 120.50"}. */
-export function formatSoles(amount: number): string {
-  return `S/. ${amount.toFixed(2)}`;
-}
+import { formatSoles } from './money';
 
 /** Construye y abre el enlace {@code wa.me} para coordinar el pago de una orden. */
 @Injectable({ providedIn: 'root' })
