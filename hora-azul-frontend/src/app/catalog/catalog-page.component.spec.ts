@@ -123,12 +123,15 @@ describe('CatalogPageComponent', () => {
     expect(element.textContent).toContain('1 de 3 tarjetas');
   });
 
-  it('al pulsar una tarjeta navega a su detalle', () => {
+  it('al pulsar una tarjeta navega a su detalle pasando los filtros activos', () => {
     getCards.mockReturnValue(of(SAMPLE_CARDS));
+    initialParams = { precio: 'HASTA_20' };
     const navigate = jest.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
 
     render().nativeElement.querySelector('app-card-item button').click();
 
-    expect(navigate).toHaveBeenCalledWith(['/tarjeta', SAMPLE_CARDS[0].id]);
+    expect(navigate).toHaveBeenCalledWith(['/tarjeta', SAMPLE_CARDS[0].id], {
+      state: { catalogQueryParams: { categoria: null, precio: 'HASTA_20', q: null } },
+    });
   });
 });
