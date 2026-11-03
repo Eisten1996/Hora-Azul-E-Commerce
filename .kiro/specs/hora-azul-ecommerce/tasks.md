@@ -275,7 +275,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Relanzar el error para que cada servicio/componente pueda manejarlo localmente
     - _Requirements: 1.4, 5.9_
 
-- [ ] 7. Frontend — Componentes UI (shell y catálogo)
+- [x] 7. Frontend — Componentes UI (shell y catálogo)
   - [x] 7.1 Implementar `AppComponent` con shell y `NavbarComponent`
     - `AppComponent`: inicializar `CartService.loadFromStorage()`, emitir keep-alive `GET /q/health` en `ngOnInit` de forma silenciosa (ignorar errores), incluir `<router-outlet>` y `<app-cart-drawer>`
     - `NavbarComponent`: logo de Hora Azul, badge con `cartService.totalItems()` como signal (ocultar si es 0), botón para abrir/cerrar `CartDrawer`
@@ -294,7 +294,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Renderizar `CardItemComponent` por cada tarjeta
     - _Requirements: 1.1, 1.5_
 
-  - [ ] 7.4 Implementar `FilterPanelComponent`
+  - [x] 7.4 Implementar `FilterPanelComponent`
     - Checkboxes de selección múltiple para las 6 categorías (Requirements 2.1)
     - Radio buttons para los 4 rangos de precio, excluyentes (Requirements 2.2)
     - Input de búsqueda de texto que emite evento por cada carácter ingresado (Requirements 2.4)
@@ -302,7 +302,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Emitir evento `(filtersChange)` con el objeto `CardFilters` actualizado
     - _Requirements: 2.1, 2.2, 2.4, 2.6_
 
-  - [ ] 7.5 Implementar `CatalogPageComponent` — orquestación de catálogo
+  - [x] 7.5 Implementar `CatalogPageComponent` — orquestación de catálogo
     - Suscribirse a `CardService.getCards()` y manejar estado de carga y error
     - Aplicar filtros en el frontend (intersección de categoría + precio + texto) mediante una función de filtro pura
     - Mostrar mensaje "No se encontraron tarjetas con ese criterio de búsqueda." cuando no hay resultados con filtros activos (Requirements 2.5)
@@ -311,7 +311,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Preservar el estado de filtros en el router state o query params para el flujo de regreso desde el detalle
     - _Requirements: 1.2, 1.4, 1.6, 2.3, 2.7_
 
-  - [ ]* 7.6 Tests de propiedad con fast-check: P5 — Corrección del filtrado del catálogo
+  - [x]* 7.6 Tests de propiedad con fast-check: P5 — Corrección del filtrado del catálogo
     - **Propiedad 5: Para cualquier combinación de filtros y lista de tarjetas, el resultado no debe contener tarjetas que incumplan algún criterio activo**
     - **Valida: Requirements 2.3, 2.4, 2.7**
     - Extraer la función de filtro pura de `CatalogPageComponent` y testearla con `fc.array(fc.record(...))` y filtros arbitrarios
