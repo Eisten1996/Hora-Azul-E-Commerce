@@ -1,3 +1,4 @@
-import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 
-setupZoneTestEnv();
+// La app corre sin zone.js (provideZonelessChangeDetection); los tests también
+setupZonelessTestEnv();
