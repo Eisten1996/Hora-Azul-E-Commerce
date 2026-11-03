@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
+import CatalogPageComponent from './catalog/catalog-page.component';
 
-/** Todas las rutas usan lazy loading para reducir el bundle inicial. */
+/**
+ * El catálogo es la página de entrada y va en el bundle inicial: cargarlo en diferido
+ * retrasaba el primer pintado (LCP) una petición más. El resto de rutas usa lazy loading.
+ */
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./catalog/catalog-page.component'),
+    component: CatalogPageComponent,
     title: 'Hora Azul — Tarjetas pop-up 3D',
   },
   {
