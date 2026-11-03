@@ -3,7 +3,7 @@
 -- Datos tomados del PDF "Catálogo Hora Azul 2026": 33 tarjetas con sus precios,
 -- dimensiones, efecto 3D, categorías (una tarjeta puede tener varias) y fotos.
 -- Las fotos se sirven desde el frontend en /cards/NN-K.webp.
--- Ejecutado automáticamente por Hibernate (drop-and-create) en perfil dev/test
+-- Migración Flyway: se aplica una sola vez en cada base de datos (dev, test y producción)
 -- Sintaxis compatible con H2 y PostgreSQL
 -- =============================================================================
 
