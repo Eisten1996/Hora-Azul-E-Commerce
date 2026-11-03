@@ -151,20 +151,20 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
   - Ejecutar `mvn test` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
 - [ ] 5. Backend — Tests
-  - [ ] 5.1 Tests unitarios: `TarjetaService`
+  - [x] 5.1 Tests unitarios: `TarjetaService`
     - Test: crear tarjeta con precio válido → éxito
     - Test: crear tarjeta con precio inválido (p. ej. 25.00) → `InvalidPriceException`
     - Test: crear tarjeta con `catalogNumber` duplicado → `CatalogNumberConflictException`
     - Test: actualizar tarjeta existente sin cambiar `catalogNumber` → éxito
     - _Requirements: 6.6, 6.7_
 
-  - [ ]* 5.2 Tests de propiedad con jqwik: P3 — Rechazo de precios inválidos
+  - [x]* 5.2 Tests de propiedad con jqwik: P3 — Rechazo de precios inválidos
     - **Propiedad 3: Para cualquier precio que no pertenezca a {15.00, 17.00, 20.00, 30.00}, el sistema debe rechazar la solicitud con HTTP 422**
     - **Valida: Requirements 6.7**
     - Generar con `@ForAll` precios arbitrarios excluyendo los 4 válidos y verificar que `TarjetaService` lanza `InvalidPriceException`
     - `// Feature: hora-azul-ecommerce, Propiedad 3: Rechazo de precios inválidos`
 
-  - [ ]* 5.3 Tests de propiedad con jqwik: P7 — Unicidad de número de catálogo
+  - [x]* 5.3 Tests de propiedad con jqwik: P7 — Unicidad de número de catálogo
     - **Propiedad 7: Para cualquier tarjeta existente con catalogNumber N, intentar crear otra con el mismo N debe ser rechazado con HTTP 409**
     - **Valida: Requirements 6.6**
     - Generar pares de requests con el mismo `catalogNumber` y verificar que el segundo lanza `CatalogNumberConflictException`
@@ -183,7 +183,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Simular N creaciones de orden concurrentes con año mock y verificar ausencia de duplicados
     - `// Feature: hora-azul-ecommerce, Propiedad 2: Unicidad de código de orden por año`
 
-  - [ ] 5.6 Tests de integración: `TarjetaResource` con `@QuarkusTest` + Testcontainers
+  - [x] 5.6 Tests de integración: `TarjetaResource` con `@QuarkusTest` + Testcontainers
     - Test: `GET /api/cards` sin filtros → 200 con lista de tarjetas activas
     - Test: `GET /api/cards?category=FLORES&maxPrice=20` → solo tarjetas que cumplen ambos criterios
     - Test: `GET /api/cards/{id}` con UUID válido → 200 con detalle completo

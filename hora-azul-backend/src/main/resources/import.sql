@@ -200,46 +200,46 @@ VALUES ('f6000004-0000-0000-0000-000000000033', 33, 'Jardín de Agradecimiento',
 -- =============================================================================
 
 -- CUMPLEANOS
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00001-0000-0000-0000-000000000001', 'a1000001-0000-0000-0000-000000000001', 'COVER', 'https://placehold.co/600x400?text=Globos+de+Cumpleanos');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00002-0000-0000-0000-000000000002', 'a1000002-0000-0000-0000-000000000002', 'COVER', 'https://placehold.co/600x400?text=Torta+con+Velas');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00003-0000-0000-0000-000000000003', 'a1000003-0000-0000-0000-000000000003', 'COVER', 'https://placehold.co/600x400?text=Mariposas+de+Fiesta');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00004-0000-0000-0000-000000000004', 'a1000004-0000-0000-0000-000000000004', 'COVER', 'https://placehold.co/600x400?text=Cohetes+y+Estrellas');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00005-0000-0000-0000-000000000005', 'a1000005-0000-0000-0000-000000000005', 'COVER', 'https://placehold.co/600x400?text=Confeti+y+Serpentinas');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00006-0000-0000-0000-000000000006', 'a1000006-0000-0000-0000-000000000006', 'COVER', 'https://placehold.co/600x400?text=Corona+de+Cumpleanos');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00007-0000-0000-0000-000000000007', 'a1000007-0000-0000-0000-000000000007', 'COVER', 'https://placehold.co/600x400?text=Oso+de+Peluche+Festivo');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00008-0000-0000-0000-000000000008', 'a1000008-0000-0000-0000-000000000008', 'COVER', 'https://placehold.co/600x400?text=Arco+Iris+de+Celebracion');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000001-0000-0000-0000-000000000001', 'a1000001-0000-0000-0000-000000000001', 'COVER', 0, 'https://placehold.co/600x400?text=Globos+de+Cumpleanos');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000002-0000-0000-0000-000000000002', 'a1000002-0000-0000-0000-000000000002', 'COVER', 0, 'https://placehold.co/600x400?text=Torta+con+Velas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000003-0000-0000-0000-000000000003', 'a1000003-0000-0000-0000-000000000003', 'COVER', 0, 'https://placehold.co/600x400?text=Mariposas+de+Fiesta');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000004-0000-0000-0000-000000000004', 'a1000004-0000-0000-0000-000000000004', 'COVER', 0, 'https://placehold.co/600x400?text=Cohetes+y+Estrellas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000005-0000-0000-0000-000000000005', 'a1000005-0000-0000-0000-000000000005', 'COVER', 0, 'https://placehold.co/600x400?text=Confeti+y+Serpentinas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000006-0000-0000-0000-000000000006', 'a1000006-0000-0000-0000-000000000006', 'COVER', 0, 'https://placehold.co/600x400?text=Corona+de+Cumpleanos');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000007-0000-0000-0000-000000000007', 'a1000007-0000-0000-0000-000000000007', 'COVER', 0, 'https://placehold.co/600x400?text=Oso+de+Peluche+Festivo');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000008-0000-0000-0000-000000000008', 'a1000008-0000-0000-0000-000000000008', 'COVER', 0, 'https://placehold.co/600x400?text=Arco+Iris+de+Celebracion');
 
 -- FLORES
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00009-0000-0000-0000-000000000009', 'b2000001-0000-0000-0000-000000000009', 'COVER', 'https://placehold.co/600x400?text=Ramo+de+Rosas+Rojas');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00010-0000-0000-0000-000000000010', 'b2000002-0000-0000-0000-000000000010', 'COVER', 'https://placehold.co/600x400?text=Jardin+de+Tulipanes');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00011-0000-0000-0000-000000000011', 'b2000003-0000-0000-0000-000000000011', 'COVER', 'https://placehold.co/600x400?text=Girasoles+Radiantes');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00012-0000-0000-0000-000000000012', 'b2000004-0000-0000-0000-000000000012', 'COVER', 'https://placehold.co/600x400?text=Lirios+de+Primavera');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00013-0000-0000-0000-000000000013', 'b2000005-0000-0000-0000-000000000013', 'COVER', 'https://placehold.co/600x400?text=Peonias+en+Flor');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00014-0000-0000-0000-000000000014', 'b2000006-0000-0000-0000-000000000014', 'COVER', 'https://placehold.co/600x400?text=Orquideas+Exoticas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000009-0000-0000-0000-000000000009', 'b2000001-0000-0000-0000-000000000009', 'COVER', 0, 'https://placehold.co/600x400?text=Ramo+de+Rosas+Rojas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000010-0000-0000-0000-000000000010', 'b2000002-0000-0000-0000-000000000010', 'COVER', 0, 'https://placehold.co/600x400?text=Jardin+de+Tulipanes');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000011-0000-0000-0000-000000000011', 'b2000003-0000-0000-0000-000000000011', 'COVER', 0, 'https://placehold.co/600x400?text=Girasoles+Radiantes');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000012-0000-0000-0000-000000000012', 'b2000004-0000-0000-0000-000000000012', 'COVER', 0, 'https://placehold.co/600x400?text=Lirios+de+Primavera');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000013-0000-0000-0000-000000000013', 'b2000005-0000-0000-0000-000000000013', 'COVER', 0, 'https://placehold.co/600x400?text=Peonias+en+Flor');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000014-0000-0000-0000-000000000014', 'b2000006-0000-0000-0000-000000000014', 'COVER', 0, 'https://placehold.co/600x400?text=Orquideas+Exoticas');
 
 -- AMOR
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00015-0000-0000-0000-000000000015', 'c3000001-0000-0000-0000-000000000015', 'COVER', 'https://placehold.co/600x400?text=Corazon+Entrelazado');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00016-0000-0000-0000-000000000016', 'c3000002-0000-0000-0000-000000000016', 'COVER', 'https://placehold.co/600x400?text=Lluvia+de+Corazones');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00017-0000-0000-0000-000000000017', 'c3000003-0000-0000-0000-000000000017', 'COVER', 'https://placehold.co/600x400?text=Rosas+y+Corazon');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00018-0000-0000-0000-000000000018', 'c3000004-0000-0000-0000-000000000018', 'COVER', 'https://placehold.co/600x400?text=Cupido+y+Flechas');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00019-0000-0000-0000-000000000019', 'c3000005-0000-0000-0000-000000000019', 'COVER', 'https://placehold.co/600x400?text=Castillo+de+Ensueno');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000015-0000-0000-0000-000000000015', 'c3000001-0000-0000-0000-000000000015', 'COVER', 0, 'https://placehold.co/600x400?text=Corazon+Entrelazado');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000016-0000-0000-0000-000000000016', 'c3000002-0000-0000-0000-000000000016', 'COVER', 0, 'https://placehold.co/600x400?text=Lluvia+de+Corazones');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000017-0000-0000-0000-000000000017', 'c3000003-0000-0000-0000-000000000017', 'COVER', 0, 'https://placehold.co/600x400?text=Rosas+y+Corazon');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000018-0000-0000-0000-000000000018', 'c3000004-0000-0000-0000-000000000018', 'COVER', 0, 'https://placehold.co/600x400?text=Cupido+y+Flechas');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000019-0000-0000-0000-000000000019', 'c3000005-0000-0000-0000-000000000019', 'COVER', 0, 'https://placehold.co/600x400?text=Castillo+de+Ensueno');
 
 -- SIN_MENSAJE
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00020-0000-0000-0000-000000000020', 'd4000001-0000-0000-0000-000000000020', 'COVER', 'https://placehold.co/600x400?text=Mariposas+Silvestres');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00021-0000-0000-0000-000000000021', 'd4000002-0000-0000-0000-000000000021', 'COVER', 'https://placehold.co/600x400?text=Arbol+de+la+Vida');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00022-0000-0000-0000-000000000022', 'd4000003-0000-0000-0000-000000000022', 'COVER', 'https://placehold.co/600x400?text=Paisaje+de+Montana');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00023-0000-0000-0000-000000000023', 'd4000004-0000-0000-0000-000000000023', 'COVER', 'https://placehold.co/600x400?text=Barco+Velero');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00024-0000-0000-0000-000000000024', 'd4000005-0000-0000-0000-000000000024', 'COVER', 'https://placehold.co/600x400?text=Ciudad+al+Atardecer');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000020-0000-0000-0000-000000000020', 'd4000001-0000-0000-0000-000000000020', 'COVER', 0, 'https://placehold.co/600x400?text=Mariposas+Silvestres');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000021-0000-0000-0000-000000000021', 'd4000002-0000-0000-0000-000000000021', 'COVER', 0, 'https://placehold.co/600x400?text=Arbol+de+la+Vida');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000022-0000-0000-0000-000000000022', 'd4000003-0000-0000-0000-000000000022', 'COVER', 0, 'https://placehold.co/600x400?text=Paisaje+de+Montana');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000023-0000-0000-0000-000000000023', 'd4000004-0000-0000-0000-000000000023', 'COVER', 0, 'https://placehold.co/600x400?text=Barco+Velero');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000024-0000-0000-0000-000000000024', 'd4000005-0000-0000-0000-000000000024', 'COVER', 0, 'https://placehold.co/600x400?text=Ciudad+al+Atardecer');
 
 -- MEJORES_DESEOS
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00025-0000-0000-0000-000000000025', 'e5000001-0000-0000-0000-000000000025', 'COVER', 'https://placehold.co/600x400?text=Estrellas+de+Buena+Suerte');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00026-0000-0000-0000-000000000026', 'e5000002-0000-0000-0000-000000000026', 'COVER', 'https://placehold.co/600x400?text=Trebol+de+la+Suerte');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00027-0000-0000-0000-000000000027', 'e5000003-0000-0000-0000-000000000027', 'COVER', 'https://placehold.co/600x400?text=Palomas+en+Vuelo');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00028-0000-0000-0000-000000000028', 'e5000004-0000-0000-0000-000000000028', 'COVER', 'https://placehold.co/600x400?text=Arco+Iris+de+Esperanza');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00029-0000-0000-0000-000000000029', 'e5000005-0000-0000-0000-000000000029', 'COVER', 'https://placehold.co/600x400?text=Farolillos+de+Luz');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000025-0000-0000-0000-000000000025', 'e5000001-0000-0000-0000-000000000025', 'COVER', 0, 'https://placehold.co/600x400?text=Estrellas+de+Buena+Suerte');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000026-0000-0000-0000-000000000026', 'e5000002-0000-0000-0000-000000000026', 'COVER', 0, 'https://placehold.co/600x400?text=Trebol+de+la+Suerte');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000027-0000-0000-0000-000000000027', 'e5000003-0000-0000-0000-000000000027', 'COVER', 0, 'https://placehold.co/600x400?text=Palomas+en+Vuelo');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000028-0000-0000-0000-000000000028', 'e5000004-0000-0000-0000-000000000028', 'COVER', 0, 'https://placehold.co/600x400?text=Arco+Iris+de+Esperanza');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000029-0000-0000-0000-000000000029', 'e5000005-0000-0000-0000-000000000029', 'COVER', 0, 'https://placehold.co/600x400?text=Farolillos+de+Luz');
 
 -- AGRADECIMIENTO
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00030-0000-0000-0000-000000000030', 'f6000001-0000-0000-0000-000000000030', 'COVER', 'https://placehold.co/600x400?text=Flores+de+Gratitud');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00031-0000-0000-0000-000000000031', 'f6000002-0000-0000-0000-000000000031', 'COVER', 'https://placehold.co/600x400?text=Mariposa+de+las+Gracias');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00032-0000-0000-0000-000000000032', 'f6000003-0000-0000-0000-000000000032', 'COVER', 'https://placehold.co/600x400?text=Sol+Radiante');
-INSERT INTO card_image (id, tarjeta_id, image_type, image_url) VALUES ('img00033-0000-0000-0000-000000000033', 'f6000004-0000-0000-0000-000000000033', 'COVER', 'https://placehold.co/600x400?text=Jardin+de+Agradecimiento');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000030-0000-0000-0000-000000000030', 'f6000001-0000-0000-0000-000000000030', 'COVER', 0, 'https://placehold.co/600x400?text=Flores+de+Gratitud');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000031-0000-0000-0000-000000000031', 'f6000002-0000-0000-0000-000000000031', 'COVER', 0, 'https://placehold.co/600x400?text=Mariposa+de+las+Gracias');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000032-0000-0000-0000-000000000032', 'f6000003-0000-0000-0000-000000000032', 'COVER', 0, 'https://placehold.co/600x400?text=Sol+Radiante');
+INSERT INTO card_image (id, tarjeta_id, image_type, sort_order, url) VALUES ('c1000033-0000-0000-0000-000000000033', 'f6000004-0000-0000-0000-000000000033', 'COVER', 0, 'https://placehold.co/600x400?text=Jardin+de+Agradecimiento');
