@@ -12,8 +12,8 @@ Producción se despliega desde la rama **`main`** (git-flow: `release/*` → `ma
 
 ## 1. Neon
 
-1. Crear un proyecto en <https://console.neon.tech> (región cercana a Render, p. ej. *AWS US West (Oregon)*).
-2. En **Connection details**, elegir la base `neondb` y copiar host, usuario y contraseña.
+1. Crear un proyecto en <https://console.neon.tech>. La región de Render en `render.yaml` debe ser la misma (hoy: *AWS US East 2 (Ohio)* → `region: ohio`).
+2. En **Connect**, elegir la base `neondb` y copiar host, usuario y contraseña. Usar el host **sin** `-pooler`: el backend ya tiene su propio pool.
 3. Armar la URL JDBC (sin usuario ni contraseña dentro):
 
    ```
