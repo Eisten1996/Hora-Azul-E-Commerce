@@ -14,6 +14,45 @@
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!--
+      App shell: copia estática del navbar y de la cabecera del catálogo para que el
+      navegador los pinte antes de que Angular arranque (mejora FCP/LCP en móvil).
+      Angular reemplaza todo este contenido al iniciar. Mantener en sincronía con
+      layout/navbar.component.ts y catalog/catalog-page.component.ts.
+    -->
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6">
+        <span class="flex items-center gap-3 text-hora-azul-900">
+          <img src="brand/hora-azul-logo-112.webp" alt="" width="123" height="112" class="h-12 w-auto rounded-md">
+          <span class="font-display text-xl uppercase tracking-[0.2em] sm:text-2xl">Hora Azul</span>
+        </span>
+      </nav>
+    </header>
+    <main class="mx-auto min-h-[calc(100vh-5rem)] max-w-7xl px-4 py-6 sm:px-6 lg:py-10">
+      <div id="shell-hero" class="relative mb-8 overflow-hidden rounded-2xl bg-white px-6 py-8 shadow-sm ring-1 ring-slate-200 sm:px-10 lg:mb-10">
+        <div class="pointer-events-none absolute -right-14 -top-6 hidden w-56 rotate-[35deg] sm:block" aria-hidden="true">
+          <div class="h-4 bg-hora-azul-900"></div>
+          <div class="h-4 bg-hora-azul-700"></div>
+          <div class="h-4 bg-hora-azul-500"></div>
+          <div class="h-4 bg-hora-azul-100"></div>
+        </div>
+        <div class="relative flex items-center gap-8">
+          <div class="flex-1">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-hora-azul-700">Catálogo 2026</p>
+            <p class="mt-2 font-display text-3xl uppercase leading-tight text-hora-azul-900 sm:text-4xl">Tarjetas de felicitaciones 3D</p>
+            <p class="mt-3 max-w-xl font-light text-slate-700">
+              Diseños pop-up artesanales con corte láser para cumpleaños, amor, flores y cada ocasión especial.
+            </p>
+          </div>
+          <img src="brand/hora-azul-logo.webp" alt="" width="421" height="383" class="mr-14 mt-6 hidden w-44 shrink-0 md:block lg:mr-20 lg:w-52">
+        </div>
+      </div>
+      <script>
+        // La cabecera del catálogo solo corresponde a la portada
+        if (location.pathname !== '/') document.getElementById('shell-hero').remove();
+      </script>
+    </main>
+  </app-root>
 </body>
 </html>

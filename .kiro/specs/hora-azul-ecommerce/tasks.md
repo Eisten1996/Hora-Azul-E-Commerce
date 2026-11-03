@@ -424,20 +424,20 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Ignorar cualquier error de la llamada keep-alive (no mostrar al usuario)
     - _Requirements: 8.2_
 
-  - [ ] 12.3 Configurar despliegue en Render o Koyeb
+  - [x] 12.3 Configurar despliegue en Render o Koyeb
     - Crear `Dockerfile` o configurar build nativo de Quarkus para la plataforma seleccionada
     - Establecer variables de entorno de producción: `QUARKUS_DATASOURCE_JDBC_URL`, `QUARKUS_HTTP_PORT=8080`, `JAVA_OPTS=-Xmx512m -Xms128m`
     - Verificar que el servicio arranca y `GET /q/health` responde 200
     - _Requirements: 8.1, 8.2_
 
-  - [ ] 12.4 Configurar Cloudflare Pages
+  - [x] 12.4 Configurar Cloudflare Pages
     - Establecer build command: `ng build --configuration production`
     - Establecer output directory: `dist/hora-azul-frontend/browser`
     - Crear archivo `public/_headers` con reglas de `Cache-Control` para assets estáticos
     - Crear archivo `public/_redirects` con la regla SPA: `/* /index.html 200`
     - _Requirements: 9.1_
 
-  - [ ] 12.5 Verificar conexión Neon PostgreSQL en producción y ejecutar migraciones
+  - [x] 12.5 Verificar conexión Neon PostgreSQL en producción y ejecutar migraciones
     - Confirmar que Quarkus en producción conecta a Neon sin errores en el health check
     - Verificar que el esquema fue creado/actualizado correctamente por Hibernate (`database.generation=update`)
     - Confirmar que los datos semilla de las 33 tarjetas están presentes (o ejecutar `import.sql` manualmente si es necesario)
@@ -448,7 +448,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Revisar y corregir los principales factores de puntuación si el score es inferior a 80 (lazy loading, tamaño de imágenes, bundle size)
     - _Requirements: 9.4_
 
-- [ ] 13. Checkpoint final — Prueba de humo end-to-end
+- [x] 13. Checkpoint final — Prueba de humo end-to-end
   - Ejecutar el flujo completo manualmente: cargar catálogo → aplicar filtros → ver detalle de tarjeta → agregar al carrito → abrir drawer → ir a checkout → completar formulario → verificar código de orden y apertura del enlace WhatsApp. Confirmar que todos los requerimientos funcionales se cumplen.
 
 ## Notes
