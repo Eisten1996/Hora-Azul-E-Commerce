@@ -8,13 +8,14 @@ services:
     name: hora-azul-api
     runtime: docker
     plan: free
-    region: oregon
+    # Misma región que la base de datos en Neon (AWS us-east-2, Ohio)
+    region: ohio
     branch: main
     rootDir: hora-azul-backend
     dockerfilePath: ./Dockerfile
     healthCheckPath: /q/health
     envVars:
-      # Neon: jdbc:postgresql://<host>/<base>?sslmode=require (sin usuario ni contraseña en la URL)
+      # Neon: jdbc:postgresql://<host sin -pooler>/<base>?sslmode=require (sin usuario ni contraseña en la URL)
       - key: QUARKUS_DATASOURCE_JDBC_URL
         sync: false
       - key: QUARKUS_DATASOURCE_USERNAME
