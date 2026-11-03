@@ -1,0 +1,53 @@
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { SolesPipe, formatSoles } from '../core/money';
+import { CARD_CATEGORY_LABELS, CardSummary } from '../models';
+
+/** Tarjeta individual del catálogo: portada, nombre, categoría y precio. */
+@Component({
+  selector: 'app-card-item',
+  imports: [SolesPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <button
+      type="button"
+      class="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hora-azul-600"
+      [attr.aria-label]="ariaLabel()"
+      (click)="cardClick.emit(card())"
+    >
+      <div class="aspect-[3/2] w-full overflow-hidden bg-hora-azul-50">
+        @if (card().coverImageUrl; as url) {
+          <img
+            [src]="url"
+            [alt]="altText()"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          />
+        } @else {
+          <div class="flex h-full items-center justify-center text-sm text-hora-azul-700" role="img" [attr.aria-label]="altText()">
+            Sin imagen
+          </div>
+        }
+      </div>
+      <div class="flex flex-1 flex-col gap-1 p-3 sm:p-4">
+        <p class="text-xs font-medium uppercase tracking-wide text-hora-azul-700">{{ categoryLabel() }}</p>
+        <h3 class="line-clamp-2 text-sm font-semibold text-slate-900 sm:text-base">{{ card().name }}</h3>
+        <p class="mt-auto pt-2 text-base font-bold text-slate-900">{{ card().price | soles }}</p>
+      </div>
+    </button>
+  `,
+})
+export class CardItemComponent {
+  readonly card = input.required<CardSummary>();
+  readonly cardClick = output<CardSummary>();
+
+  protected readonly categoryLabel = computed(() => CARD_CATEGORY_LABELS[this.card().category]);
+  protected readonly altText = computed(
+    () => `Tarjeta pop-up 3D "${this.card().name}", categoría ${this.categoryLabel()}`,
+  );
+  protected readonly ariaLabel = computed(
+    () => `${this.card().name}, ${this.categoryLabel()}, ${formatSoles(this.card().price)}. Ver detalle`,
+  );
+}
