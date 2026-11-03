@@ -200,7 +200,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: `GET /api/orders/{orderCode}` con código inexistente → 404
     - _Requirements: 5.6, 5.7, 5.9, 7.4_
 
-- [ ] 6. Frontend — Modelos, servicios y configuración
+- [x] 6. Frontend — Modelos, servicios y configuración
   - [x] 6.1 Definir interfaces TypeScript y modelos del dominio
     - Crear `card.models.ts`: `CardSummary`, `CardDetail`, `CardImage`, `CardListResponse`, `CardFilters`, `CardCategory`
     - Crear `cart.models.ts`: `CartItem`
@@ -251,12 +251,12 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Generar `CartItem` arbitrario con `quantity = 1`, llamar `updateQuantity(..., 0)` y verificar que el ítem ya no está en `_items()`
     - `// Feature: hora-azul-ecommerce, Propiedad 6: Eliminación por cantidad cero`
 
-  - [ ] 6.8 Implementar `OrderService` frontend
+  - [x] 6.8 Implementar `OrderService` frontend
     - Método `createOrder(request: OrderRequest): Observable<OrderResponse>` — `POST /api/orders`
     - Manejo de errores: capturar HTTP errors y relanzar con mensaje descriptivo en español
     - _Requirements: 5.6, 5.9_
 
-  - [ ] 6.9 Implementar `WhatsAppService`
+  - [x] 6.9 Implementar `WhatsAppService`
     - Método `buildWhatsAppUrl(order: OrderResponse, deliveryAddress: string): string`
     - El mensaje preformateado debe incluir: código de orden, lista de tarjetas con nombre y cantidad, monto total con formato `S/. XX.00`, y punto de entrega
     - Método `openWhatsApp(url: string): void` — redirige con `window.open(url, '_blank')`
