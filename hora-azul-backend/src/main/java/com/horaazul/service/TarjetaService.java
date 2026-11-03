@@ -66,7 +66,8 @@ public class TarjetaService {
         Tarjeta tarjeta = new Tarjeta();
         tarjeta.catalogNumber = request.catalogNumber();
         tarjeta.name = request.name();
-        tarjeta.category = request.category();
+        tarjeta.categories.clear();
+        tarjeta.categories.addAll(request.categories());
         tarjeta.price = normalizePrice(request.price());
         tarjeta.dimensions = request.dimensions();
         tarjeta.description3d = request.description3d();
@@ -102,7 +103,8 @@ public class TarjetaService {
         validatePrice(request.price());
 
         tarjeta.name = request.name();
-        tarjeta.category = request.category();
+        tarjeta.categories.clear();
+        tarjeta.categories.addAll(request.categories());
         tarjeta.price = normalizePrice(request.price());
         tarjeta.dimensions = request.dimensions();
         tarjeta.description3d = request.description3d();
@@ -140,19 +142,25 @@ public class TarjetaService {
     /**
      * Retorna la lista de tarjetas activas con los filtros dados.
      *
+     * <p>Las imágenes se inicializan dentro de la transacción porque
+     * {@code CardSummaryDTO} las lee para obtener la portada.</p>
+     *
      * @param filters filtros de categoría, precio y paginación
      * @return lista de {@link Tarjeta} que cumplen los criterios
      */
     @Transactional
     public List<Tarjeta> findAll(CardFilters filters) {
         CardFilters safe = filters != null ? filters : CardFilters.empty();
-        return tarjetaRepository.findActive(
+        List<Tarjeta> tarjetas = tarjetaRepository.findActive(
                 safe.category(),
                 safe.minPrice(),
                 safe.maxPrice(),
                 safe.page(),
                 safe.size()
         ).list();
+        // Inicializar colecciones lazy dentro de la transacción activa
+        tarjetas.forEach(t -> t.images.size());
+        return tarjetas;
     }
 
     /**
@@ -198,12 +206,18 @@ public class TarjetaService {
     /**
      * Valida que el precio pertenezca al conjunto de precios permitidos.
      * Normaliza a 2 decimales antes de comparar para que 15 == 15.00.
+     * Un precio con más de 2 decimales significativos (ej. 15.001) es inválido.
      */
     private void validatePrice(BigDecimal price) {
         if (price == null) {
             throw new InvalidPriceException(null);
         }
-        BigDecimal normalized = normalizePrice(price);
+        BigDecimal normalized;
+        try {
+            normalized = normalizePrice(price);
+        } catch (ArithmeticException e) {
+            throw new InvalidPriceException(price);
+        }
         if (!VALID_PRICES.contains(normalized)) {
             throw new InvalidPriceException(price);
         }

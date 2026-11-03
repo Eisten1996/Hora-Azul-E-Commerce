@@ -3,11 +3,13 @@ package com.horaazul.dto;
 import com.horaazul.model.CardCategory;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 /**
  * DTO para la actualización de una tarjeta existente.
@@ -18,7 +20,7 @@ import java.util.List;
  * <p>Validates: Requirements 6.2, 6.3</p>
  *
  * @param name          nombre de la tarjeta
- * @param category      categoría temática
+ * @param categories    categorías temáticas (al menos una)
  * @param price         precio (debe ser 15, 17, 20 o 30)
  * @param dimensions    dimensiones opcionales
  * @param description3d descripción del efecto 3D (opcional)
@@ -31,8 +33,8 @@ public record TarjetaUpdateRequest(
         @Size(max = 150, message = "El nombre no puede superar 150 caracteres")
         String name,
 
-        @NotNull(message = "La categoría es obligatoria")
-        CardCategory category,
+        @NotEmpty(message = "Indica al menos una categoría")
+        Set<@NotNull CardCategory> categories,
 
         @NotNull(message = "El precio es obligatorio")
         BigDecimal price,

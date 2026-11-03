@@ -150,40 +150,40 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
 - [x] 4. Checkpoint backend — Verificar que todos los tests del backend pasan
   - Ejecutar `mvn test` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
-- [ ] 5. Backend — Tests
-  - [ ] 5.1 Tests unitarios: `TarjetaService`
+- [x] 5. Backend — Tests
+  - [x] 5.1 Tests unitarios: `TarjetaService`
     - Test: crear tarjeta con precio válido → éxito
     - Test: crear tarjeta con precio inválido (p. ej. 25.00) → `InvalidPriceException`
     - Test: crear tarjeta con `catalogNumber` duplicado → `CatalogNumberConflictException`
     - Test: actualizar tarjeta existente sin cambiar `catalogNumber` → éxito
     - _Requirements: 6.6, 6.7_
 
-  - [ ]* 5.2 Tests de propiedad con jqwik: P3 — Rechazo de precios inválidos
+  - [x]* 5.2 Tests de propiedad con jqwik: P3 — Rechazo de precios inválidos
     - **Propiedad 3: Para cualquier precio que no pertenezca a {15.00, 17.00, 20.00, 30.00}, el sistema debe rechazar la solicitud con HTTP 422**
     - **Valida: Requirements 6.7**
     - Generar con `@ForAll` precios arbitrarios excluyendo los 4 válidos y verificar que `TarjetaService` lanza `InvalidPriceException`
     - `// Feature: hora-azul-ecommerce, Propiedad 3: Rechazo de precios inválidos`
 
-  - [ ]* 5.3 Tests de propiedad con jqwik: P7 — Unicidad de número de catálogo
+  - [x]* 5.3 Tests de propiedad con jqwik: P7 — Unicidad de número de catálogo
     - **Propiedad 7: Para cualquier tarjeta existente con catalogNumber N, intentar crear otra con el mismo N debe ser rechazado con HTTP 409**
     - **Valida: Requirements 6.6**
     - Generar pares de requests con el mismo `catalogNumber` y verificar que el segundo lanza `CatalogNumberConflictException`
     - `// Feature: hora-azul-ecommerce, Propiedad 7: Unicidad de número de catálogo`
 
-  - [ ] 5.4 Tests unitarios: `OrderService` y `OrderCodeGenerator`
+  - [x] 5.4 Tests unitarios: `OrderService` y `OrderCodeGenerator`
     - Test: generar primer código del año → `ORD-2025-0001`
     - Test: generar código cuando ya existen N órdenes del año → `ORD-2025-000(N+1)`
     - Test: cálculo de totales — múltiples ítems con cantidades y precios distintos
     - Test: orden con ítems cuya tarjeta ya no existe → manejo de error adecuado
     - _Requirements: 5.7_
 
-  - [ ]* 5.5 Tests de propiedad con jqwik: P2 — Unicidad de código de orden por año
+  - [x]* 5.5 Tests de propiedad con jqwik: P2 — Unicidad de código de orden por año
     - **Propiedad 2: Para cualquier par de órdenes creadas en el mismo año, sus códigos ORD-YYYY-XXXX deben ser distintos**
     - **Valida: Requirements 5.7**
     - Simular N creaciones de orden concurrentes con año mock y verificar ausencia de duplicados
     - `// Feature: hora-azul-ecommerce, Propiedad 2: Unicidad de código de orden por año`
 
-  - [ ] 5.6 Tests de integración: `TarjetaResource` con `@QuarkusTest` + Testcontainers
+  - [x] 5.6 Tests de integración: `TarjetaResource` con `@QuarkusTest` + Testcontainers
     - Test: `GET /api/cards` sin filtros → 200 con lista de tarjetas activas
     - Test: `GET /api/cards?category=FLORES&maxPrice=20` → solo tarjetas que cumplen ambos criterios
     - Test: `GET /api/cards/{id}` con UUID válido → 200 con detalle completo
@@ -193,28 +193,28 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: `POST /api/cards` con `catalogNumber` duplicado → 409
     - _Requirements: 6.1, 6.4, 6.5, 6.6, 6.7, 6.10_
 
-  - [ ] 5.7 Tests de integración: `OrderResource` con `@QuarkusTest`
+  - [x] 5.7 Tests de integración: `OrderResource` con `@QuarkusTest`
     - Test: `POST /api/orders` con datos válidos → 201 con `orderCode` y totales correctos
     - Test: `POST /api/orders` con carrito vacío (`items: []`) → 400
     - Test: `POST /api/orders` con teléfono de formato incorrecto → 422
     - Test: `GET /api/orders/{orderCode}` con código inexistente → 404
     - _Requirements: 5.6, 5.7, 5.9, 7.4_
 
-- [ ] 6. Frontend — Modelos, servicios y configuración
-  - [ ] 6.1 Definir interfaces TypeScript y modelos del dominio
+- [x] 6. Frontend — Modelos, servicios y configuración
+  - [x] 6.1 Definir interfaces TypeScript y modelos del dominio
     - Crear `card.models.ts`: `CardSummary`, `CardDetail`, `CardImage`, `CardListResponse`, `CardFilters`, `CardCategory`
     - Crear `cart.models.ts`: `CartItem`
     - Crear `order.models.ts`: `OrderRequest`, `OrderRequestItem`, `OrderResponse`, `OrderItem`
     - Exportar todo desde un barrel `models/index.ts`
     - _Requirements: 1.3, 3.2, 4.2, 5.6_
 
-  - [ ] 6.2 Configurar rutas Angular con lazy loading
+  - [x] 6.2 Configurar rutas Angular con lazy loading
     - Crear `app.routes.ts` con las 4 rutas definidas en el diseño: `/`, `/tarjeta/:id`, `/checkout`, `/pedido/:orderCode`
     - Usar `loadComponent` en todas las rutas para lazy loading
     - Añadir ruta wildcard `**` que redirige a `/`
     - _Requirements: 3.1, 3.7_
 
-  - [ ] 6.3 Implementar `CardService` con caché en memoria de 5 minutos
+  - [x] 6.3 Implementar `CardService` con caché en memoria de 5 minutos
     - Inyectar `HttpClient` y configurar la URL base desde `environment.apiUrl`
     - Implementar `signal<{ data: CardSummary[]; cachedAt: number } | null>()` para caché
     - Método `getCards(filters?: CardFilters): Observable<CardSummary[]>` — devuelve caché si `now - cachedAt < 5min`, sino llama `GET /api/cards`
@@ -222,7 +222,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Método `invalidateCache()` para forzar recarga tras cambios de filtro que requieran datos frescos
     - _Requirements: 1.2, 1.5, 8.3_
 
-  - [ ] 6.4 Implementar `CartService` con `signal()`, `computed()` y persistencia `localStorage`
+  - [x] 6.4 Implementar `CartService` con `signal()`, `computed()` y persistencia `localStorage`
     - Implementar `_items = signal<CartItem[]>([])` como estado mutable privado
     - Implementar computed signals: `items` (readonly), `totalItems`, `totalAmount`, `isEmpty`
     - Método `addItem(tarjeta: CardDetail)`: agregar o incrementar cantidad (máx 99); rechazar si ya en 99
@@ -233,68 +233,68 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Invocar `loadFromStorage()` en el constructor
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.7, 4.8, 4.9, 4.11_
 
-  - [ ]* 6.5 Tests de propiedad con fast-check: P1 — Integridad aritmética del carrito
+  - [x]* 6.5 Tests de propiedad con fast-check: P1 — Integridad aritmética del carrito
     - **Propiedad 1: Para cualquier estado del carrito, el subtotal de cada ítem = precio × cantidad, y el total = suma de subtotales**
     - **Valida: Requirements 4.2, 4.3, 4.4**
     - Generar arrays arbitrarios de `CartItem` con `fc.array(fc.record(...))` y verificar la aritmética
     - `// Feature: hora-azul-ecommerce, Propiedad 1: Integridad aritmética del carrito`
 
-  - [ ]* 6.6 Tests de propiedad con fast-check: P4 — Round-trip de persistencia del carrito
+  - [x]* 6.6 Tests de propiedad con fast-check: P4 — Round-trip de persistencia del carrito
     - **Propiedad 4: Serializar el carrito a localStorage y deserializarlo debe producir un objeto estructuralmente idéntico**
     - **Valida: Requirements 4.7**
     - Usar `fc.array(fc.record(...))` para generar estados arbitrarios del carrito, llamar `persist()` + `loadFromStorage()` y comparar con `expect(result).toEqual(original)`
     - `// Feature: hora-azul-ecommerce, Propiedad 4: Round-trip de persistencia del carrito`
 
-  - [ ]* 6.7 Tests de propiedad con fast-check: P6 — Eliminación por cantidad cero
+  - [x]* 6.7 Tests de propiedad con fast-check: P6 — Eliminación por cantidad cero
     - **Propiedad 6: Para cualquier ítem con cantidad 1, aplicar decremento debe eliminar el ítem (cantidad nunca queda en 0 ni negativo)**
     - **Valida: Requirements 4.5**
     - Generar `CartItem` arbitrario con `quantity = 1`, llamar `updateQuantity(..., 0)` y verificar que el ítem ya no está en `_items()`
     - `// Feature: hora-azul-ecommerce, Propiedad 6: Eliminación por cantidad cero`
 
-  - [ ] 6.8 Implementar `OrderService` frontend
+  - [x] 6.8 Implementar `OrderService` frontend
     - Método `createOrder(request: OrderRequest): Observable<OrderResponse>` — `POST /api/orders`
     - Manejo de errores: capturar HTTP errors y relanzar con mensaje descriptivo en español
     - _Requirements: 5.6, 5.9_
 
-  - [ ] 6.9 Implementar `WhatsAppService`
+  - [x] 6.9 Implementar `WhatsAppService`
     - Método `buildWhatsAppUrl(order: OrderResponse, deliveryAddress: string): string`
     - El mensaje preformateado debe incluir: código de orden, lista de tarjetas con nombre y cantidad, monto total con formato `S/. XX.00`, y punto de entrega
     - Método `openWhatsApp(url: string): void` — redirige con `window.open(url, '_blank')`
     - Número de WhatsApp configurable desde `environment.whatsappNumber`
     - _Requirements: 5.8_
 
-  - [ ] 6.10 Configurar `environments/` de Angular
+  - [x] 6.10 Configurar `environments/` de Angular
     - `environment.ts` (dev): `apiUrl = 'http://localhost:8080'`, `whatsappNumber = '51XXXXXXXXX'`
     - `environment.prod.ts` (prod): `apiUrl = 'https://api.hora-azul.onrender.com'`, número de producción
     - Registrar el reemplazo de archivos en `angular.json`
     - _Requirements: 1.2_
 
-  - [ ] 6.11 Implementar interceptor HTTP para manejo de errores globales
+  - [x] 6.11 Implementar interceptor HTTP para manejo de errores globales
     - Interceptar errores de red (`status === 0`) y de servidor (5xx)
     - Loguear el error en consola para debugging
     - Relanzar el error para que cada servicio/componente pueda manejarlo localmente
     - _Requirements: 1.4, 5.9_
 
-- [ ] 7. Frontend — Componentes UI (shell y catálogo)
-  - [ ] 7.1 Implementar `AppComponent` con shell y `NavbarComponent`
+- [x] 7. Frontend — Componentes UI (shell y catálogo)
+  - [x] 7.1 Implementar `AppComponent` con shell y `NavbarComponent`
     - `AppComponent`: inicializar `CartService.loadFromStorage()`, emitir keep-alive `GET /q/health` en `ngOnInit` de forma silenciosa (ignorar errores), incluir `<router-outlet>` y `<app-cart-drawer>`
     - `NavbarComponent`: logo de Hora Azul, badge con `cartService.totalItems()` como signal (ocultar si es 0), botón para abrir/cerrar `CartDrawer`
     - _Requirements: 4.6, 4.10, 8.2_
 
-  - [ ] 7.2 Implementar `CardItemComponent`
+  - [x] 7.2 Implementar `CardItemComponent`
     - Inputs: `card: CardSummary` (signal input)
     - Mostrar: imagen de portada con `alt` descriptivo, nombre, categoría, precio con formato `S/. XX.00`
     - Emitir evento `(cardClick)` al hacer clic para que el contenedor navegue al detalle
     - _Requirements: 1.3, 9.3, 9.5_
 
-  - [ ] 7.3 Implementar `CardGridComponent` con skeleton loading
+  - [x] 7.3 Implementar `CardGridComponent` con skeleton loading
     - Input: `cards: CardSummary[]`, `loading: boolean`
     - Grid responsivo: 2 columnas en `< 768px`, 4 columnas en `≥ 1024px` con clases Tailwind
     - Mostrar skeleton cards (con `@if (loading)`) mientras se cargan los datos
     - Renderizar `CardItemComponent` por cada tarjeta
     - _Requirements: 1.1, 1.5_
 
-  - [ ] 7.4 Implementar `FilterPanelComponent`
+  - [x] 7.4 Implementar `FilterPanelComponent`
     - Checkboxes de selección múltiple para las 6 categorías (Requirements 2.1)
     - Radio buttons para los 4 rangos de precio, excluyentes (Requirements 2.2)
     - Input de búsqueda de texto que emite evento por cada carácter ingresado (Requirements 2.4)
@@ -302,7 +302,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Emitir evento `(filtersChange)` con el objeto `CardFilters` actualizado
     - _Requirements: 2.1, 2.2, 2.4, 2.6_
 
-  - [ ] 7.5 Implementar `CatalogPageComponent` — orquestación de catálogo
+  - [x] 7.5 Implementar `CatalogPageComponent` — orquestación de catálogo
     - Suscribirse a `CardService.getCards()` y manejar estado de carga y error
     - Aplicar filtros en el frontend (intersección de categoría + precio + texto) mediante una función de filtro pura
     - Mostrar mensaje "No se encontraron tarjetas con ese criterio de búsqueda." cuando no hay resultados con filtros activos (Requirements 2.5)
@@ -311,21 +311,21 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Preservar el estado de filtros en el router state o query params para el flujo de regreso desde el detalle
     - _Requirements: 1.2, 1.4, 1.6, 2.3, 2.7_
 
-  - [ ]* 7.6 Tests de propiedad con fast-check: P5 — Corrección del filtrado del catálogo
+  - [x]* 7.6 Tests de propiedad con fast-check: P5 — Corrección del filtrado del catálogo
     - **Propiedad 5: Para cualquier combinación de filtros y lista de tarjetas, el resultado no debe contener tarjetas que incumplan algún criterio activo**
     - **Valida: Requirements 2.3, 2.4, 2.7**
     - Extraer la función de filtro pura de `CatalogPageComponent` y testearla con `fc.array(fc.record(...))` y filtros arbitrarios
     - `// Feature: hora-azul-ecommerce, Propiedad 5: Corrección del filtrado del catálogo`
 
-- [ ] 8. Frontend — Componentes UI (detalle y carrito)
-  - [ ] 8.1 Implementar `ImageGalleryComponent`
+- [x] 8. Frontend — Componentes UI (detalle y carrito)
+  - [x] 8.1 Implementar `ImageGalleryComponent`
     - Input: `images: CardImage[]`
     - Mostrar imagen activa como principal (≥ 80% del ancho del contenedor)
     - Mostrar miniaturas clicables que cambian la imagen activa
     - Inicializar con la imagen de tipo `COVER` como activa por defecto
     - _Requirements: 3.2, 3.3, 3.4_
 
-  - [ ] 8.2 Implementar `ProductDetailPageComponent`
+  - [x] 8.2 Implementar `ProductDetailPageComponent`
     - Leer el parámetro `id` de la ruta y llamar `CardService.getCardById(id)`
     - Mostrar todos los campos requeridos: galería, nombre, `catalogNumber`, categoría, precio, dimensiones, `description3d`, indicador de sobre incluido
     - Botón "Agregar al carrito" habilitado si `active = true`; deshabilitado con mensaje de no disponible si `active = false`
@@ -333,7 +333,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Manejar 404: navegar a página de error con mensaje y enlace al catálogo
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9_
 
-  - [ ] 8.3 Implementar `CartItemComponent`
+  - [x] 8.3 Implementar `CartItemComponent`
     - Inputs: `item: CartItem`
     - Mostrar nombre, precio unitario, subtotal (`unitPrice × quantity`) con formato `S/. XX.00`
     - Botón de incremento (+): deshabilitar si `quantity >= 99`
@@ -341,15 +341,15 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Botón eliminar: invocar `CartService.removeItem()`
     - _Requirements: 4.4, 4.5, 4.11, 9.5_
 
-  - [ ] 8.4 Implementar `CartDrawerComponent`
+  - [x] 8.4 Implementar `CartDrawerComponent`
     - Panel lateral deslizable: abre/cierra sin navegar (controlado por señal en `AppComponent`)
     - Listar `CartService.items()` con `CartItemComponent` por cada ítem
     - Mostrar subtotales y total con `CartService.totalAmount()` formateado como `S/. XX.00`
     - Botón "Confirmar pedido": navegar a `/checkout` si el carrito no está vacío; mostrar mensaje de alerta si está vacío
     - _Requirements: 4.2, 4.3, 4.6, 5.1, 5.2, 9.5_
 
-- [ ] 9. Frontend — Checkout y éxito
-  - [ ] 9.1 Implementar `CheckoutPageComponent` con Reactive Forms
+- [x] 9. Frontend — Checkout y éxito
+  - [x] 9.1 Implementar `CheckoutPageComponent` con Reactive Forms
     - Crear `FormGroup` con campos: `customerName` (requerido, máx 100), `customerPhone` (requerido, exactamente 9 dígitos numéricos con regex `/^\d{9}$/`), `deliveryAddress` (requerido, máx 200), `estimatedDeliveryDate` (requerido, validator custom: fecha ≥ hoy)
     - Mostrar mensajes de validación inline por campo al tocar o intentar enviar
     - Mostrar mensaje específico de teléfono: "Ingresa un número de teléfono peruano válido de 9 dígitos."
@@ -358,23 +358,23 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - En error: mostrar mensaje descriptivo y preservar los datos del formulario
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.8, 5.9, 5.10_
 
-  - [ ] 9.2 Implementar `OrderSuccessComponent`
+  - [x] 9.2 Implementar `OrderSuccessComponent`
     - Leer el parámetro `orderCode` de la ruta
     - Mostrar el código de orden `ORD-YYYY-XXXX` de forma prominente
     - Mostrar instrucciones claras sobre el proceso de coordinación de pago por WhatsApp
     - Botón de regreso al catálogo
     - _Requirements: 5.7_
 
-  - [ ] 9.3 Implementar componente/vista de error 404 para tarjeta no encontrada
+  - [x] 9.3 Implementar componente/vista de error 404 para tarjeta no encontrada
     - Mostrar mensaje indicando que la tarjeta no fue encontrada
     - Enlace para volver al catálogo
     - _Requirements: 3.7_
 
-- [ ] 10. Checkpoint frontend — Verificar que todos los tests del frontend pasan
+- [x] 10. Checkpoint frontend — Verificar que todos los tests del frontend pasan
   - Ejecutar `npx jest --runInBand` y confirmar que todos los tests pasan. Resolver cualquier fallo antes de continuar.
 
-- [ ] 11. Frontend — Tests unitarios y de componentes
-  - [ ] 11.1 Tests unitarios: `CartService`
+- [x] 11. Frontend — Tests unitarios y de componentes
+  - [x] 11.1 Tests unitarios: `CartService`
     - Test: `addItem` — agrega ítem nuevo con cantidad 1
     - Test: `addItem` — incrementa cantidad de ítem existente
     - Test: `addItem` — rechaza cuando `quantity === 99`
@@ -385,41 +385,41 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: manejo de `localStorage` no disponible (simular excepción en `setItem`)
     - _Requirements: 4.1, 4.5, 4.7, 4.8_
 
-  - [ ] 11.2 Tests unitarios: `WhatsAppService`
+  - [x] 11.2 Tests unitarios: `WhatsAppService`
     - Test: el URL generado comienza con `https://wa.me/`
     - Test: el mensaje codificado incluye el `orderCode`
     - Test: el mensaje incluye el monto total con formato `S/. XX.00`
     - Test: el mensaje incluye el punto de entrega
     - _Requirements: 5.8_
 
-  - [ ] 11.3 Tests unitarios: `CheckoutPageComponent`
+  - [x] 11.3 Tests unitarios: `CheckoutPageComponent`
     - Test: formulario inválido con teléfono de 8 dígitos → muestra mensaje de validación
     - Test: formulario inválido con fecha pasada → muestra error de validación
     - Test: formulario inválido con campo vacío → no invoca `OrderService`
     - Test: formulario válido → invoca `OrderService.createOrder()` con los datos correctos
     - _Requirements: 5.3, 5.4, 5.5_
 
-  - [ ] 11.4 Tests de componente: `FilterPanelComponent`
+  - [x] 11.4 Tests de componente: `FilterPanelComponent`
     - Test: seleccionar una categoría emite `filtersChange` con `category` correcto
     - Test: seleccionar un rango de precio emite `filtersChange` con `maxPrice` correcto
     - Test: ingresar texto emite `filtersChange` con `search` correcto
     - Test: "Limpiar filtros" emite `filtersChange` con todos los valores reseteados
     - _Requirements: 2.1, 2.2, 2.4, 2.6_
 
-  - [ ] 11.5 Tests de componente: `CardGridComponent`
+  - [x] 11.5 Tests de componente: `CardGridComponent`
     - Test: con `loading = true` muestra skeleton cards en lugar de tarjetas
     - Test: con `loading = false` y array de cards renderiza el mismo número de `CardItemComponent`
     - Test: con array vacío y `loading = false` no renderiza ítems
     - _Requirements: 1.1, 1.5_
 
 - [ ] 12. Integración y despliegue
-  - [ ] 12.1 Conectar frontend con backend y verificar comunicación
+  - [x] 12.1 Conectar frontend con backend y verificar comunicación
     - Confirmar que `environment.apiUrl` apunta al backend local en dev y al desplegado en prod
     - Verificar que `HttpClient` resuelve peticiones correctamente con el interceptor de errores activo
     - Probar manualmente los flujos: cargar catálogo, ver detalle, agregar al carrito
     - _Requirements: 1.2_
 
-  - [ ] 12.2 Implementar keep-alive silencioso en `AppComponent`
+  - [x] 12.2 Implementar keep-alive silencioso en `AppComponent`
     - Llamar `GET /q/health` en `ngOnInit` de forma asíncrona sin bloquear la carga
     - Ignorar cualquier error de la llamada keep-alive (no mostrar al usuario)
     - _Requirements: 8.2_

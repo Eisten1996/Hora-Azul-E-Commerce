@@ -5,11 +5,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 /**
  * DTO para la creación de una nueva tarjeta pop-up 3D.
@@ -22,7 +24,7 @@ import java.util.List;
  *
  * @param catalogNumber número de catálogo entre 1 y 33 (único)
  * @param name          nombre de la tarjeta
- * @param category      categoría temática
+ * @param categories    categorías temáticas (al menos una)
  * @param price         precio (debe ser 15, 17, 20 o 30)
  * @param dimensions    dimensiones opcionales (ej. "15cm x 10cm")
  * @param description3d descripción del efecto 3D (opcional)
@@ -40,8 +42,8 @@ public record TarjetaCreateRequest(
         @Size(max = 150, message = "El nombre no puede superar 150 caracteres")
         String name,
 
-        @NotNull(message = "La categoría es obligatoria")
-        CardCategory category,
+        @NotEmpty(message = "Indica al menos una categoría")
+        Set<@NotNull CardCategory> categories,
 
         @NotNull(message = "El precio es obligatorio")
         BigDecimal price,

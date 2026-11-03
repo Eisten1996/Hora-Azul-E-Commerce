@@ -38,8 +38,8 @@ public record OrderRequest(
         @NotNull @FutureOrPresent
         LocalDate estimatedDeliveryDate,
 
+        // El carrito vacío no se valida aquí: OrderService lo rechaza con 400 (no 422)
         @NotNull
-        @Size(min = 1, message = "El carrito no puede estar vacío.")
         @Valid
         List<OrderRequestItem> items
 ) {}

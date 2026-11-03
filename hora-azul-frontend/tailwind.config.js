@@ -4,25 +4,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Paleta Hora Azul
+        // Paleta Hora Azul, tomada del catálogo 2026:
+        // celeste #c6f0ff (100), cian #00aeef (500), azul #1b75bc (700) y marino #262262 (900).
+        // Contraste AA: el texto blanco sobre cian no alcanza 4.5:1; sobre cian usar texto 900.
         'hora-azul': {
-          50: '#f0f4ff',
-          100: '#e0e9ff',
-          200: '#c7d7fe',
-          300: '#a5b9fd',
-          400: '#8093fa',
-          500: '#5c6af5',
-          600: '#3f48e8',
-          700: '#2f36cc',
-          800: '#272fa5',
-          900: '#262e83',
-          950: '#161852',
+          50: '#eefaff',
+          100: '#c6f0ff',
+          200: '#9de4fc',
+          300: '#5fd0f6',
+          400: '#22bdf2',
+          500: '#00aeef',
+          600: '#1b8fd4',
+          700: '#1b75bc',
+          800: '#1d4e94',
+          900: '#262262',
+          950: '#191645',
         },
-        'hora-accent': {
-          DEFAULT: '#e8c96b',
-          light: '#f5e299',
-          dark: '#c9a43e',
-        },
+      },
+      fontFamily: {
+        // Tipografías del catálogo: Poppins para el texto, League Spartan para títulos
+        sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"League Spartan"', 'Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -1,0 +1,29 @@
+# =============================================================================
+# Render Blueprint — backend de Hora Azul (Quarkus en Docker, plan gratuito)
+# En Render: New > Blueprint > este repositorio. Los valores marcados con
+# sync: false se piden al crear el servicio (credenciales de Neon).
+# =============================================================================
+services:
+  - type: web
+    name: hora-azul-api
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    rootDir: hora-azul-backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /q/health
+    envVars:
+      # Neon: jdbc:postgresql://<host>/<base>?sslmode=require (sin usuario ni contraseña en la URL)
+      - key: QUARKUS_DATASOURCE_JDBC_URL
+        sync: false
+      - key: QUARKUS_DATASOURCE_USERNAME
+        sync: false
+      - key: QUARKUS_DATASOURCE_PASSWORD
+        sync: false
+      # Contraseña del usuario admin de la API (Basic Auth); Render la genera
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      # Orígenes permitidos por CORS, separados por comas
+      - key: CORS_ORIGINS
+        value: https://hora-azul.pages.dev
