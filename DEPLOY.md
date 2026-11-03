@@ -33,7 +33,7 @@ No hace falta crear tablas: Flyway aplica `db/migration/V1__esquema_inicial.sql`
    | `QUARKUS_DATASOURCE_USERNAME` | Usuario de Neon |
    | `QUARKUS_DATASOURCE_PASSWORD` | Contraseña de Neon |
 
-   `ADMIN_PASSWORD` la genera Render (verla en *Environment*); `CORS_ORIGINS` ya viene con `https://hora-azul.pages.dev`.
+   `ADMIN_PASSWORD` la genera Render (verla en *Environment*); `CORS_ORIGINS` ya viene con `https://hora-azul-e-commerce.pages.dev`.
 3. Esperar el primer build (~5–10 min). Comprobar `https://<servicio>.onrender.com/q/health` → `"status": "UP"`.
 4. Si la URL del servicio no es `https://hora-azul-api.onrender.com`, actualizar `apiUrl` en `hora-azul-frontend/src/environments/environment.prod.ts`.
 
@@ -52,13 +52,13 @@ No hace falta crear tablas: Flyway aplica `db/migration/V1__esquema_inicial.sql`
    | Build output directory | `dist/hora-azul-frontend/browser` |
 
    La versión de Node se toma de `hora-azul-frontend/.node-version`.
-3. Si el dominio asignado no es `https://hora-azul.pages.dev`, añadirlo en Render a `CORS_ORIGINS` (separado por comas).
+3. El dominio de producción es `https://hora-azul-e-commerce.pages.dev` (Cloudflare usa el nombre del repositorio). Si cambia, actualizar `CORS_ORIGINS` en `render.yaml` (varios dominios separados por comas).
 
 Las rutas internas (`/tarjeta/…`, `/checkout`) funcionan sin configuración extra: Pages sirve `index.html` cuando no hay `404.html`. `public/_headers` define la caché.
 
 ## 4. Comprobación final
 
-- `https://hora-azul.pages.dev` muestra las 33 tarjetas con fotos.
+- `https://hora-azul-e-commerce.pages.dev` muestra las 33 tarjetas con fotos.
 - Un pedido de prueba devuelve un código `ORD-AAAA-NNNN` y abre WhatsApp.
 - `GET /api/orders` con `admin` / `ADMIN_PASSWORD` lista el pedido.
 

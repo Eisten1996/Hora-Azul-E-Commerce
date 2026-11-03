@@ -27,4 +27,4 @@ services:
         generateValue: true
       # Orígenes permitidos por CORS, separados por comas
       - key: CORS_ORIGINS
-        value: https://hora-azul.pages.dev
+        value: https://hora-azul-e-commerce.pages.dev
