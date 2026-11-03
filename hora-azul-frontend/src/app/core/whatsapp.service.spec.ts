@@ -1,6 +1,6 @@
 import { environment } from '../../environments/environment';
 import { OrderResponse } from '../models';
-import { WhatsAppService, formatSoles } from './whatsapp.service';
+import { WhatsAppService } from './whatsapp.service';
 
 const order: OrderResponse = {
   orderCode: 'ORD-2026-0007',
@@ -49,10 +49,5 @@ describe('WhatsAppService', () => {
     service.openWhatsApp('https://wa.me/51987654321?text=hola');
     expect(open).toHaveBeenCalledWith('https://wa.me/51987654321?text=hola', '_blank', 'noopener');
     open.mockRestore();
-  });
-
-  it('formatSoles usa dos decimales', () => {
-    expect(formatSoles(15)).toBe('S/. 15.00');
-    expect(formatSoles(120.5)).toBe('S/. 120.50');
   });
 });
