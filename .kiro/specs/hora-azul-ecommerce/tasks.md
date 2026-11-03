@@ -222,7 +222,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Método `invalidateCache()` para forzar recarga tras cambios de filtro que requieran datos frescos
     - _Requirements: 1.2, 1.5, 8.3_
 
-  - [ ] 6.4 Implementar `CartService` con `signal()`, `computed()` y persistencia `localStorage`
+  - [x] 6.4 Implementar `CartService` con `signal()`, `computed()` y persistencia `localStorage`
     - Implementar `_items = signal<CartItem[]>([])` como estado mutable privado
     - Implementar computed signals: `items` (readonly), `totalItems`, `totalAmount`, `isEmpty`
     - Método `addItem(tarjeta: CardDetail)`: agregar o incrementar cantidad (máx 99); rechazar si ya en 99
@@ -233,19 +233,19 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Invocar `loadFromStorage()` en el constructor
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.7, 4.8, 4.9, 4.11_
 
-  - [ ]* 6.5 Tests de propiedad con fast-check: P1 — Integridad aritmética del carrito
+  - [x]* 6.5 Tests de propiedad con fast-check: P1 — Integridad aritmética del carrito
     - **Propiedad 1: Para cualquier estado del carrito, el subtotal de cada ítem = precio × cantidad, y el total = suma de subtotales**
     - **Valida: Requirements 4.2, 4.3, 4.4**
     - Generar arrays arbitrarios de `CartItem` con `fc.array(fc.record(...))` y verificar la aritmética
     - `// Feature: hora-azul-ecommerce, Propiedad 1: Integridad aritmética del carrito`
 
-  - [ ]* 6.6 Tests de propiedad con fast-check: P4 — Round-trip de persistencia del carrito
+  - [x]* 6.6 Tests de propiedad con fast-check: P4 — Round-trip de persistencia del carrito
     - **Propiedad 4: Serializar el carrito a localStorage y deserializarlo debe producir un objeto estructuralmente idéntico**
     - **Valida: Requirements 4.7**
     - Usar `fc.array(fc.record(...))` para generar estados arbitrarios del carrito, llamar `persist()` + `loadFromStorage()` y comparar con `expect(result).toEqual(original)`
     - `// Feature: hora-azul-ecommerce, Propiedad 4: Round-trip de persistencia del carrito`
 
-  - [ ]* 6.7 Tests de propiedad con fast-check: P6 — Eliminación por cantidad cero
+  - [x]* 6.7 Tests de propiedad con fast-check: P6 — Eliminación por cantidad cero
     - **Propiedad 6: Para cualquier ítem con cantidad 1, aplicar decremento debe eliminar el ítem (cantidad nunca queda en 0 ni negativo)**
     - **Valida: Requirements 4.5**
     - Generar `CartItem` arbitrario con `quantity = 1`, llamar `updateQuantity(..., 0)` y verificar que el ítem ya no está en `_items()`
