@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
@@ -25,7 +26,7 @@ import static org.hamcrest.Matchers.empty;
 @QuarkusTest
 class TarjetaResourceTest {
 
-    /** Tarjeta 1 del catálogo semilla: "Globos de Cumpleaños". */
+    /** Tarjeta 1 del catálogo semilla: "Pastel de cumpleaños". */
     private static final String SEED_CARD_ID = "a1000001-0000-0000-0000-000000000001";
 
     private static final String ADMIN_USER = "admin";
@@ -55,8 +56,27 @@ class TarjetaResourceTest {
                 .then()
                 .statusCode(200)
                 .body("content", not(empty()))
-                .body("content.category", everyItem(equalTo("FLORES")))
+                .body("content.categories", everyItem(hasItem("FLORES")))
                 .body("content.price", everyItem(lessThanOrEqualTo(20.0f)));
+    }
+
+    @Test
+    void unaTarjetaConVariasCategoriasApareceEnCadaFiltro() {
+        // "Lirios" (Nº 11) está en Flores, Mejores deseos y Agradecimiento
+        for (String category : List.of("FLORES", "MEJORES_DESEOS", "AGRADECIMIENTO")) {
+            given()
+                    .queryParam("category", category)
+                    .when().get("/api/cards")
+                    .then()
+                    .statusCode(200)
+                    .body("content.name", hasItem("Lirios"));
+        }
+        given()
+                .queryParam("category", "CUMPLEANOS")
+                .when().get("/api/cards")
+                .then()
+                .statusCode(200)
+                .body("content.name", not(hasItem("Lirios")));
     }
 
     @Test
@@ -67,7 +87,7 @@ class TarjetaResourceTest {
                 .statusCode(200)
                 .body("id", equalTo(SEED_CARD_ID))
                 .body("catalogNumber", equalTo(1))
-                .body("name", equalTo("Globos de Cumpleaños"))
+                .body("name", equalTo("Pastel de cumpleaños"))
                 .body("images.size()", greaterThan(0));
     }
 
@@ -122,7 +142,7 @@ class TarjetaResourceTest {
         return Map.of(
                 "catalogNumber", catalogNumber,
                 "name", "Tarjeta de prueba",
-                "category", "FLORES",
+                "categories", List.of("FLORES"),
                 "price", price,
                 "envelopeIncluded", true,
                 "images", List.of());

@@ -33,7 +33,7 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
      * Cualquier filtro puede ser {@code null}; en ese caso se omite de la consulta.
      * El tamaño de página se limita a un máximo de 100 elementos.</p>
      *
-     * @param category categoría exacta a filtrar, o {@code null} para ignorar
+     * @param category categoría que debe tener la tarjeta (entre sus varias categorías), o {@code null} para ignorar
      * @param minPrice precio mínimo inclusivo, o {@code null} para ignorar
      * @param maxPrice precio máximo inclusivo, o {@code null} para ignorar
      * @param page     número de página 0-indexed (default 0)
@@ -56,7 +56,7 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
         Map<String, Object> params = new HashMap<>();
 
         if (category != null) {
-            query.append(" and category = :category");
+            query.append(" and :category member of categories");
             params.put("category", category);
         }
         if (minPrice != null) {
@@ -76,7 +76,7 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
      * Cuenta el total de tarjetas activas que cumplen los filtros opcionales.
      * Útil para calcular {@code totalElements} y {@code totalPages} en la respuesta paginada.
      *
-     * @param category categoría exacta a filtrar, o {@code null} para ignorar
+     * @param category categoría que debe tener la tarjeta (entre sus varias categorías), o {@code null} para ignorar
      * @param minPrice precio mínimo inclusivo, o {@code null} para ignorar
      * @param maxPrice precio máximo inclusivo, o {@code null} para ignorar
      * @return número total de tarjetas activas que cumplen los criterios
@@ -90,7 +90,7 @@ public class TarjetaRepository implements PanacheRepositoryBase<Tarjeta, UUID> {
         Map<String, Object> params = new HashMap<>();
 
         if (category != null) {
-            query.append(" and category = :category");
+            query.append(" and :category member of categories");
             params.put("category", category);
         }
         if (minPrice != null) {

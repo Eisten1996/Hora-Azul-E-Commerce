@@ -34,8 +34,8 @@ class OrderServiceTest {
 
     /** Tarjeta 1 del catálogo semilla: S/. 15.00. */
     static final UUID CARD_15 = UUID.fromString("a1000001-0000-0000-0000-000000000001");
-    /** Tarjeta 2 del catálogo semilla: S/. 17.00. */
-    static final UUID CARD_17 = UUID.fromString("a1000002-0000-0000-0000-000000000002");
+    /** Tarjeta 6 del catálogo semilla ("Rosa"): S/. 17.00. */
+    static final UUID CARD_17 = UUID.fromString("a1000006-0000-0000-0000-000000000006");
 
     @Inject
     OrderService orderService;
@@ -56,6 +56,7 @@ class OrderServiceTest {
         List<BigDecimal> subtotals = response.items().stream().map(OrderItemDTO::subtotal).toList();
         assertEquals(List.of(new BigDecimal("30.00"), new BigDecimal("51.00")), subtotals);
         assertEquals(1, response.items().get(0).catalogNumber());
+        assertEquals(6, response.items().get(1).catalogNumber());
         assertEquals(new BigDecimal("17.00"), response.items().get(1).unitPrice());
     }
 

@@ -6,6 +6,7 @@ import com.horaazul.model.Tarjeta;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -19,7 +20,7 @@ import java.util.UUID;
  * @param id               UUID de la tarjeta
  * @param catalogNumber    número de catálogo (1–33)
  * @param name             nombre de la tarjeta
- * @param category         categoría temática
+ * @param categories       categorías temáticas (en el orden del enum)
  * @param price            precio en soles peruanos
  * @param dimensions       dimensiones físicas (p. ej. "15cm × 10cm")
  * @param description3d    descripción del efecto pop-up 3D
@@ -30,7 +31,7 @@ public record CardSummaryDTO(
         UUID id,
         Integer catalogNumber,
         String name,
-        CardCategory category,
+        List<CardCategory> categories,
         BigDecimal price,
         String dimensions,
         String description3d,
@@ -61,7 +62,7 @@ public record CardSummaryDTO(
                 tarjeta.id,
                 tarjeta.catalogNumber,
                 tarjeta.name,
-                tarjeta.category,
+                tarjeta.sortedCategories(),
                 tarjeta.price,
                 tarjeta.dimensions,
                 tarjeta.description3d,
