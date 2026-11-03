@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { SolesPipe, formatSoles } from '../core/money';
-import { CARD_CATEGORY_LABELS, CardSummary } from '../models';
+import { CARD_CATEGORY_LABELS, CardSummary, categoryLabels } from '../models';
 
 /** Tarjeta individual del catálogo: portada, nombre, categoría y precio. */
 @Component({
@@ -39,9 +39,13 @@ import { CARD_CATEGORY_LABELS, CardSummary } from '../models';
         <h3 class="line-clamp-2 text-sm font-bold uppercase leading-snug text-hora-azul-900 sm:text-[0.95rem]">
           {{ card().name }}
         </h3>
-        <p class="mt-auto rounded-full bg-hora-azul-100 px-2.5 py-0.5 text-xs font-medium text-hora-azul-900">
-          {{ categoryLabel() }}
-        </p>
+        <ul class="mt-auto flex flex-wrap gap-1.5" aria-hidden="true">
+          @for (category of card().categories; track category) {
+            <li class="rounded-full bg-hora-azul-100 px-2.5 py-0.5 text-xs font-medium text-hora-azul-900">
+              {{ labels[category] }}
+            </li>
+          }
+        </ul>
       </div>
     </button>
   `,
@@ -50,9 +54,10 @@ export class CardItemComponent {
   readonly card = input.required<CardSummary>();
   readonly cardClick = output<CardSummary>();
 
-  protected readonly categoryLabel = computed(() => CARD_CATEGORY_LABELS[this.card().category]);
+  protected readonly labels = CARD_CATEGORY_LABELS;
+  protected readonly categoryLabel = computed(() => categoryLabels(this.card().categories));
   protected readonly altText = computed(
-    () => `Tarjeta pop-up 3D "${this.card().name}", categoría ${this.categoryLabel()}`,
+    () => `Tarjeta pop-up 3D "${this.card().name}", ${this.categoryLabel()}`,
   );
   protected readonly ariaLabel = computed(
     () => `${this.card().name}, ${this.categoryLabel()}, ${formatSoles(this.card().price)}. Ver detalle`,

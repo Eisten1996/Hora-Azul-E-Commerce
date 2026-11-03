@@ -2,7 +2,9 @@ package com.horaazul.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -19,7 +22,9 @@ import org.hibernate.annotations.Check;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -46,9 +51,20 @@ public class Tarjeta extends PanacheEntityBase {
     @Column(nullable = false, length = 150)
     public String name;
 
+    /**
+     * Categorías temáticas de la tarjeta: una tarjeta puede aparecer en varias
+     * (p. ej. "Lirios" en Flores, Mejores deseos y Agradecimiento).
+     */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tarjeta_categoria", joinColumns = @JoinColumn(name = "tarjeta_id"))
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    public CardCategory category;
+    @Column(name = "category", nullable = false)
+    public Set<CardCategory> categories = new HashSet<>();
+
+    /** Categorías en el orden del enum, para respuestas estables. */
+    public List<CardCategory> sortedCategories() {
+        return categories.stream().sorted().toList();
+    }
 
     @Column(nullable = false, precision = 7, scale = 2)
     public BigDecimal price;

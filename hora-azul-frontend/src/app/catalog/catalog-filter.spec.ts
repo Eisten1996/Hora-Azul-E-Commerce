@@ -28,6 +28,15 @@ describe('filterCards', () => {
     expect(names(result)).toEqual(['Rosa Eterna', 'Corazón Dorado']);
   });
 
+  it('una tarjeta con varias categorías aparece al filtrar por cualquiera de ellas', () => {
+    // "Rosa Eterna" está en Flores y en Amor
+    expect(names(filterCards(SAMPLE_CARDS, { ...EMPTY_FILTERS, categories: ['FLORES'] }))).toEqual(['Rosa Eterna']);
+    expect(names(filterCards(SAMPLE_CARDS, { ...EMPTY_FILTERS, categories: ['AMOR'] }))).toEqual([
+      'Rosa Eterna',
+      'Corazón Dorado',
+    ]);
+  });
+
   it('los rangos de precio son inclusivos', () => {
     expect(names(filterCards(SAMPLE_CARDS, { ...EMPTY_FILTERS, priceRange: 'HASTA_17' }))).toEqual([
       'Globos de Cumpleaños',
@@ -90,7 +99,7 @@ describe('filterCards — propiedad P5', () => {
     id: fc.uuid(),
     catalogNumber: fc.integer({ min: 1, max: 33 }),
     name: textArb,
-    category: fc.constantFrom(...CATEGORIES),
+    categories: fc.subarray(CATEGORIES, { minLength: 1 }),
     price: fc.oneof(fc.constantFrom(15, 17, 20, 30), fc.integer({ min: 1, max: 6000 }).map((c) => c / 100)),
     dimensions: fc.constant(null),
     description3d: fc.option(textArb, { nil: null }),
@@ -114,7 +123,7 @@ describe('filterCards — propiedad P5', () => {
       (filters.priceRange === 'HASTA_20' && price <= 20) ||
       (filters.priceRange === 'DESDE_30' && price >= 30);
     return (
-      (filters.categories.length === 0 || filters.categories.includes(card.category)) &&
+      (filters.categories.length === 0 || card.categories.some((c) => filters.categories.includes(c))) &&
       priceOk &&
       (search === '' || plain(card.name).includes(search) || plain(card.description3d ?? '').includes(search))
     );

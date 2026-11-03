@@ -33,7 +33,7 @@ describe('CardGridComponent y CardItemComponent', () => {
   it('la imagen de portada tiene un alt descriptivo', () => {
     const img: HTMLImageElement = render({ cards: SAMPLE_CARDS }).nativeElement.querySelector('img');
 
-    expect(img.alt).toBe('Tarjeta pop-up 3D "Globos de Cumpleaños", categoría Cumpleaños');
+    expect(img.alt).toBe('Tarjeta pop-up 3D "Globos de Cumpleaños", Cumpleaños');
   });
 
   it('emite cardClick con la tarjeta pulsada', () => {

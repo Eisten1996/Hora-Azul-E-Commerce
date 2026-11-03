@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.matchesPattern;
 class OrderResourceTest {
 
     private static final String CARD_15 = "a1000001-0000-0000-0000-000000000001";
-    private static final String CARD_17 = "a1000002-0000-0000-0000-000000000002";
+    private static final String CARD_17 = "a1000006-0000-0000-0000-000000000006";
 
     @Test
     void crearConDatosValidosDevuelve201ConCodigoYTotales() {

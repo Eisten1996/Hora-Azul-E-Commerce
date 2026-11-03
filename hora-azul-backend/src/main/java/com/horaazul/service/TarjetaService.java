@@ -66,7 +66,8 @@ public class TarjetaService {
         Tarjeta tarjeta = new Tarjeta();
         tarjeta.catalogNumber = request.catalogNumber();
         tarjeta.name = request.name();
-        tarjeta.category = request.category();
+        tarjeta.categories.clear();
+        tarjeta.categories.addAll(request.categories());
         tarjeta.price = normalizePrice(request.price());
         tarjeta.dimensions = request.dimensions();
         tarjeta.description3d = request.description3d();
@@ -102,7 +103,8 @@ public class TarjetaService {
         validatePrice(request.price());
 
         tarjeta.name = request.name();
-        tarjeta.category = request.category();
+        tarjeta.categories.clear();
+        tarjeta.categories.addAll(request.categories());
         tarjeta.price = normalizePrice(request.price());
         tarjeta.dimensions = request.dimensions();
         tarjeta.description3d = request.description3d();

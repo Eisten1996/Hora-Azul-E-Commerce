@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -96,12 +97,12 @@ class TarjetaServiceTest {
         when(tarjetaRepository.findByIdOptional(id)).thenReturn(Optional.of(existing));
 
         Tarjeta updated = service.update(id, new TarjetaUpdateRequest(
-                "Nombre nuevo", CardCategory.AMOR, new BigDecimal("30"),
+                "Nombre nuevo", Set.of(CardCategory.AMOR, CardCategory.FLORES), new BigDecimal("30"),
                 "15 x 20 cm", "Corazón en relieve", true, null));
 
         assertEquals(7, updated.catalogNumber);
         assertEquals("Nombre nuevo", updated.name);
-        assertEquals(CardCategory.AMOR, updated.category);
+        assertEquals(Set.of(CardCategory.AMOR, CardCategory.FLORES), updated.categories);
         assertEquals(new BigDecimal("30.00"), updated.price);
     }
 
@@ -111,7 +112,7 @@ class TarjetaServiceTest {
         when(tarjetaRepository.findByIdOptional(id)).thenReturn(Optional.empty());
 
         assertThrows(NotFoundException.class, () -> service.update(id, new TarjetaUpdateRequest(
-                "Nombre", CardCategory.AMOR, new BigDecimal("15.00"), null, null, true, null)));
+                "Nombre", Set.of(CardCategory.AMOR), new BigDecimal("15.00"), null, null, true, null)));
     }
 
     // -------------------------------------------------------------------------
@@ -129,7 +130,7 @@ class TarjetaServiceTest {
         return new TarjetaCreateRequest(
                 catalogNumber,
                 "Tarjeta de prueba " + catalogNumber,
-                CardCategory.FLORES,
+                Set.of(CardCategory.FLORES),
                 new BigDecimal(price),
                 "15 x 20 cm",
                 "Flores que emergen al abrir la tarjeta.",

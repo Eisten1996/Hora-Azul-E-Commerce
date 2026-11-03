@@ -13,7 +13,7 @@ const CARD: CardDetail = {
   id: 'b2000001-0000-0000-0000-000000000009',
   catalogNumber: 9,
   name: 'Rosa Eterna',
-  category: 'FLORES',
+  categories: ['FLORES', 'AMOR'],
   price: 17,
   dimensions: '15 x 20 cm',
   description3d: 'Una rosa roja de tres niveles con efecto de profundidad.',
@@ -76,9 +76,9 @@ describe('ProductDetailPageComponent', () => {
     const main = () => element.querySelector<HTMLImageElement>('[data-testid="gallery-main"]')!;
 
     expect(main().src).toBe('https://img/cover.jpg');
-    expect(main().alt).toBe('Tarjeta pop-up 3D "Rosa Eterna": portada');
+    expect(main().alt).toBe('Tarjeta pop-up 3D "Rosa Eterna": vista principal');
 
-    element.querySelector<HTMLButtonElement>('button[aria-label="Ver sobre"]')!.click();
+    element.querySelector<HTMLButtonElement>('button[aria-label="Ver tarjeta cerrada"]')!.click();
     fixture.detectChanges();
 
     expect(main().src).toBe('https://img/envelope.jpg');

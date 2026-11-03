@@ -11,7 +11,7 @@ const card: CardSummary = {
   id: 'a1000001-0000-0000-0000-000000000001',
   catalogNumber: 1,
   name: 'Globos de Cumpleaños',
-  category: 'CUMPLEANOS',
+  categories: ['CUMPLEANOS'],
   price: 15,
   dimensions: '15 x 20 cm',
   description3d: 'Tres globos de colores emergen al abrir la tarjeta.',

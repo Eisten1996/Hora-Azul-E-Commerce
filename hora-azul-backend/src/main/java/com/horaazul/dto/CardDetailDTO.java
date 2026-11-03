@@ -21,7 +21,7 @@ import java.util.UUID;
  * @param id               UUID de la tarjeta
  * @param catalogNumber    número de catálogo (1–33)
  * @param name             nombre de la tarjeta
- * @param category         categoría temática
+ * @param categories       categorías temáticas (en el orden del enum)
  * @param price            precio en soles peruanos
  * @param dimensions       dimensiones físicas
  * @param description3d    descripción del efecto pop-up 3D
@@ -36,7 +36,7 @@ public record CardDetailDTO(
         UUID id,
         Integer catalogNumber,
         String name,
-        CardCategory category,
+        List<CardCategory> categories,
         BigDecimal price,
         String dimensions,
         String description3d,
@@ -75,7 +75,7 @@ public record CardDetailDTO(
                 tarjeta.id,
                 tarjeta.catalogNumber,
                 tarjeta.name,
-                tarjeta.category,
+                tarjeta.sortedCategories(),
                 tarjeta.price,
                 tarjeta.dimensions,
                 tarjeta.description3d,
