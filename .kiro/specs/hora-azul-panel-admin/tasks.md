@@ -18,7 +18,7 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Tests de Properties 11 y 12; guard con y sin Sesión; `returnUrl` externo descartado; 401 cierra la Sesión
     - _Requirements: 10.5, 10.6, 10.7, 10.8, 10.9_
 
-  - [ ] 1.3 Pantalla de acceso
+  - [x] 1.3 Pantalla de acceso
     - Crear `AdminLoginComponent` con estados de carga, credenciales incorrectas y servidor no disponible
     - Tests de los tres estados y de la contraseña vaciada tras el error
     - _Requirements: 10.1, 10.2, 10.3, 10.4_
