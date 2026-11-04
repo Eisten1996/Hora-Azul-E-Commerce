@@ -35,31 +35,31 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Comprobar recarga con Sesión, cierre de sesión y ruta protegida sin Sesión
     - _Requirements: 10.2, 10.5, 10.6, 10.7_
 
-- [ ] 2. Gestión del catálogo (rama `feature/REQ-11-admin-catalogo`)
-  - [ ] 2.1 Backend: listado y activación
+- [x] 2. Gestión del catálogo (rama `feature/REQ-11-admin-catalogo`)
+  - [x] 2.1 Backend: listado y activación
     - Crear `GET /api/admin/cards` y `PATCH /api/cards/{id}/activate`
     - Tests: incluye inactivas, el listado público no las incluye, 401 sin credenciales, Property 10
     - _Requirements: 11.3, 11.12_
 
-  - [ ] 2.2 Backend: reglas de alta y edición
+  - [x] 2.2 Backend: reglas de alta y edición
     - Crear la migración `V3__numero_catalogo_sin_tope.sql` y quitar `@Max(33)`
     - Añadir `@Size(max = 10)` a `images` en los DTO de alta y edición
     - Tests: número 34 aceptado, 0 rechazado, 11 imágenes rechazadas con 422
     - _Requirements: 11.5, 11.10_
 
-  - [ ] 2.3 Tarjetas inactivas en la compra
+  - [x] 2.3 Tarjetas inactivas en la compra
     - `OrderService`: rechazar con 404 una Tarjeta inactiva, sin registrar la Orden
     - Ficha pública: aviso "No disponible" y botón deshabilitado
     - Tests de backend y de componente, y Property 9
     - _Requirements: 11.13, 11.14, 11.15_
 
-  - [ ] 2.4 Listado de tarjetas
+  - [x] 2.4 Listado de tarjetas
     - Crear `AdminCardService` y `AdminCardsPageComponent` con filtro por estado y búsqueda
     - Crear `ConfirmDialogComponent`; desactivar y activar con confirmación
     - Tests de filtros, búsqueda, confirmación y estados de carga, vacío y error
     - _Requirements: 11.1, 11.2, 11.11, 11.12, 13.4_
 
-  - [ ] 2.5 Formulario de tarjeta
+  - [x] 2.5 Formulario de tarjeta
     - Crear `AdminCardFormComponent` para alta y edición, con número propuesto y número de solo lectura al editar
     - Validaciones, foco en el primer error, error 409 junto al campo
     - `FormArray` de hasta 10 imágenes con tipo, orden y vista previa
