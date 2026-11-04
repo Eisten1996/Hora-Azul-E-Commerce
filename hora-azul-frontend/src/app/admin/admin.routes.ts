@@ -16,8 +16,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'ordenes' },
       {
         path: 'ordenes',
-        loadComponent: () => import('./layout/admin-placeholder.component'),
-        data: { heading: 'Órdenes' },
+        loadComponent: () => import('./orders/admin-orders-page.component'),
         title: 'Hora Azul — Órdenes',
       },
       {
