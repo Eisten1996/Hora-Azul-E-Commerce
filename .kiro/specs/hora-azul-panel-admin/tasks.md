@@ -12,7 +12,7 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Tests: 200 con credenciales válidas, 401 sin credenciales y con contraseña errónea, cabeceras CORS presentes en el 401
     - _Requirements: 10.12_
 
-  - [ ] 1.2 Autenticación en el frontend
+  - [x] 1.2 Autenticación en el frontend
     - Crear `AdminAuthService`, `ADMIN_REQUEST`, `adminAuthInterceptor` y `adminAuthGuard`
     - Registrar el interceptor en `app.config.ts`
     - Tests de Properties 11 y 12; guard con y sin Sesión; `returnUrl` externo descartado; 401 cierra la Sesión
