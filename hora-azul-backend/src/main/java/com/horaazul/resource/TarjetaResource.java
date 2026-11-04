@@ -3,8 +3,8 @@ package com.horaazul.resource;
 import com.horaazul.dto.CardDetailDTO;
 import com.horaazul.dto.CardFilters;
 import com.horaazul.dto.CardListResponse;
+import com.horaazul.dto.CardStatusResponse;
 import com.horaazul.dto.CardSummaryDTO;
-import com.horaazul.dto.DeactivateResponse;
 import com.horaazul.dto.TarjetaCreateRequest;
 import com.horaazul.dto.TarjetaUpdateRequest;
 import com.horaazul.model.CardCategory;
@@ -169,13 +169,29 @@ public class TarjetaResource {
      * Requiere autenticación HTTP Basic con rol {@code admin}.</p>
      *
      * @param id UUID de la tarjeta a desactivar
-     * @return 200 con {@link DeactivateResponse} confirmando la operación
+     * @return 200 con {@link CardStatusResponse} confirmando la operación
      */
     @PATCH
     @Path("/{id}/deactivate")
     @RolesAllowed("admin")
-    public DeactivateResponse deactivateCard(@PathParam("id") UUID id) {
+    public CardStatusResponse deactivateCard(@PathParam("id") UUID id) {
         tarjetaService.deactivate(id);
-        return new DeactivateResponse(id, false, "Tarjeta desactivada exitosamente.");
+        return new CardStatusResponse(id, false, "Tarjeta desactivada exitosamente.");
+    }
+
+    /**
+     * Vuelve a publicar una tarjeta inactiva, con todos sus datos.
+     *
+     * <p>Requiere autenticación HTTP Basic con rol {@code admin}.</p>
+     *
+     * @param id UUID de la tarjeta a activar
+     * @return 200 con {@link CardStatusResponse} confirmando la operación
+     */
+    @PATCH
+    @Path("/{id}/activate")
+    @RolesAllowed("admin")
+    public CardStatusResponse activateCard(@PathParam("id") UUID id) {
+        tarjetaService.activate(id);
+        return new CardStatusResponse(id, true, "Tarjeta activada exitosamente.");
     }
 }
