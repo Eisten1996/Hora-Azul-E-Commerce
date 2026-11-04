@@ -69,6 +69,10 @@ description: Reglas de Git Flow para el proyecto Hora Azul E-Commerce. Se activa
 | `feature/REQ-7-persistencia-ordenes` | Persistencia y Consulta de Órdenes |
 | `feature/REQ-8-rendimiento` | Rendimiento y Disponibilidad |
 | `feature/REQ-9-accesibilidad` | Experiencia de Usuario y Accesibilidad |
+| `feature/REQ-10-admin-acceso` | Acceso y Estructura del Panel |
+| `feature/REQ-11-admin-catalogo` | Gestión del Catálogo desde el Panel |
+| `feature/REQ-12-admin-ordenes` | Gestión de Órdenes desde el Panel |
+| `feature/REQ-13-admin-calidad` | Calidad del Panel |
 
 ---
 
