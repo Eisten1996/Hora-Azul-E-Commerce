@@ -21,8 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'tarjetas',
-        loadComponent: () => import('./layout/admin-placeholder.component'),
-        data: { heading: 'Tarjetas' },
+        loadComponent: () => import('./cards/admin-cards-page.component'),
         title: 'Hora Azul — Tarjetas',
       },
     ],
