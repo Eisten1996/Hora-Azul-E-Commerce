@@ -208,6 +208,59 @@ class AdminCatalogResourceTest {
     }
 
     // -------------------------------------------------------------------------
+    // Órdenes con tarjetas inactivas
+    // -------------------------------------------------------------------------
+
+    @Test
+    void noRegistraNingunaParteDeUnaOrdenConUnaTarjetaInactiva() {
+        String id = createCard(106, 15.00, List.of());
+        deactivate(id);
+        long ordersBefore = countOrders();
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(orderBody(List.of(
+                        Map.of("tarjetaId", SEED_CARD_ID, "quantity", 1),
+                        Map.of("tarjetaId", id, "quantity", 1))))
+                .when().post("/api/orders")
+                .then()
+                .statusCode(404)
+                .body("error", equalTo("NOT_FOUND"));
+
+        assertEquals(ordersBefore, countOrders());
+    }
+
+    // Feature: hora-azul-panel-admin, Property 9: Las órdenes conservan su historia
+    @Test
+    void editarODesactivarUnaTarjetaNoCambiaLasOrdenesRegistradas() {
+        String id = createCard(107, 20.00, List.of());
+        String orderCode = given()
+                .contentType(ContentType.JSON)
+                .body(orderBody(List.of(Map.of("tarjetaId", id, "quantity", 2))))
+                .when().post("/api/orders")
+                .then()
+                .statusCode(201)
+                .extract().path("orderCode");
+        Map<String, Object> before = order(orderCode);
+
+        for (double price : List.of(15.00, 17.00, 30.00)) {
+            Map<String, Object> body = cardBody(107, price, List.of());
+            body.remove("catalogNumber");
+            body.put("name", "Nombre nuevo " + price);
+            admin()
+                    .contentType(ContentType.JSON)
+                    .body(body)
+                    .when().put("/api/cards/{id}", id)
+                    .then()
+                    .statusCode(200);
+            assertEquals(before, order(orderCode));
+        }
+
+        deactivate(id);
+        assertEquals(before, order(orderCode));
+    }
+
+    // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
 
