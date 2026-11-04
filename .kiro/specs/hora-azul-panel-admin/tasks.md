@@ -67,26 +67,26 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Tests de validación, payload de alta y edición, 409 y cambios sin guardar
     - _Requirements: 11.4, 11.6, 11.7, 11.8, 11.9, 11.16, 13.6_
 
-- [ ] 3. Gestión de órdenes (rama `feature/REQ-12-admin-ordenes`)
-  - [ ] 3.1 Backend: estados
+- [x] 3. Gestión de órdenes (rama `feature/REQ-12-admin-ordenes`)
+  - [x] 3.1 Backend: estados
     - Ampliar `OrderStatus` con `PAID`, `DELIVERED`, `CANCELLED` y `canTransitionTo`
     - Crear `PATCH /api/orders/{orderCode}/status`
     - Tests: Property 8, 409 sin cambios, 404, 401, y Orden nueva en `PENDING_PAYMENT`
     - _Requirements: 12.4, 12.5, 12.10, 12.11_
 
-  - [ ] 3.2 Backend: consultas
+  - [x] 3.2 Backend: consultas
     - Crear `OrderDetailDTO` y usarlo en el detalle; `POST` sigue devolviendo `OrderResponse`
     - Paginar `GET /api/orders` con filtro `status`, 400 si no existe, y `@BatchSize` en `Orden.items`
     - Tests de paginación, orden, filtro, y de que `POST` no expone campos nuevos
     - _Requirements: 12.1, 12.2, 12.3, 12.10_
 
-  - [ ] 3.3 Listado de órdenes
+  - [x] 3.3 Listado de órdenes
     - Crear `AdminOrderService` y `AdminOrdersPageComponent`, con filtro y página en la URL
     - Tabla en escritorio y tarjetas en móvil
     - Tests de filtro, paginación, estado vacío y error
     - _Requirements: 12.1, 12.2, 13.1, 13.4_
 
-  - [ ] 3.4 Detalle de orden
+  - [x] 3.4 Detalle de orden
     - Crear `AdminOrderDetailComponent` con datos completos y enlace de WhatsApp al cliente
     - Acciones según el estado, con confirmación al cancelar o entregar y recarga ante 409
     - Tests de acciones por estado (incluidos los finales), confirmación, 409 y URL de WhatsApp

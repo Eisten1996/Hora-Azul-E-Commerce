@@ -27,7 +27,7 @@ RUN useradd --system --uid 1001 quarkus
 USER 1001
 
 # Capa gratuita de 512 MB: limitar el heap al 70 % de la memoria del contenedor
-ENV JAVA_OPTS="-XX:MaxRAMPercentage=70 -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError"
+ENV JAVA_OPTS="-XX:MaxRAMPercentage=70 -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Duser.timezone=America/Lima"
 EXPOSE 8080
 
 CMD ["sh", "-c", "exec java $JAVA_OPTS -Dquarkus.http.host=0.0.0.0 -jar /deployments/quarkus-run.jar"]

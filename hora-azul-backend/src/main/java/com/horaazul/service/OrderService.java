@@ -1,9 +1,11 @@
 package com.horaazul.service;
 
+import com.horaazul.dto.OrderDetailDTO;
 import com.horaazul.dto.OrderItemDTO;
 import com.horaazul.dto.OrderRequest;
 import com.horaazul.dto.OrderRequestItem;
 import com.horaazul.dto.OrderResponse;
+import com.horaazul.exception.OrderStatusConflictException;
 import com.horaazul.model.Orden;
 import com.horaazul.model.OrdenItem;
 import com.horaazul.model.OrderStatus;
@@ -129,6 +131,28 @@ public class OrderService {
 
         // 5. Construir y retornar la respuesta
         return OrderResponse.from(orden, itemDTOs, totalAmount);
+    }
+
+    /**
+     * Cambia el estado de una orden si la transición está permitida.
+     *
+     * @param orderCode código de la orden
+     * @param target    estado solicitado
+     * @return detalle de la orden con su nuevo estado
+     * @throws NotFoundException             si la orden no existe
+     * @throws OrderStatusConflictException si el cambio no está permitido; la orden no se modifica
+     */
+    @Transactional
+    public OrderDetailDTO changeStatus(String orderCode, OrderStatus target) {
+        Orden orden = ordenRepository.findByOrderCodeForUpdate(orderCode)
+                .orElseThrow(() -> new NotFoundException("No se encontró la orden " + orderCode + "."));
+
+        if (!orden.status.canTransitionTo(target)) {
+            throw new OrderStatusConflictException(orderCode, orden.status, target);
+        }
+
+        orden.status = target;
+        return OrderDetailDTO.from(orden);
     }
 
     // -------------------------------------------------------------------------

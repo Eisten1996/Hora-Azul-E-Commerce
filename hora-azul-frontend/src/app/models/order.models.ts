@@ -1,4 +1,4 @@
-export type OrderStatus = 'PENDING_PAYMENT';
+export type OrderStatus = 'PENDING_PAYMENT' | 'PAID' | 'DELIVERED' | 'CANCELLED';
 
 export interface OrderRequestItem {
   tarjetaId: string;

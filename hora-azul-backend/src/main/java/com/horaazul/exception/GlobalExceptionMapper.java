@@ -68,6 +68,20 @@ public class GlobalExceptionMapper {
     }
 
     // ------------------------------------------------------------------ //
+    //  409 – Cambio de estado de orden no permitido                       //
+    // ------------------------------------------------------------------ //
+
+    /**
+     * Mapea {@link OrderStatusConflictException} → 409.
+     *
+     * <p>Validates: Requirements 12.5</p>
+     */
+    @ServerExceptionMapper
+    public Response handleOrderStatusConflict(OrderStatusConflictException ex) {
+        return buildResponse(409, "ORDER_STATUS_CONFLICT", ex.getMessage());
+    }
+
+    // ------------------------------------------------------------------ //
     //  400 – Petición incorrecta (ej. carrito vacío)                      //
     // ------------------------------------------------------------------ //
 
