@@ -7,7 +7,7 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
 ## Tasks
 
 - [ ] 1. Acceso y estructura del Panel (rama `feature/REQ-10-admin-acceso`)
-  - [ ] 1.1 Backend: endpoint de sesión
+  - [x] 1.1 Backend: endpoint de sesión
     - Crear `AdminResource` con `GET /api/admin/session` y `@RolesAllowed("admin")`
     - Tests: 200 con credenciales válidas, 401 sin credenciales y con contraseña errónea, cabeceras CORS presentes en el 401
     - _Requirements: 10.12_
