@@ -1,12 +1,14 @@
 package com.horaazul.repository;
 
 import com.horaazul.model.Orden;
+import com.horaazul.model.OrderStatus;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.LockModeType;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,15 +23,23 @@ import java.util.UUID;
 public class OrdenRepository implements PanacheRepositoryBase<Orden, UUID> {
 
     /**
-     * Retorna todas las órdenes ordenadas por fecha de creación descendente
-     * (la más reciente primero).
+     * Consulta paginada de órdenes, de la más nueva a la más antigua. El código desempata
+     * las creadas en el mismo instante, para que ninguna se repita ni se pierda entre páginas.
      *
-     * <p>Validates: Requirements 7.2</p>
+     * <p>Validates: Requirements 12.1, 12.2</p>
      *
-     * @return lista completa de órdenes ordenadas de más nueva a más antigua
+     * @param status estado por el que filtrar, o {@code null} para todas
+     * @param page   número de página (0-indexed)
+     * @param size   tamaño de página
+     * @return consulta con la página ya aplicada
      */
-    public List<Orden> findAllOrderedByCreatedAtDesc() {
-        return findAll(Sort.by("createdAt", Sort.Direction.Descending)).list();
+    public PanacheQuery<Orden> findPage(OrderStatus status, int page, int size) {
+        Sort newestFirst = Sort.by("createdAt", Sort.Direction.Descending)
+                .and("orderCode", Sort.Direction.Descending);
+        PanacheQuery<Orden> query = status == null
+                ? findAll(newestFirst)
+                : find("status", newestFirst, status);
+        return query.page(Page.of(page, size));
     }
 
     /**
