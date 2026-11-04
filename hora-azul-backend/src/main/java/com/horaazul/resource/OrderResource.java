@@ -1,7 +1,9 @@
 package com.horaazul.resource;
 
+import com.horaazul.dto.OrderDetailDTO;
 import com.horaazul.dto.OrderRequest;
 import com.horaazul.dto.OrderResponse;
+import com.horaazul.dto.OrderStatusRequest;
 import com.horaazul.dto.OrderSummaryDTO;
 import com.horaazul.repository.OrdenRepository;
 import com.horaazul.service.OrderService;
@@ -9,8 +11,10 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -114,5 +118,25 @@ public class OrderResource {
                     return Response.ok(OrderResponse.fromEntity(orden)).build();
                 })
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
+    }
+
+    /**
+     * Cambia el estado de una orden.
+     *
+     * <p>Validates: Requirements 12.4, 12.5, 12.11</p>
+     *
+     * @param orderCode código de orden en formato {@code ORD-YYYY-XXXX}
+     * @param request   estado solicitado
+     * @return 200 con el detalle de la orden, 404 si no existe, 409 si el cambio no está
+     *         permitido y 422 si falta el estado
+     */
+    @PATCH
+    @Path("/{orderCode}/status")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
+    public OrderDetailDTO changeStatus(
+            @PathParam("orderCode") String orderCode,
+            @Valid @NotNull OrderStatusRequest request) {
+        return orderService.changeStatus(orderCode, request.status());
     }
 }
