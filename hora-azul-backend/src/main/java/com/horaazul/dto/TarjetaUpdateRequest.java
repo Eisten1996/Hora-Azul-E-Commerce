@@ -17,7 +17,7 @@ import java.util.Set;
  * <p>El {@code catalogNumber} es inmutable y no se incluye en este DTO.
  * Todos los demás campos son actualizables.</p>
  *
- * <p>Validates: Requirements 6.2, 6.3</p>
+ * <p>Validates: Requirements 6.2, 6.3, 11.10</p>
  *
  * @param name          nombre de la tarjeta
  * @param categories    categorías temáticas (al menos una)
@@ -25,7 +25,7 @@ import java.util.Set;
  * @param dimensions    dimensiones opcionales
  * @param description3d descripción del efecto 3D (opcional)
  * @param envelopeIncluded si incluye sobre
- * @param images        lista de imágenes (reemplaza las existentes si no es nula)
+ * @param images        lista de hasta 10 imágenes (reemplaza las existentes si no es nula)
  */
 public record TarjetaUpdateRequest(
 
@@ -48,6 +48,7 @@ public record TarjetaUpdateRequest(
         @NotNull(message = "El campo envelopeIncluded es obligatorio")
         Boolean envelopeIncluded,
 
+        @Size(max = 10, message = "Una tarjeta admite como máximo 10 imágenes")
         @Valid
         List<ImageRequest> images
 ) {}

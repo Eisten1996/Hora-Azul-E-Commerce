@@ -2,7 +2,6 @@ package com.horaazul.dto;
 
 import com.horaazul.model.CardCategory;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,22 +19,21 @@ import java.util.Set;
  * se realiza en {@code TarjetaService}, no como Bean Validation,
  * porque requiere lógica de conjunto que no se expresa limpiamente con anotaciones.</p>
  *
- * <p>Validates: Requirements 6.1, 6.2</p>
+ * <p>Validates: Requirements 6.1, 6.2, 11.5, 11.10</p>
  *
- * @param catalogNumber número de catálogo entre 1 y 33 (único)
+ * @param catalogNumber número de catálogo, desde 1 (único)
  * @param name          nombre de la tarjeta
  * @param categories    categorías temáticas (al menos una)
  * @param price         precio (debe ser 15, 17, 20 o 30)
  * @param dimensions    dimensiones opcionales (ej. "15cm x 10cm")
  * @param description3d descripción del efecto 3D (opcional)
  * @param envelopeIncluded si incluye sobre (default true)
- * @param images        lista de imágenes asociadas
+ * @param images        lista de imágenes asociadas (máximo 10)
  */
 public record TarjetaCreateRequest(
 
         @NotNull(message = "El número de catálogo es obligatorio")
         @Min(value = 1, message = "El número de catálogo debe ser al menos 1")
-        @Max(value = 33, message = "El número de catálogo no puede superar 33")
         Integer catalogNumber,
 
         @NotBlank(message = "El nombre es obligatorio")
@@ -58,6 +56,7 @@ public record TarjetaCreateRequest(
         Boolean envelopeIncluded,
 
         @NotNull(message = "La lista de imágenes es obligatoria")
+        @Size(max = 10, message = "Una tarjeta admite como máximo 10 imágenes")
         @Valid
         List<ImageRequest> images
 ) {}

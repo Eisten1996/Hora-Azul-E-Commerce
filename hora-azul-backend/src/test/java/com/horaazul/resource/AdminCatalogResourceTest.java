@@ -136,6 +136,78 @@ class AdminCatalogResourceTest {
     }
 
     // -------------------------------------------------------------------------
+    // Reglas de alta y edición
+    // -------------------------------------------------------------------------
+
+    @Test
+    void aceptaNumerosDeCatalogoMayoresQue33() {
+        String id = createCard(34, 15.00, List.of());
+
+        given()
+                .when().get("/api/cards/{id}", id)
+                .then()
+                .statusCode(200)
+                .body("catalogNumber", equalTo(34));
+    }
+
+    @Test
+    void rechazaElNumeroDeCatalogoCero() {
+        admin()
+                .contentType(ContentType.JSON)
+                .body(cardBody(0, 15.00, List.of()))
+                .when().post("/api/cards")
+                .then()
+                .statusCode(422);
+    }
+
+    @Test
+    void aceptaDiezImagenesYRechazaOnceAlCrear() {
+        createCard(102, 15.00, images(10));
+
+        admin()
+                .contentType(ContentType.JSON)
+                .body(cardBody(103, 15.00, images(11)))
+                .when().post("/api/cards")
+                .then()
+                .statusCode(422);
+    }
+
+    @Test
+    void rechazaOnceImagenesAlEditar() {
+        String id = createCard(104, 15.00, images(1));
+        Map<String, Object> body = cardBody(104, 15.00, images(11));
+        body.remove("catalogNumber");
+
+        admin()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when().put("/api/cards/{id}", id)
+                .then()
+                .statusCode(422);
+    }
+
+    @Test
+    void editarReemplazaLasImagenesEnElOrdenIndicado() {
+        String id = createCard(105, 15.00, images(3));
+        Map<String, Object> body = cardBody(105, 17.00, images(2));
+        body.remove("catalogNumber");
+
+        admin()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when().put("/api/cards/{id}", id)
+                .then()
+                .statusCode(200)
+                .body("catalogNumber", equalTo(105))
+                .body("price", equalTo(17.0f));
+
+        Map<String, Object> saved = detail(id);
+        List<Map<String, Object>> savedImages = (List<Map<String, Object>>) saved.get("images");
+        assertEquals(List.of("cards/foto-0.webp", "cards/foto-1.webp"),
+                savedImages.stream().map(image -> image.get("url")).toList());
+    }
+
+    // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
 
