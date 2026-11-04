@@ -25,5 +25,9 @@ export const routes: Routes = [
     loadComponent: () => import('./success/order-success.component'),
     title: 'Hora Azul — Pedido confirmado',
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.routes'),
+  },
   { path: '**', redirectTo: '' },
 ];

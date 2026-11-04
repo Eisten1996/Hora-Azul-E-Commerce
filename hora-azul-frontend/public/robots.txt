@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /checkout
 Disallow: /pedido/
+Disallow: /admin

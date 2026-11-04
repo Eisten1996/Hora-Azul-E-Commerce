@@ -6,31 +6,31 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
 
 ## Tasks
 
-- [ ] 1. Acceso y estructura del Panel (rama `feature/REQ-10-admin-acceso`)
-  - [ ] 1.1 Backend: endpoint de sesión
+- [x] 1. Acceso y estructura del Panel (rama `feature/REQ-10-admin-acceso`)
+  - [x] 1.1 Backend: endpoint de sesión
     - Crear `AdminResource` con `GET /api/admin/session` y `@RolesAllowed("admin")`
     - Tests: 200 con credenciales válidas, 401 sin credenciales y con contraseña errónea, cabeceras CORS presentes en el 401
     - _Requirements: 10.12_
 
-  - [ ] 1.2 Autenticación en el frontend
+  - [x] 1.2 Autenticación en el frontend
     - Crear `AdminAuthService`, `ADMIN_REQUEST`, `adminAuthInterceptor` y `adminAuthGuard`
     - Registrar el interceptor en `app.config.ts`
     - Tests de Properties 11 y 12; guard con y sin Sesión; `returnUrl` externo descartado; 401 cierra la Sesión
     - _Requirements: 10.5, 10.6, 10.7, 10.8, 10.9_
 
-  - [ ] 1.3 Pantalla de acceso
+  - [x] 1.3 Pantalla de acceso
     - Crear `AdminLoginComponent` con estados de carga, credenciales incorrectas y servidor no disponible
     - Tests de los tres estados y de la contraseña vaciada tras el error
     - _Requirements: 10.1, 10.2, 10.3, 10.4_
 
-  - [ ] 1.4 Estructura del Panel
+  - [x] 1.4 Estructura del Panel
     - Crear `admin.routes.ts` con `loadChildren` y `AdminLayoutComponent`
     - Ocultar barra, pie y carrito en `/admin` desde `App`; retirar el shell en `index.html`
     - Añadir `Disallow: /admin` a `robots.txt`
     - Test: la barra de la tienda no aparece en `/admin` y sigue apareciendo en `/`
     - _Requirements: 10.10, 10.11_
 
-  - [ ] 1.5 Verificación en navegador
+  - [x] 1.5 Verificación en navegador
     - Comprobar con el backend local que un acceso fallido no abre el diálogo nativo de Basic Auth
     - Comprobar recarga con Sesión, cierre de sesión y ruta protegida sin Sesión
     - _Requirements: 10.2, 10.5, 10.6, 10.7_
