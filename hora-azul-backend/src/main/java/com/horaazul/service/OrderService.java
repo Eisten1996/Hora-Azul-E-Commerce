@@ -36,7 +36,7 @@ import java.util.UUID;
  * </ul>
  * </p>
  *
- * <p>Validates: Requirements 5.6, 5.7, 7.1</p>
+ * <p>Validates: Requirements 5.6, 5.7, 7.1, 11.13</p>
  */
 @ApplicationScoped
 public class OrderService {
@@ -59,13 +59,13 @@ public class OrderService {
      *
      * <p>El método ejecuta todo el proceso dentro de una única transacción:
      * resolución de tarjetas, cálculo de totales, generación de código y
-     * persistencia. Si cualquier UUID de tarjeta no se encuentra en el catálogo,
-     * se lanza {@link NotFoundException} y toda la transacción hace rollback.</p>
+     * persistencia. Si alguna tarjeta no existe o está inactiva, se lanza
+     * {@link NotFoundException} y toda la transacción hace rollback.</p>
      *
      * @param request datos del cliente y lista de ítems del carrito
      * @return {@link OrderResponse} con el código generado, totales y detalle de ítems
      * @throws BadRequestException si el carrito no tiene ítems
-     * @throws NotFoundException   si algún UUID de tarjeta no existe en el sistema
+     * @throws NotFoundException   si alguna tarjeta no existe o está inactiva
      */
     @Transactional
     public OrderResponse create(OrderRequest request) {
@@ -136,15 +136,16 @@ public class OrderService {
     // -------------------------------------------------------------------------
 
     /**
-     * Busca una tarjeta por UUID o lanza {@link NotFoundException}.
+     * Busca una tarjeta que se pueda comprar o lanza {@link NotFoundException}.
      *
      * @param tarjetaId UUID de la tarjeta a resolver
-     * @return entidad {@link Tarjeta} encontrada
-     * @throws NotFoundException si no existe ninguna tarjeta con ese UUID
+     * @return entidad {@link Tarjeta} activa
+     * @throws NotFoundException si la tarjeta no existe o está inactiva
      */
     private Tarjeta resolveOrThrow(UUID tarjetaId) {
         return tarjetaRepository.findByIdOptional(tarjetaId)
+                .filter(tarjeta -> tarjeta.active)
                 .orElseThrow(() -> new NotFoundException(
-                        "No se encontró ninguna tarjeta con id: " + tarjetaId));
+                        "No se encontró ninguna tarjeta disponible con id: " + tarjetaId));
     }
 }

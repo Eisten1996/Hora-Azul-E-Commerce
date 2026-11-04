@@ -18,7 +18,7 @@ import java.util.UUID;
  * <p>Validates: Requirements 1.2, 1.3, 6.4, 6.5</p>
  *
  * @param id               UUID de la tarjeta
- * @param catalogNumber    número de catálogo (1–33)
+ * @param catalogNumber    número de catálogo
  * @param name             nombre de la tarjeta
  * @param categories       categorías temáticas (en el orden del enum)
  * @param price            precio en soles peruanos

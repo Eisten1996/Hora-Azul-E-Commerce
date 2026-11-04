@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { unsavedChangesGuard } from './cards/unsaved-changes.guard';
 import { adminAuthGuard } from './core/admin-auth.guard';
 
 const routes: Routes = [
@@ -21,9 +22,20 @@ const routes: Routes = [
       },
       {
         path: 'tarjetas',
-        loadComponent: () => import('./layout/admin-placeholder.component'),
-        data: { heading: 'Tarjetas' },
+        loadComponent: () => import('./cards/admin-cards-page.component'),
         title: 'Hora Azul — Tarjetas',
+      },
+      {
+        path: 'tarjetas/nueva',
+        loadComponent: () => import('./cards/admin-card-form.component'),
+        canDeactivate: [unsavedChangesGuard],
+        title: 'Hora Azul — Nueva tarjeta',
+      },
+      {
+        path: 'tarjetas/:id',
+        loadComponent: () => import('./cards/admin-card-form.component'),
+        canDeactivate: [unsavedChangesGuard],
+        title: 'Hora Azul — Editar tarjeta',
       },
     ],
   },

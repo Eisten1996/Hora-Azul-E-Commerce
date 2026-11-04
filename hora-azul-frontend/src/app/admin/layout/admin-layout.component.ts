@@ -59,7 +59,11 @@ export default class AdminLayoutComponent {
   ];
 
   protected logout(): void {
-    this.auth.logout();
-    void this.router.navigateByUrl('/admin/login');
+    // Primero se navega: si hay cambios sin guardar, el formulario puede cancelar la salida
+    void this.router.navigateByUrl('/admin/login').then((left) => {
+      if (left) {
+        this.auth.logout();
+      }
+    });
   }
 }
