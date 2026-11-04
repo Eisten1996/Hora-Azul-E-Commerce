@@ -20,6 +20,11 @@ const routes: Routes = [
         title: 'Hora Azul — Órdenes',
       },
       {
+        path: 'ordenes/:orderCode',
+        loadComponent: () => import('./orders/admin-order-detail.component'),
+        title: 'Hora Azul — Detalle de orden',
+      },
+      {
         path: 'tarjetas',
         loadComponent: () => import('./cards/admin-cards-page.component'),
         title: 'Hora Azul — Tarjetas',
