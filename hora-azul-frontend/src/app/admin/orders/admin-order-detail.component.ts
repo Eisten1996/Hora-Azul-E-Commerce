@@ -66,7 +66,7 @@ type DetailStatus = 'loading' | 'ready' | 'not-found' | 'error';
     <a
       routerLink="/admin/ordenes"
       queryParamsHandling="preserve"
-      class="text-sm font-medium text-hora-azul-800 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hora-azul-600"
+      class="-my-2 inline-block py-2 text-sm font-medium text-hora-azul-800 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hora-azul-600"
     >
       Volver a órdenes
     </a>

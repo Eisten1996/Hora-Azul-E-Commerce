@@ -93,16 +93,16 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - _Requirements: 12.3, 12.6, 12.7, 12.8, 12.9_
 
 - [ ] 4. Calidad y salida a producción (rama `feature/REQ-13-admin-calidad`)
-  - [ ] 4.1 Revisión de responsive y accesibilidad
+  - [x] 4.1 Revisión de responsive y accesibilidad
     - Recorrer el Panel a 375 px y 1440 px, y con teclado
     - Pasar Lighthouse de accesibilidad a login, listados y formulario, y corregir lo encontrado
     - _Requirements: 13.1, 13.2, 13.3, 13.4_
 
-  - [ ] 4.2 Comprobación del bundle
+  - [x] 4.2 Comprobación del bundle
     - Comparar el bundle inicial con el de v1.0.1 (83.82 kB transferidos); no debe crecer más de 5 kB
     - _Requirements: 13.5_
 
-  - [ ] 4.3 Documentación
+  - [x] 4.3 Documentación
     - Añadir a `DEPLOY.md` cómo entrar al Panel, dónde ver `ADMIN_PASSWORD` y cómo añadir fotos
     - _Requirements: 10.1, 11.9_
 
