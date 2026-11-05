@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -59,7 +60,9 @@ public class Orden extends PanacheEntityBase {
     @Column(name = "created_at", nullable = false, updatable = false)
     public LocalDateTime createdAt;
 
+    /** {@code @BatchSize} cubre la página más grande del listado: carga sus ítems sin una consulta por orden. */
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @BatchSize(size = 100)
     public List<OrdenItem> items = new ArrayList<>();
 
     /**

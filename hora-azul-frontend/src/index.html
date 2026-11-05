@@ -49,8 +49,9 @@
         </div>
       </div>
       <script>
-        // La cabecera del catálogo solo corresponde a la portada
-        if (location.pathname !== '/') document.getElementById('shell-hero').remove();
+        // La cabecera del catálogo solo corresponde a la portada, y el panel no usa nada de la tienda
+        if (/^\/admin(\/|$)/.test(location.pathname)) document.querySelector('app-root').replaceChildren();
+        else if (location.pathname !== '/') document.getElementById('shell-hero').remove();
       </script>
     </main>
   </app-root>

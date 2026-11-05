@@ -37,7 +37,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "tarjeta")
-@Check(name = "chk_catalog_number_range", constraints = "catalog_number BETWEEN 1 AND 33")
+@Check(name = "chk_catalog_number_positive", constraints = "catalog_number >= 1")
 @Check(name = "chk_price_values", constraints = "price IN (15.00, 17.00, 20.00, 30.00)")
 public class Tarjeta extends PanacheEntityBase {
 

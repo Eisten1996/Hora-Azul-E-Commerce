@@ -412,7 +412,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Test: con array vacío y `loading = false` no renderiza ítems
     - _Requirements: 1.1, 1.5_
 
-- [ ] 12. Integración y despliegue
+- [x] 12. Integración y despliegue
   - [x] 12.1 Conectar frontend con backend y verificar comunicación
     - Confirmar que `environment.apiUrl` apunta al backend local en dev y al desplegado en prod
     - Verificar que `HttpClient` resuelve peticiones correctamente con el interceptor de errores activo
@@ -443,7 +443,7 @@ Implementación completa del MVP de Hora Azul E-Commerce, una plataforma de vent
     - Confirmar que los datos semilla de las 33 tarjetas están presentes (o ejecutar `import.sql` manualmente si es necesario)
     - _Requirements: 6.1_
 
-  - [ ] 12.6 Verificar puntuación Lighthouse ≥ 80 en Performance (móvil)
+  - [x] 12.6 Verificar puntuación Lighthouse ≥ 80 en Performance (móvil)
     - Ejecutar Lighthouse en la URL de Cloudflare Pages con configuración de dispositivo móvil
     - Revisar y corregir los principales factores de puntuación si el score es inferior a 80 (lazy loading, tamaño de imágenes, bundle size)
     - _Requirements: 9.4_

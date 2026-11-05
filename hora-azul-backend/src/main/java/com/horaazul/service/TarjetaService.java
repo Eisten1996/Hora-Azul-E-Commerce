@@ -9,6 +9,7 @@ import com.horaazul.exception.InvalidPriceException;
 import com.horaazul.model.CardImage;
 import com.horaazul.model.Tarjeta;
 import com.horaazul.repository.TarjetaRepository;
+import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -137,6 +138,30 @@ public class TarjetaService {
     public void deactivate(UUID id) {
         Tarjeta tarjeta = findExistingById(id);
         tarjeta.active = false;
+    }
+
+    /**
+     * Vuelve a publicar una tarjeta conservando todos sus datos.
+     *
+     * @param id UUID de la tarjeta a activar
+     * @throws NotFoundException si no existe ninguna tarjeta con el UUID indicado
+     */
+    @Transactional
+    public void activate(UUID id) {
+        Tarjeta tarjeta = findExistingById(id);
+        tarjeta.active = true;
+    }
+
+    /**
+     * Retorna todas las tarjetas, activas e inactivas, ordenadas por número de catálogo.
+     *
+     * @return lista completa con las imágenes inicializadas
+     */
+    @Transactional
+    public List<Tarjeta> findAllForAdmin() {
+        List<Tarjeta> tarjetas = tarjetaRepository.listAll(Sort.by("catalogNumber"));
+        tarjetas.forEach(t -> t.images.size());
+        return tarjetas;
     }
 
     /**
