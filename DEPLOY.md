@@ -96,3 +96,22 @@ docker run --rm -p 10000:10000 -e PORT=10000 \
   -e QUARKUS_DATASOURCE_USERNAME=horaazul -e QUARKUS_DATASOURCE_PASSWORD=secreto \
   -e ADMIN_PASSWORD=otro-secreto hora-azul-api
 ```
+
+## 6. Buscadores (Google)
+
+**Sitemap:** `hora-azul-frontend/public/sitemap.xml` lista la portada y la ficha de cada tarjeta activa, y `robots.txt` lo anuncia. No se actualiza solo: después de crear, desactivar o reactivar tarjetas desde el panel, regenerarlo y publicar el cambio con el flujo normal de git-flow.
+
+```bash
+cd hora-azul-frontend
+npm run sitemap
+```
+
+El script solo lee la API de producción. Si la API no devuelve tarjetas, falla sin tocar el archivo.
+
+**Google Search Console** (una sola vez, con la cuenta de Google de Hora Azul):
+1. Abrir <https://search.google.com/search-console> → **Agregar propiedad** → **Prefijo de URL** → `https://hora-azul-e-commerce.pages.dev/`.
+2. Verificar con el método **Etiqueta HTML**: añadir la etiqueta `<meta name="google-site-verification" …>` que da Google al `<head>` de `hora-azul-frontend/src/index.html`, publicar el cambio y pulsar **Verificar**.
+3. En **Sitemaps**, enviar `sitemap.xml`.
+4. Opcional: en **Inspección de URLs**, pegar la URL de una ficha y pulsar **Solicitar indexación** para acelerar las primeras.
+
+Google tarda de días a semanas en indexar un sitio nuevo. En Search Console, **Páginas** muestra cuáles ya están indexadas y por qué no lo están las demás.

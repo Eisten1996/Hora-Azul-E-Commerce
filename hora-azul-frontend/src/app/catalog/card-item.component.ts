@@ -1,18 +1,20 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { photoSrcset } from '../core/card-photos';
 import { SolesPipe } from '../core/money';
+import type { DetailNavigationState } from '../detail/product-detail-page.component';
 import { CARD_CATEGORY_LABELS, CardSummary, categoryLabels } from '../models';
 
 /**
  * Tarjeta individual del catálogo: portada, precio, nombre y categorías.
  *
- * <p>Toda la tarjeta es clicable, pero el control accesible es el botón del título:
+ * <p>Toda la tarjeta es clicable, pero el control accesible es el enlace del título:
  * su nombre es el nombre visible de la tarjeta y un pseudo-elemento lo extiende
- * sobre toda la tarjeta.</p>
+ * sobre toda la tarjeta. Es un enlace real para que los buscadores descubran la ficha.</p>
  */
 @Component({
   selector: 'app-card-item',
-  imports: [SolesPipe],
+  imports: [RouterLink, SolesPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <article
@@ -43,13 +45,13 @@ import { CARD_CATEGORY_LABELS, CardSummary, categoryLabels } from '../models';
       </p>
       <div class="flex flex-1 flex-col items-start gap-2 p-3 sm:p-4">
         <h2 class="line-clamp-2 text-sm font-bold uppercase leading-snug text-hora-azul-900 sm:text-[0.95rem]">
-          <button
-            type="button"
+          <a
+            [routerLink]="['/tarjeta', card().id]"
+            [state]="detailState()"
             class="text-left uppercase outline-none after:absolute after:inset-0 after:content-['']"
-            (click)="cardClick.emit(card())"
           >
             {{ card().name }}
-          </button>
+          </a>
         </h2>
         <ul class="mt-auto flex flex-wrap gap-1.5" aria-label="Categorías">
           @for (category of card().categories; track category) {
@@ -64,7 +66,8 @@ import { CARD_CATEGORY_LABELS, CardSummary, categoryLabels } from '../models';
 })
 export class CardItemComponent {
   readonly card = input.required<CardSummary>();
-  readonly cardClick = output<CardSummary>();
+  /** Estado que recibe el detalle, para restaurar los filtros del catálogo al volver. */
+  readonly detailState = input<DetailNavigationState>();
 
   protected readonly labels = CARD_CATEGORY_LABELS;
   protected readonly altText = computed(

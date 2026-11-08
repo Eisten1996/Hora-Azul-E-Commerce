@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signa
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from '../core/card.service';
+import { STORE_DESCRIPTION, SeoService } from '../core/seo.service';
 import type { DetailNavigationState } from '../detail/product-detail-page.component';
 import { CardSummary } from '../models';
 import { CardGridComponent } from './card-grid.component';
@@ -105,7 +106,7 @@ type LoadStatus = 'loading' | 'error' | 'ready';
                 <p class="mb-4 text-sm text-slate-600" role="status">
                   {{ visibleCards().length }} de {{ cards().length }} tarjetas
                 </p>
-                <app-card-grid [cards]="visibleCards()" (cardClick)="openDetail($event)" />
+                <app-card-grid [cards]="visibleCards()" [detailState]="detailState()" />
               }
             }
             @default {
@@ -137,12 +138,22 @@ export default class CatalogPageComponent {
     filtersFromParams(this.route.snapshot.queryParams),
   );
   protected readonly visibleCards = computed(() => filterCards(this.cards(), this.filters()));
+  protected readonly detailState = computed<DetailNavigationState>(() => ({
+    catalogQueryParams: filtersToParams(this.filters()),
+  }));
   protected readonly activeFilterCount = computed(() => {
     const filters = this.filters();
     return filters.categories.length + (filters.priceRange ? 1 : 0) + (filters.search.trim() ? 1 : 0);
   });
 
   constructor() {
+    inject(SeoService).setPage({
+      title: 'Hora Azul — Tarjetas pop-up 3D',
+      description: STORE_DESCRIPTION,
+      // Los filtros cambian la URL, pero todas sus variantes son la misma página
+      path: '/',
+      image: '/brand/hora-azul-logo.webp',
+    });
     this.load();
     // En móvil, si se llega con filtros en la URL, mostrar el panel abierto
     this.filtersOpen.set(hasActiveFilters(this.filters()));
@@ -171,8 +182,4 @@ export default class CatalogPageComponent {
     });
   }
 
-  protected openDetail(card: CardSummary): void {
-    const state: DetailNavigationState = { catalogQueryParams: filtersToParams(this.filters()) };
-    this.router.navigate(['/tarjeta', card.id], { state });
-  }
 }

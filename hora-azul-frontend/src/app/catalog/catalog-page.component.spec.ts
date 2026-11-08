@@ -3,6 +3,8 @@ import { ActivatedRoute, Params, Router, provideRouter } from '@angular/router';
 import { Subject, of, throwError } from 'rxjs';
 import { CardService } from '../core/card.service';
 import { CardSummary } from '../models';
+import { environment } from '../../environments/environment';
+import { STORE_DESCRIPTION } from '../core/seo.service';
 import CatalogPageComponent from './catalog-page.component';
 import { SAMPLE_CARDS } from './testing/cards.fixture';
 
@@ -34,6 +36,17 @@ describe('CatalogPageComponent', () => {
     fixture.detectChanges();
     return fixture;
   }
+
+  it('se presenta a los buscadores con la canónica en la portada, sin filtros', () => {
+    getCards.mockReturnValue(of(SAMPLE_CARDS));
+    initialParams = { categoria: 'FLORES' };
+    render();
+
+    expect(document.title).toBe('Hora Azul — Tarjetas pop-up 3D');
+    expect(document.head.querySelector<HTMLMetaElement>('meta[name="description"]')!.content).toBe(STORE_DESCRIPTION);
+    expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href).toBe(`${environment.siteUrl}/`);
+    expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
+  });
 
   it('muestra skeletons mientras el backend responde', () => {
     getCards.mockReturnValue(new Subject<CardSummary[]>());
@@ -126,12 +139,13 @@ describe('CatalogPageComponent', () => {
   it('al pulsar una tarjeta navega a su detalle pasando los filtros activos', () => {
     getCards.mockReturnValue(of(SAMPLE_CARDS));
     initialParams = { precio: 'HASTA_20' };
-    const navigate = jest.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const navigate = jest.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
 
-    render().nativeElement.querySelector('app-card-item button').click();
+    render().nativeElement.querySelector('app-card-item a').click();
 
-    expect(navigate).toHaveBeenCalledWith(['/tarjeta', SAMPLE_CARDS[0].id], {
-      state: { catalogQueryParams: { categoria: null, precio: 'HASTA_20', q: null } },
-    });
+    expect(navigate).toHaveBeenCalledTimes(1);
+    const [url, extras] = navigate.mock.calls[0];
+    expect(String(url)).toBe(`/tarjeta/${SAMPLE_CARDS[0].id}`);
+    expect(extras?.state).toEqual({ catalogQueryParams: { categoria: null, precio: 'HASTA_20', q: null } });
   });
 });

@@ -1,10 +1,11 @@
 {
   "name": "hora-azul-frontend",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "sitemap": "node scripts/generate-sitemap.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",

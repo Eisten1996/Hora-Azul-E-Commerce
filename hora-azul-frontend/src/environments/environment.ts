@@ -2,6 +2,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
+  /** Dominio público de la tienda, para URLs canónicas y vistas previas al compartir. */
+  siteUrl: 'http://localhost:4200',
   /** Número de WhatsApp de la tienda en formato internacional sin "+" (51 + 9 dígitos). */
   whatsappNumber: '51988331275',
 };
