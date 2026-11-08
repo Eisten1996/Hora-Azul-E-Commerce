@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { CardSummary } from '../models';
 import { CardGridComponent } from './card-grid.component';
 import { SAMPLE_CARDS } from './testing/cards.fixture';
 
 describe('CardGridComponent y CardItemComponent', () => {
+  beforeEach(() => TestBed.configureTestingModule({ providers: [provideRouter([])] }));
+
   function render(inputs: { cards?: CardSummary[]; loading?: boolean }) {
     const fixture = TestBed.createComponent(CardGridComponent);
     if (inputs.cards) fixture.componentRef.setInput('cards', inputs.cards);
@@ -43,13 +46,12 @@ describe('CardGridComponent y CardItemComponent', () => {
     expect(img.alt).toBe('Tarjeta pop-up 3D "Globos de Cumpleaños", Cumpleaños');
   });
 
-  it('emite cardClick con la tarjeta pulsada', () => {
-    const fixture = render({ cards: SAMPLE_CARDS });
-    const clicked: CardSummary[] = [];
-    fixture.componentInstance.cardClick.subscribe((card) => clicked.push(card));
+  it('cada tarjeta es un enlace real a su ficha, con su nombre como texto', () => {
+    const element: HTMLElement = render({ cards: SAMPLE_CARDS }).nativeElement;
 
-    fixture.nativeElement.querySelectorAll('app-card-item button')[1].click();
-
-    expect(clicked).toEqual([SAMPLE_CARDS[1]]);
+    const links = [...element.querySelectorAll<HTMLAnchorElement>('app-card-item a')];
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(SAMPLE_CARDS.map((c) => `/tarjeta/${c.id}`));
+    expect(links[1].textContent!.trim()).toBe(SAMPLE_CARDS[1].name);
+    expect(element.querySelector('app-card-item button')).toBeNull();
   });
 });

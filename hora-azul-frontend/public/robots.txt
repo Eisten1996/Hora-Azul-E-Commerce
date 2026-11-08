@@ -3,3 +3,5 @@ Allow: /
 Disallow: /checkout
 Disallow: /pedido/
 Disallow: /admin
+
+Sitemap: https://hora-azul-e-commerce.pages.dev/sitemap.xml
