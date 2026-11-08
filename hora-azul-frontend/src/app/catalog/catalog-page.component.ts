@@ -105,7 +105,7 @@ type LoadStatus = 'loading' | 'error' | 'ready';
                 <p class="mb-4 text-sm text-slate-600" role="status">
                   {{ visibleCards().length }} de {{ cards().length }} tarjetas
                 </p>
-                <app-card-grid [cards]="visibleCards()" (cardClick)="openDetail($event)" />
+                <app-card-grid [cards]="visibleCards()" [detailState]="detailState()" />
               }
             }
             @default {
@@ -137,6 +137,9 @@ export default class CatalogPageComponent {
     filtersFromParams(this.route.snapshot.queryParams),
   );
   protected readonly visibleCards = computed(() => filterCards(this.cards(), this.filters()));
+  protected readonly detailState = computed<DetailNavigationState>(() => ({
+    catalogQueryParams: filtersToParams(this.filters()),
+  }));
   protected readonly activeFilterCount = computed(() => {
     const filters = this.filters();
     return filters.categories.length + (filters.priceRange ? 1 : 0) + (filters.search.trim() ? 1 : 0);
@@ -171,8 +174,4 @@ export default class CatalogPageComponent {
     });
   }
 
-  protected openDetail(card: CardSummary): void {
-    const state: DetailNavigationState = { catalogQueryParams: filtersToParams(this.filters()) };
-    this.router.navigate(['/tarjeta', card.id], { state });
-  }
 }

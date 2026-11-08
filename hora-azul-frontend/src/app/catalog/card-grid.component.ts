@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import type { DetailNavigationState } from '../detail/product-detail-page.component';
 import { CardSummary } from '../models';
 import { CardItemComponent } from './card-item.component';
 
@@ -25,7 +26,7 @@ import { CardItemComponent } from './card-item.component';
       <ul class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
         @for (card of cards(); track card.id) {
           <li>
-            <app-card-item [card]="card" (cardClick)="cardClick.emit($event)" />
+            <app-card-item [card]="card" [detailState]="detailState()" />
           </li>
         }
       </ul>
@@ -35,7 +36,7 @@ import { CardItemComponent } from './card-item.component';
 export class CardGridComponent {
   readonly cards = input<CardSummary[]>([]);
   readonly loading = input(false);
-  readonly cardClick = output<CardSummary>();
+  readonly detailState = input<DetailNavigationState>();
 
   protected readonly skeletons = Array.from({ length: 8 }, (_, i) => i);
 }
