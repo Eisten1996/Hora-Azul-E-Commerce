@@ -92,7 +92,7 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Tests de acciones por estado (incluidos los finales), confirmación, 409 y URL de WhatsApp
     - _Requirements: 12.3, 12.6, 12.7, 12.8, 12.9_
 
-- [ ] 4. Calidad y salida a producción (rama `feature/REQ-13-admin-calidad`)
+- [x] 4. Calidad y salida a producción (rama `feature/REQ-13-admin-calidad`)
   - [x] 4.1 Revisión de responsive y accesibilidad
     - Recorrer el Panel a 375 px y 1440 px, y con teclado
     - Pasar Lighthouse de accesibilidad a login, listados y formulario, y corregir lo encontrado
@@ -106,7 +106,7 @@ Implementación del Panel en `/admin` sobre la aplicación Angular y el backend 
     - Añadir a `DEPLOY.md` cómo entrar al Panel, dónde ver `ADMIN_PASSWORD` y cómo añadir fotos
     - _Requirements: 10.1, 11.9_
 
-  - [ ] 4.4 Release y prueba de humo en producción
+  - [x] 4.4 Release y prueba de humo en producción
     - Publicar la release con la migración V3 y comprobar que Flyway la aplica en Neon
     - Con la aprobación del Administrador: entrar, editar una tarjeta y restaurarla, cancelar `ORD-2026-0001` y cerrar sesión
     - Medir Lighthouse móvil en la portada (≥ 80)
