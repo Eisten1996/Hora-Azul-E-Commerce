@@ -20,10 +20,10 @@ export interface DetailNavigationState {
 
 const MAX_DESCRIPTION = 160;
 
-/** Descripción para buscadores: el texto de la tarjeta, o su categoría, con el precio. */
+/** Descripción para buscadores: nombre y precio primero, para que el recorte no los quite, y luego el texto. */
 export function cardDescription(card: CardDetail): string {
-  const base = card.description3d?.trim() || `Tarjeta pop-up 3D de ${categoryLabels(card.categories).toLowerCase()}.`;
-  const text = `${card.name}: ${base} ${formatSoles(card.price)} en Hora Azul.`;
+  const base = card.description3d?.trim() || `Categoría: ${categoryLabels(card.categories).toLowerCase()}.`;
+  const text = `${card.name}, tarjeta pop-up 3D a ${formatSoles(card.price)} en Hora Azul. ${base}`;
   if (text.length <= MAX_DESCRIPTION) {
     return text;
   }

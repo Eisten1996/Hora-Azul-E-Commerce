@@ -31,12 +31,12 @@ const CARD: CardDetail = {
 };
 
 describe('cardDescription', () => {
-  it('usa el texto de la tarjeta con el precio', () => {
-    expect(cardDescription(CARD)).toBe('Rosa Eterna: Una rosa roja de tres niveles con efecto de profundidad. S/. 17.00 en Hora Azul.');
+  it('empieza por el nombre y el precio, y sigue con el texto de la tarjeta', () => {
+    expect(cardDescription(CARD)).toBe('Rosa Eterna, tarjeta pop-up 3D a S/. 17.00 en Hora Azul. Una rosa roja de tres niveles con efecto de profundidad.');
   });
 
   it('sin texto usa las categorías', () => {
-    expect(cardDescription({ ...CARD, description3d: null })).toBe('Rosa Eterna: Tarjeta pop-up 3D de flores, amor. S/. 17.00 en Hora Azul.');
+    expect(cardDescription({ ...CARD, description3d: null })).toBe('Rosa Eterna, tarjeta pop-up 3D a S/. 17.00 en Hora Azul. Categoría: flores, amor.');
   });
 
   it('corta en una palabra un texto largo, sin pasar de 160 caracteres', () => {
@@ -44,6 +44,7 @@ describe('cardDescription', () => {
 
     expect(description.length).toBeLessThanOrEqual(160);
     expect(description.endsWith('palabra…')).toBe(true);
+    expect(description).toContain('S/. 17.00');
   });
 });
 
