@@ -7,7 +7,8 @@ import { CardService } from '../core/card.service';
 import { CartDrawerService } from '../core/cart-drawer.service';
 import { CartService } from '../core/cart.service';
 import { CardDetail } from '../models';
-import ProductDetailPageComponent from './product-detail-page.component';
+import { environment } from '../../environments/environment';
+import ProductDetailPageComponent, { cardDescription, productStructuredData } from './product-detail-page.component';
 
 const CARD: CardDetail = {
   id: 'b2000001-0000-0000-0000-000000000009',
@@ -28,6 +29,53 @@ const CARD: CardDetail = {
   createdAt: '2026-01-01T00:00:00',
   updatedAt: '2026-01-01T00:00:00',
 };
+
+describe('cardDescription', () => {
+  it('usa el texto de la tarjeta con el precio', () => {
+    expect(cardDescription(CARD)).toBe('Rosa Eterna: Una rosa roja de tres niveles con efecto de profundidad. S/. 17.00 en Hora Azul.');
+  });
+
+  it('sin texto usa las categorías', () => {
+    expect(cardDescription({ ...CARD, description3d: null })).toBe('Rosa Eterna: Tarjeta pop-up 3D de flores, amor. S/. 17.00 en Hora Azul.');
+  });
+
+  it('corta en una palabra un texto largo, sin pasar de 160 caracteres', () => {
+    const description = cardDescription({ ...CARD, description3d: 'palabra '.repeat(40) });
+
+    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description.endsWith('palabra…')).toBe(true);
+  });
+});
+
+describe('productStructuredData', () => {
+  it('describe el producto con precio en soles, imágenes en orden y disponibilidad', () => {
+    expect(productStructuredData(CARD)).toEqual({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'Rosa Eterna',
+      description: 'Una rosa roja de tres niveles con efecto de profundidad.',
+      sku: '9',
+      url: `${environment.siteUrl}/tarjeta/${CARD.id}`,
+      image: ['https://img/cover.jpg', 'https://img/open.jpg', 'https://img/envelope.jpg'],
+      brand: { '@type': 'Brand', name: 'Hora Azul' },
+      category: 'Flores, Amor',
+      offers: {
+        '@type': 'Offer',
+        url: `${environment.siteUrl}/tarjeta/${CARD.id}`,
+        priceCurrency: 'PEN',
+        price: '17.00',
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+      },
+    });
+  });
+
+  it('las fotos del catálogo pasan a URL absoluta y sin imágenes no hay campo image', () => {
+    const local = productStructuredData({ ...CARD, images: [{ url: '/cards/09-0.webp', imageType: 'COVER', sortOrder: 0 }] });
+    expect((local as { image: string[] }).image).toEqual([`${environment.siteUrl}/cards/09-0.webp`]);
+    expect(productStructuredData({ ...CARD, images: [] })).not.toHaveProperty('image');
+  });
+});
 
 describe('ProductDetailPageComponent', () => {
   let getCardById: jest.Mock;
@@ -57,6 +105,45 @@ describe('ProductDetailPageComponent', () => {
   function button(element: HTMLElement, text: string): HTMLButtonElement {
     return [...element.querySelectorAll('button')].find((b) => b.textContent?.includes(text))!;
   }
+
+  describe('buscadores', () => {
+    const meta = (selector: string) => document.head.querySelector<HTMLMetaElement>(`meta[${selector}]`)?.content;
+    const jsonLd = () => document.head.querySelector('script[type="application/ld+json"]');
+
+    it('una tarjeta activa tiene título, descripción, canónica y datos de producto', () => {
+      getCardById.mockReturnValue(of(CARD));
+      render();
+
+      expect(document.title).toBe('Rosa Eterna — Hora Azul');
+      expect(meta('name="description"')).toBe(cardDescription(CARD));
+      expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href).toBe(`${environment.siteUrl}/tarjeta/${CARD.id}`);
+      expect(meta('name="robots"')).toBeUndefined();
+      expect(JSON.parse(jsonLd()!.textContent!)).toEqual(productStructuredData(CARD));
+    });
+
+    it('los datos de producto se quitan al salir de la ficha', () => {
+      getCardById.mockReturnValue(of(CARD));
+      render().destroy();
+
+      expect(jsonLd()).toBeNull();
+    });
+
+    it('una tarjeta inactiva pide no indexarse y no tiene datos de producto', () => {
+      getCardById.mockReturnValue(of({ ...CARD, active: false }));
+      render();
+
+      expect(meta('name="robots"')).toBe('noindex');
+      expect(jsonLd()).toBeNull();
+    });
+
+    it('una tarjeta inexistente pide no indexarse', () => {
+      getCardById.mockReturnValue(throwError(() => new HttpErrorResponse({ status: 404 })));
+      render();
+
+      expect(document.title).toBe('Tarjeta no encontrada — Hora Azul');
+      expect(meta('name="robots"')).toBe('noindex');
+    });
+  });
 
   it('muestra todos los datos de la tarjeta', () => {
     getCardById.mockReturnValue(of(CARD));

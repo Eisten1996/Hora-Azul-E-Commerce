@@ -3,6 +3,8 @@ import { ActivatedRoute, Params, Router, provideRouter } from '@angular/router';
 import { Subject, of, throwError } from 'rxjs';
 import { CardService } from '../core/card.service';
 import { CardSummary } from '../models';
+import { environment } from '../../environments/environment';
+import { STORE_DESCRIPTION } from '../core/seo.service';
 import CatalogPageComponent from './catalog-page.component';
 import { SAMPLE_CARDS } from './testing/cards.fixture';
 
@@ -34,6 +36,17 @@ describe('CatalogPageComponent', () => {
     fixture.detectChanges();
     return fixture;
   }
+
+  it('se presenta a los buscadores con la canónica en la portada, sin filtros', () => {
+    getCards.mockReturnValue(of(SAMPLE_CARDS));
+    initialParams = { categoria: 'FLORES' };
+    render();
+
+    expect(document.title).toBe('Hora Azul — Tarjetas pop-up 3D');
+    expect(document.head.querySelector<HTMLMetaElement>('meta[name="description"]')!.content).toBe(STORE_DESCRIPTION);
+    expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href).toBe(`${environment.siteUrl}/`);
+    expect(document.head.querySelector('meta[name="robots"]')).toBeNull();
+  });
 
   it('muestra skeletons mientras el backend responde', () => {
     getCards.mockReturnValue(new Subject<CardSummary[]>());

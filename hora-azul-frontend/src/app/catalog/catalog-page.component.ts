@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signa
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from '../core/card.service';
+import { STORE_DESCRIPTION, SeoService } from '../core/seo.service';
 import type { DetailNavigationState } from '../detail/product-detail-page.component';
 import { CardSummary } from '../models';
 import { CardGridComponent } from './card-grid.component';
@@ -146,6 +147,13 @@ export default class CatalogPageComponent {
   });
 
   constructor() {
+    inject(SeoService).setPage({
+      title: 'Hora Azul — Tarjetas pop-up 3D',
+      description: STORE_DESCRIPTION,
+      // Los filtros cambian la URL, pero todas sus variantes son la misma página
+      path: '/',
+      image: '/brand/hora-azul-logo.webp',
+    });
     this.load();
     // En móvil, si se llega con filtros en la URL, mostrar el panel abierto
     this.filtersOpen.set(hasActiveFilters(this.filters()));

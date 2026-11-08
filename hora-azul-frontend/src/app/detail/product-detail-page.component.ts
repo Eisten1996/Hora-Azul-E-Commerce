@@ -2,12 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { CardService } from '../core/card.service';
 import { CartDrawerService } from '../core/cart-drawer.service';
 import { CartService } from '../core/cart.service';
-import { SolesPipe } from '../core/money';
+import { SolesPipe, formatSoles } from '../core/money';
+import { SeoService, absoluteUrl } from '../core/seo.service';
 import { CardDetail, categoryLabels } from '../models';
 import { ImageGalleryComponent } from './image-gallery.component';
 
@@ -16,6 +16,44 @@ type LoadStatus = 'loading' | 'ready' | 'not-found' | 'error';
 /** Estado que el catálogo pasa al abrir el detalle, para restaurar sus filtros al volver. */
 export interface DetailNavigationState {
   catalogQueryParams?: Params;
+}
+
+const MAX_DESCRIPTION = 160;
+
+/** Descripción para buscadores: el texto de la tarjeta, o su categoría, con el precio. */
+export function cardDescription(card: CardDetail): string {
+  const base = card.description3d?.trim() || `Tarjeta pop-up 3D de ${categoryLabels(card.categories).toLowerCase()}.`;
+  const text = `${card.name}: ${base} ${formatSoles(card.price)} en Hora Azul.`;
+  if (text.length <= MAX_DESCRIPTION) {
+    return text;
+  }
+  const cut = text.slice(0, MAX_DESCRIPTION - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' '))}…`;
+}
+
+/** Datos estructurados schema.org de la tarjeta, para que Google muestre precio e imagen. */
+export function productStructuredData(card: CardDetail): object {
+  const url = absoluteUrl(`/tarjeta/${card.id}`);
+  const images = [...card.images].sort((a, b) => a.sortOrder - b.sortOrder).map((image) => absoluteUrl(image.url));
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: card.name,
+    description: card.description3d ?? cardDescription(card),
+    sku: String(card.catalogNumber),
+    url,
+    ...(images.length > 0 ? { image: images } : {}),
+    brand: { '@type': 'Brand', name: 'Hora Azul' },
+    category: categoryLabels(card.categories),
+    offers: {
+      '@type': 'Offer',
+      url,
+      priceCurrency: 'PEN',
+      price: card.price.toFixed(2),
+      availability: card.active ? 'https://schema.org/InStock' : 'https://schema.org/Discontinued',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+  };
 }
 
 /** Ficha completa de una tarjeta con galería y botón para agregarla al carrito. */
@@ -142,7 +180,7 @@ export default class ProductDetailPageComponent {
   private readonly drawer = inject(CartDrawerService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly title = inject(Title);
+  private readonly seo = inject(SeoService);
   private readonly destroyRef = inject(DestroyRef);
 
   /** Filtros del catálogo de origen; {@code undefined} si se llegó por URL directa. */
@@ -159,6 +197,8 @@ export default class ProductDetailPageComponent {
   });
 
   constructor() {
+    // El JSON-LD vive en <head>: hay que quitarlo al salir de la ficha
+    this.destroyRef.onDestroy(() => this.seo.setStructuredData(null));
     this.load();
   }
 
@@ -172,7 +212,15 @@ export default class ProductDetailPageComponent {
         next: (card) => {
           this.card.set(card);
           this.status.set('ready');
-          this.title.setTitle(`${card.name} — Hora Azul`);
+          this.seo.setPage({
+            title: `${card.name} — Hora Azul`,
+            description: cardDescription(card),
+            path: `/tarjeta/${card.id}`,
+            image: card.coverImageUrl,
+            // Una tarjeta inactiva no se puede comprar: no debe aparecer en los buscadores
+            noindex: !card.active,
+          });
+          this.seo.setStructuredData(card.active ? productStructuredData(card) : null);
         },
         error: (error: unknown) => {
           // Un id que no es UUID hace que el backend responda 404 (ruta) o 400
@@ -180,7 +228,12 @@ export default class ProductDetailPageComponent {
             error instanceof HttpErrorResponse && (error.status === 404 || error.status === 400);
           this.status.set(notFound ? 'not-found' : 'error');
           if (notFound) {
-            this.title.setTitle('Tarjeta no encontrada — Hora Azul');
+            this.seo.setPage({
+              title: 'Tarjeta no encontrada — Hora Azul',
+              description: 'Esta tarjeta no existe en el catálogo de Hora Azul.',
+              path: `/tarjeta/${id}`,
+              noindex: true,
+            });
           }
         },
       });
