@@ -114,4 +114,6 @@ El script solo lee la API de producción. Si la API no devuelve tarjetas, falla 
 3. En **Sitemaps**, enviar `sitemap.xml`.
 4. Opcional: en **Inspección de URLs**, pegar la URL de una ficha y pulsar **Solicitar indexación** para acelerar las primeras.
 
+**Ya configurado:** la propiedad se verificó con la etiqueta `google-site-verification` de `src/index.html` y, como respaldo, con `public/google25fe406ab42c70d1.html`. No borrar ninguno de los dos: Google retiraría la verificación.
+
 Google tarda de días a semanas en indexar un sitio nuevo. En Search Console, **Páginas** muestra cuáles ya están indexadas y por qué no lo están las demás.
